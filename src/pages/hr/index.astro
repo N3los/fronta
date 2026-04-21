@@ -1,0 +1,35 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Navbar from '../../components/Navbar.astro';
+import Footer from '../../components/Footer.astro';
+
+// Sections
+import Hero from '../../components/sections/Hero.astro';
+import Services from '../../components/sections/Services.astro';
+import Methodology from '../../components/sections/Methodology.astro';
+import Portfolio from '../../components/sections/Portfolio.astro';
+import Marquee from '../../components/sections/Marquee.astro';
+import About from '../../components/sections/About.astro';
+import MainCTA from '../../components/sections/MainCTA.astro';
+
+import { getLangFromUrl, useTranslations } from '../../i18n/utils';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+---
+
+<Layout title="FRONTA - Design and Frontend Practice">
+  <Navbar />
+  
+  <main class="pt-20">
+    <Hero />
+    <Services />
+    <Methodology />
+    <Portfolio />
+    <Marquee />
+    <About />
+    <MainCTA />
+  </main>
+  
+  <Footer />
+</Layout>

@@ -1,0 +1,70 @@
+---
+// Modular CSS Import
+import '../../styles/components/marquee.css';
+
+const row1 = [
+  { name: "QUANTO", icon: true, mono: false },
+  { name: "NEXUS", icon: false, mono: true },
+  { name: "APEX", icon: true, mono: false },
+  { name: "STAX", icon: false, mono: true },
+  { name: "VERTEX", icon: true, mono: false },
+  { name: "ORBIT", icon: false, mono: true },
+];
+
+const row2 = [
+  { name: "CORE", icon: true, mono: false },
+  { name: "PRISM", icon: false, mono: true },
+  { name: "AXIS", icon: true, mono: false },
+  { name: "FLUX", icon: false, mono: true },
+  { name: "DELTA", icon: true, mono: false },
+  { name: "NODE", icon: false, mono: true },
+];
+---
+
+<section class="marquee-container">
+  <div class="marquee-stack">
+    <!-- Row 01: Scrolling Left -->
+    <div class="marquee-content">
+      <div class="marquee-track">
+        <div class="marquee-logo-item">
+          {row1.map((logo) => (
+            <div class="client-logo">
+              {logo.icon && <div class="logo-icon"></div>}
+              <span class={logo.mono ? "logo-mono" : ""}>{logo.name}</span>
+            </div>
+          ))}
+        </div>
+        <div class="marquee-logo-item">
+          {row1.map((logo) => (
+            <div class="client-logo">
+              {logo.icon && <div class="logo-icon"></div>}
+              <span class={logo.mono ? "logo-mono" : ""}>{logo.name}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+
+    <!-- Row 02: Scrolling Right -->
+    <div class="marquee-content marquee-reverse">
+      <div class="marquee-track">
+        <div class="marquee-logo-item">
+          {row2.map((logo) => (
+            <div class="client-logo">
+              {logo.icon && <div class="logo-icon"></div>}
+              <span class={logo.mono ? "logo-mono" : ""}>{logo.name}</span>
+            </div>
+          ))}
+        </div>
+        <div class="marquee-logo-item">
+          {row2.map((logo) => (
+            <div class="client-logo">
+              {logo.icon && <div class="logo-icon"></div>}
+              <span class={logo.mono ? "logo-mono" : ""}>{logo.name}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

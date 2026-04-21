@@ -7,14 +7,21 @@
   },
   "scripts": {
     "dev": "astro dev",
+    "start": "astro dev",
     "build": "astro build",
+    "build:staging": "node src/scripts/build-staging.js",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "deploy": "npm run build:staging && node src/scripts/deploy.js"
   },
   "dependencies": {
     "@astrojs/sitemap": "^3.7.2",
     "@tailwindcss/vite": "^4.2.3",
     "astro": "^6.1.8",
+    "dotenv": "^17.4.2",
     "tailwindcss": "^4.2.3"
+  },
+  "devDependencies": {
+    "basic-ftp": "^5.3.0"
   }
 }

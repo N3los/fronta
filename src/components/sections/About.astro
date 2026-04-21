@@ -1,0 +1,48 @@
+---
+import { getLangFromUrl, useTranslations } from "../../i18n/utils";
+import MainCTA from "../sections/MainCTA.astro";
+
+// Modular CSS Import
+import "../../styles/sections/about.css";
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+---
+
+<section class="section-about" id="About">
+  <div class="section-container">
+    <div class="about-header-split">
+      <!-- Side Marker -->
+      <div class="md:col-span-4">
+        <div class="index-marker mb-12">
+          <span class="index-num">04</span>
+          <span class="index-line"></span>
+          <p class="badge-mono uppercase">About</p>
+        </div>
+      </div>
+
+      <!-- Content Block -->
+      <div class="md:col-span-8 flex flex-col">
+        <h2 class="about-title">
+          FRONTA is a freelance design and frontend practice — building
+          <span class="text-gradient-logo"
+            >production-ready websites and apps</span
+          >
+          for founders, product teams, and engineering.
+        </h2>
+
+        <p class="about-meta">
+          One person, end-to-end. From first sketch to shipped code. No vendor
+          handoff, no design-vs-engineering tug-of-war — just things that work,
+          and keep working.
+        </p>
+
+        <a href="#Contact" class="about-link">
+          More about the practice <span>→</span>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <MainCTA />
+</section>

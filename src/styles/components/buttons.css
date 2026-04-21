@@ -1,0 +1,40 @@
+@reference "../global.css";
+
+/* Shared Button Components */
+
+.btn-primary {
+  @apply inline-flex items-center justify-center px-8 py-3 rounded-xl bg-fronta-red text-white text-sm font-semibold transition-all duration-300;
+  &:hover {
+    @apply bg-red-600 shadow-[0_0_20px_rgba(255,43,43,0.4)];
+    span {
+      @apply translate-x-1;
+    }
+  }
+}
+
+.btn-secondary {
+  @apply inline-flex items-center justify-center px-8 py-3 rounded-xl bg-transparent border border-fronta-border text-white text-sm font-semibold transition-all duration-300;
+  &:hover {
+    @apply bg-white/5 border-white/20;
+    span {
+      @apply translate-x-1;
+    }
+  }
+}
+
+.btn-glass {
+  @apply inline-flex items-center justify-center px-8 py-3 rounded-xl bg-fronta-dark/80 backdrop-blur-xl border border-white/10 text-white text-sm font-semibold transition-all duration-300;
+  &:hover {
+    @apply border-white/30 bg-fronta-dark/90;
+    span {
+      @apply translate-x-1;
+    }
+  }
+}
+
+.btn-pill {
+  @apply flex items-center gap-2 px-5 py-2.5 rounded-full border border-fronta-border text-xs font-bold transition-all;
+  &:hover {
+    @apply border-fronta-red;
+  }
+}

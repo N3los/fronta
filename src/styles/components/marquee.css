@@ -1,0 +1,83 @@
+@reference "../global.css";
+
+/* Marquee Component - Client Showcase Architecture */
+
+.marquee-container {
+  @apply relative w-full bg-fronta-dark py-12 md:py-20 overflow-hidden;
+}
+
+/* Edge Fade Gradient Masks */
+.marquee-container::before,
+.marquee-container::after {
+  content: "";
+  @apply absolute inset-y-0 w-32 md:w-64 z-20 pointer-events-none;
+}
+
+.marquee-container::before {
+  @apply left-0 bg-gradient-to-r from-fronta-dark to-transparent;
+}
+
+.marquee-container::after {
+  @apply right-0 bg-gradient-to-l from-fronta-dark to-transparent;
+}
+
+.marquee-stack {
+  @apply flex flex-col gap-12 md:gap-20;
+}
+
+.marquee-content {
+  @apply flex whitespace-nowrap;
+}
+
+.marquee-track {
+  @apply flex items-center will-change-transform;
+  animation: marquee-scroll 50s linear infinite;
+}
+
+/* Reverse Direction Logic */
+.marquee-reverse .marquee-track {
+  animation-direction: reverse;
+}
+
+.marquee-logo-item {
+  @apply flex items-center gap-24 md:gap-40 px-12 md:px-20;
+}
+
+/* Dummy Logo Styling */
+.client-logo {
+  @apply text-xl md:text-3xl font-bold tracking-tighter text-white opacity-40 grayscale transition-all duration-500 flex items-center gap-3;
+
+  &:hover {
+    @apply opacity-100 grayscale-0;
+  }
+}
+
+.logo-icon {
+  @apply w-6 h-6 md:w-8 md:h-8 rounded-sm bg-gradient-to-br from-fronta-red to-fronta-red/40 opacity-70;
+}
+
+.logo-mono {
+  @apply font-mono font-normal tracking-wide text-lg md:text-2xl;
+}
+
+/* Animation Engine */
+@keyframes marquee-scroll {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+/* Mobile Adjustments */
+@media (max-width: 768px) {
+  .marquee-track {
+    animation-duration: 30s;
+  }
+
+  .marquee-logo-item {
+    @apply gap-20 px-10;
+  }
+}

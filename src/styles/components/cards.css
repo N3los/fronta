@@ -1,0 +1,38 @@
+@reference "../global.css";
+
+/* Shared Card Components */
+
+.service-card {
+  @apply relative p-10 md:p-12 rounded-[2rem] bg-fronta-card/40 border border-fronta-border transition-all duration-500 overflow-hidden;
+  
+  &:hover {
+    @apply border-fronta-red/50 bg-fronta-card/60;
+    
+    .service-card-grid {
+      @apply opacity-100;
+    }
+  }
+}
+
+.service-card-grid {
+  @apply absolute inset-x-8 inset-y-12 opacity-0 transition-opacity duration-700 pointer-events-none;
+}
+
+.service-card-grid-inner {
+  @apply absolute inset-0 grayscale invert opacity-5;
+  background-image: linear-gradient(rgba(255,255,255,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.05) 1px, transparent 1px);
+  background-size: 20px 20px;
+}
+
+.card-title {
+  @apply text-3xl md:text-4xl font-bold mb-6 leading-tight max-w-[15ch] transition-colors group-hover:text-white;
+}
+
+.card-footer-cta {
+  @apply inline-flex items-center gap-2 text-xs font-mono text-fronta-red uppercase tracking-widest transition-all;
+  &:hover {
+    span {
+      @apply translate-x-1;
+    }
+  }
+}

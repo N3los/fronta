@@ -1,0 +1,100 @@
+---
+import { getLangFromUrl, useTranslations } from '../../i18n/utils';
+
+// Modular CSS Imports
+import '../../styles/components/cards.css';
+import '../../styles/components/badges.css';
+import '../../styles/sections/services.css';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+const base = import.meta.env.BASE_URL.replace(/\/$/, "");
+const localizedPath = lang === 'en' ? '' : `/${lang}`;
+---
+
+<section class="section-services" id="Services">
+  <div class="section-container relative z-10">
+    <!-- Section Badge & Title -->
+    <header class="mb-20">
+      <div class="index-marker mb-8">
+        <div class="index-marker">
+          <span class="index-num">01</span>
+          <span class="index-line"></span>
+        </div>
+        <p class="badge-mono">{t('services.badge')}</p>
+      </div>
+      
+      <h2 class="section-title">
+        {t('services.title_base')} <span class="text-fronta-red">{t('services.title_red')}</span>
+      </h2>
+    </header>
+    
+    <div class="services-grid">
+      <!-- Practice 01: Websites -->
+      <article class="service-card group">
+        <div class="service-card-grid">
+           <div class="service-card-grid-inner scale-90 rotate-3"></div>
+        </div>
+
+        <div class="relative z-10">
+          <div class="flex justify-between items-start mb-12">
+            <p class="badge-mono text-fronta-red">/ {t('services.p1.label')}</p>
+            <span class="badge-mono opacity-50">01</span>
+          </div>
+          
+          <h3 class="card-title">{t('services.p1.title')}</h3>
+          <p class="max-w-md mb-10">
+            {t('services.p1.desc')}
+          </p>
+          
+          <ul class="service-feature-list">
+            {[t('services.p1.feat1'), t('services.p1.feat2'), t('services.p1.feat3')].map((feat) => (
+              <li class="service-feature-item">
+                <span class="red-dot"></span>
+                {feat}
+              </li>
+            ))}
+          </ul>
+          
+          <a href={`${base}${localizedPath}/services`} class="card-footer-cta group/link">
+            {t('services.p1.cta')}
+            <span class="transition-transform duration-300 group-hover/link:translate-x-1">→</span>
+          </a>
+        </div>
+      </article>
+      
+      <!-- Practice 02: Apps -->
+      <article class="service-card group">
+        <div class="service-card-grid">
+           <div class="service-card-grid-inner scale-95 -rotate-2" style="background-size: 24px 24px;"></div>
+        </div>
+
+        <div class="relative z-10">
+          <div class="flex justify-between items-start mb-12">
+            <p class="badge-mono text-fronta-red">/ {t('services.p2.label')}</p>
+            <span class="badge-mono opacity-50">02</span>
+          </div>
+          
+          <h3 class="card-title">{t('services.p2.title')}</h3>
+          <p class="max-w-md mb-10">
+            {t('services.p2.desc')}
+          </p>
+          
+          <ul class="service-feature-list">
+            {[t('services.p2.feat1'), t('services.p2.feat2'), t('services.p2.feat3')].map((feat) => (
+              <li class="service-feature-item">
+                <span class="red-dot"></span>
+                {feat}
+              </li>
+            ))}
+          </ul>
+          
+          <a href={`${base}${localizedPath}/services`} class="card-footer-cta group/link">
+            {t('services.p2.cta')}
+            <span class="transition-transform duration-300 group-hover/link:translate-x-1">→</span>
+          </a>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>

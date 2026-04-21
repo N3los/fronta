@@ -1,0 +1,99 @@
+---
+import { Image } from 'astro:assets';
+import { getLangFromUrl, useTranslations } from '../../i18n/utils';
+
+// Placeholder Assets
+import img1 from '../../assets/placeholders/image.png';
+import img2 from '../../assets/placeholders/image copy.png';
+import img3 from '../../assets/placeholders/image copy 2.png';
+
+// Modular CSS Import
+import '../../styles/sections/portfolio.css';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+const base = import.meta.env.BASE_URL.replace(/\/$/, "");
+const localizedPath = lang === 'en' ? '' : `/${lang}`;
+
+const projects = [
+  {
+    year: "2024",
+    tag: "MARKETING",
+    title: "Marketing site for a developer-tooling startup",
+    description: "3D-heavy marketing page highlighting a highly technical infrastructure product.",
+    image: img1,
+    href: "/projects/dev-tooling"
+  },
+  {
+    year: "2023",
+    tag: "INTERNAL TOOL",
+    title: "Ledger dashboard for a B2B treasury platform",
+    description: "Complex financial tables and charts tailored for internal accounting teams.",
+    image: img2,
+    href: "/projects/ledger-dashboard"
+  },
+  {
+    year: "2023",
+    tag: "PRODUCT UI",
+    title: "Ops console for a logistics team",
+    description: "Real-time map integrations and dispatching UI built for high-stress environments.",
+    image: img3,
+    href: "/projects/ops-console"
+  }
+];
+---
+
+<section class="section-portfolio" id="Portfolio">
+  <div class="section-container">
+    <header class="mb-24">
+      <div class="index-marker mb-8">
+        <div class="index-marker">
+          <span class="index-num">03</span>
+          <span class="index-line"></span>
+        </div>
+        <p class="badge-mono uppercase">Portfolio</p>
+      </div>
+      
+      <h2 class="section-title">
+        Selected work <br />
+        <span class="text-gradient-logo">built to last.</span>
+      </h2>
+    </header>
+    
+    <div class="portfolio-stack">
+      {projects.map((project) => (
+        <article class="portfolio-item group">
+          <div class="portfolio-layout">
+            <!-- Project Info -->
+            <div class="portfolio-info">
+              <div>
+                <div class="portfolio-metadata">
+                  <span class="portfolio-year">{project.year}</span>
+                  <span class="text-fronta-border">/</span>
+                  <span class="portfolio-tag">{project.tag}</span>
+                </div>
+                
+                <h3 class="portfolio-title">{project.title}</h3>
+                <p class="portfolio-description">{project.description}</p>
+              </div>
+              
+              <a href={`${base}${localizedPath}${project.href}`} class="portfolio-cta">
+                View Project <span>→</span>
+              </a>
+            </div>
+
+            <!-- Project Image -->
+            <div class="portfolio-image-container">
+              <Image 
+                src={project.image} 
+                alt={project.title} 
+                class="portfolio-image"
+              />
+              <div class="portfolio-image-overlay"></div>
+            </div>
+          </div>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>

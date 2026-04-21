@@ -1,0 +1,26 @@
+@reference "../global.css";
+
+/* Services Section Styles */
+
+.section-services {
+  @apply py-24 md:py-24;
+}
+
+.services-grid {
+  @apply grid grid-cols-1 lg:grid-cols-2 gap-6;
+}
+
+.service-feature-list {
+  @apply space-y-4 mb-12;
+}
+
+.service-feature-item {
+  @apply flex items-center gap-3 text-xs md:text-sm text-fronta-muted/90 transition-colors;
+}
+
+/* Specific card variation overrides if needed */
+.service-card:hover {
+  .service-feature-item {
+    @apply text-white;
+  }
+}

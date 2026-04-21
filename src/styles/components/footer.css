@@ -1,0 +1,77 @@
+@reference "../global.css";
+
+/* Footer - Sticky Reveal Architecture */
+
+.footer-reveal {
+  @apply sticky bottom-0 -z-10 w-full min-h-[500px] bg-[#030303] flex items-end pt-32 pb-16 overflow-hidden;
+}
+
+.footer-content {
+  @apply relative z-10 w-full max-w-7xl mx-auto px-6;
+}
+
+.footer-grid {
+  @apply grid grid-cols-1 md:grid-cols-12 gap-12 md:gap-24 mb-20;
+}
+
+.footer-info {
+  @apply md:col-span-4;
+}
+
+.footer-logo-link {
+  @apply inline-block mb-8 transition-transform hover:scale-105;
+}
+
+.footer-tagline {
+  @apply text-fronta-muted text-sm max-w-xs leading-relaxed mb-10;
+}
+
+/* Status Badge */
+.footer-status {
+  @apply inline-flex items-center gap-3 px-4 py-2 rounded-full border border-fronta-border bg-fronta-card/40 text-[10px] font-mono uppercase tracking-widest text-fronta-muted;
+}
+.status-dot {
+  @apply w-1.5 h-1.5 rounded-full bg-fronta-red shadow-[0_0_8px_rgba(239,13,51,0.6)] animate-pulse;
+}
+
+/* Column Styling */
+.footer-nav-col {
+  @apply md:col-span-2;
+}
+
+.footer-nav-title {
+  @apply text-[10px] font-mono text-fronta-red uppercase tracking-widest mb-10 opacity-60;
+}
+
+.footer-nav-list {
+  @apply space-y-4;
+}
+
+.footer-nav-link {
+  @apply text-sm text-fronta-muted hover:text-white transition-all flex items-center gap-2;
+  &:hover { @apply translate-x-1; }
+}
+
+/* Bottom Bar */
+.footer-bottom {
+  @apply flex flex-col md:flex-row items-center justify-between pt-10 border-t border-fronta-border;
+}
+
+.footer-copyright {
+  @apply text-[10px] font-mono text-fronta-muted uppercase tracking-widest opacity-40 mb-4 md:mb-0;
+}
+
+.footer-legal-links {
+  @apply flex gap-8;
+}
+
+.footer-legal-link {
+  @apply text-[10px] font-mono text-fronta-muted uppercase tracking-widest hover:text-white transition-colors;
+}
+
+/* Mobile Static Fallback */
+@media (max-width: 1024px) {
+  .footer-reveal {
+    @apply relative z-20 pt-24 min-h-0 bg-[#050505];
+  }
+}

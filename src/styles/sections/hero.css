@@ -1,0 +1,76 @@
+@reference "../global.css";
+
+/* Hero Section Styles */
+
+.section-hero {
+  @apply relative min-h-[90vh] flex items-center bg-fronta-dark overflow-hidden;
+
+  /* Decorative Effects */
+  &.glow-bg {
+    background: radial-gradient(circle at 50% 0%, rgba(255, 43, 43, 0.12) 0%, rgba(10, 10, 10, 0) 60%);
+  }
+
+  &.glow-grid {
+    background-image:
+      linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+    background-size: 60px 60px;
+    background-position: top center;
+  }
+}
+
+.hero-title {
+  @apply text-6xl md:text-8xl font-bold tracking-tight mb-8 leading-[1.05] transition-colors;
+  font-family: var(--font-display);
+}
+
+.hero-description {
+  @apply text-base md:text-lg text-fronta-muted max-w-2xl mb-12 leading-relaxed selection:bg-fronta-red;
+}
+
+.hero-actions {
+  @apply flex flex-wrap items-center justify-center md:justify-start gap-4;
+}
+
+.hero-badge {
+  @apply inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 mb-8;
+}
+
+.hero-badge-text {
+  @apply text-[10px] font-mono text-fronta-muted tracking-[0.2em] uppercase !mb-0;
+}
+
+/* Architectural Frame (Corner Brackets) */
+
+.bracket-frame {
+  @apply absolute inset-8 pointer-events-none z-0;
+}
+
+.corner-bracket {
+  @apply absolute w-8 h-8 border-fronta-border;
+  transition: border-color 0.5s ease;
+}
+
+.section-hero:hover .corner-bracket {
+  @apply border-fronta-red/30;
+}
+
+.corner-bracket-tl {
+  @apply top-0 left-0 border-t-2 border-l-2;
+}
+
+.corner-bracket-tr {
+  @apply top-0 right-0 border-t-2 border-r-2;
+}
+
+.corner-bracket-bl {
+  @apply bottom-0 left-0 border-b-2 border-l-2;
+}
+
+.corner-bracket-br {
+  @apply bottom-0 right-0 border-b-2 border-r-2;
+}
+
+.hero-bottom-flair {
+  @apply absolute bottom-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-fronta-border to-transparent opacity-50;
+}

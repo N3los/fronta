@@ -1,0 +1,161 @@
+---
+import { getLangFromUrl, useTranslations } from '../../i18n/utils';
+
+// Modular CSS Imports
+import '../../styles/components/badges.css';
+import '../../styles/sections/methodology.css';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+---
+
+<section class="section-methodology" id="Process">
+  <div class="section-container">
+    <!-- Section Header -->
+    <header class="mb-32">
+      <div class="index-marker mb-8">
+        <div class="index-marker">
+          <span class="index-num">02</span>
+          <span class="index-line"></span>
+        </div>
+        <p class="badge-mono uppercase">Methodology</p>
+      </div>
+      
+      <h2 class="section-title">
+        Standard Process, <br />
+        <span class="text-gradient-logo">Predictable Results.</span>
+      </h2>
+      <p class="section-subtitle mt-6">
+        A predictable process yields predictable results. No creative epiphanies — just a tight loop from brief to build.
+      </p>
+    </header>
+
+    <!-- 01 Understand -->
+    <div class="methodology-row">
+      <aside class="methodology-side">
+        <div class="methodology-sticky-header">
+          <div class="methodology-index-large">01</div>
+          <h3 class="methodology-side-title">Understand</h3>
+          <p class="badge-mono">Phase_01 // Discovery</p>
+        </div>
+      </aside>
+      
+      <main class="methodology-content">
+        <div class="methodology-blueprint-frame group">
+          <div class="service-card-grid">
+            <div class="service-card-grid-inner opacity-10"></div>
+          </div>
+          
+          <span class="methodology-detail-label">Objective</span>
+          <h4 class="methodology-detail-title">Define success before design.</h4>
+          <p class="methodology-detail-desc">
+            Business goals, audience research, conversion paths, and CMS requirements. We build a bulletproof brief before touching a single frame.
+          </p>
+          
+          <div class="methodology-list">
+            <span class="methodology-list-item"><i></i> Stakeholder Interviews</span>
+            <span class="methodology-list-item"><i></i> Audience Analysis</span>
+            <span class="methodology-list-item"><i></i> Tech Stack Audit</span>
+            <span class="methodology-list-item"><i></i> Performance Targets</span>
+          </div>
+        </div>
+      </main>
+    </div>
+
+    <!-- 02 Structure -->
+    <div class="methodology-row">
+      <aside class="methodology-side">
+        <div class="methodology-sticky-header">
+          <div class="methodology-index-large">02</div>
+          <h3 class="methodology-side-title">Structure</h3>
+          <p class="badge-mono">Phase_02 // Foundation</p>
+        </div>
+      </aside>
+      
+      <main class="methodology-content">
+        <div class="methodology-blueprint-frame group">
+          <div class="service-card-grid">
+            <div class="service-card-grid-inner rotate-3"></div>
+          </div>
+          
+          <span class="methodology-detail-label">Architecture</span>
+          <h4 class="methodology-detail-title">Functionality above aesthetics.</h4>
+          <p class="methodology-detail-desc">
+            Information architecture, content hierarchy, and CTA flow. The wireframe phase determines how a user moves through your story without visual distractions.
+          </p>
+          
+          <div class="methodology-list">
+            <span class="methodology-list-item"><i></i> User Flow Map</span>
+            <span class="methodology-list-item"><i></i> Content Hierarchy</span>
+            <span class="methodology-list-item"><i></i> Wireframe Prototype</span>
+            <span class="methodology-list-item"><i></i> CTA Strategy</span>
+          </div>
+        </div>
+      </main>
+    </div>
+
+    <!-- 03 Design -->
+    <div class="methodology-row">
+      <aside class="methodology-side">
+        <div class="methodology-sticky-header">
+          <div class="methodology-index-large">03</div>
+          <h3 class="methodology-side-title">Design</h3>
+          <p class="badge-mono">Phase_03 // Interaction</p>
+        </div>
+      </aside>
+      
+      <main class="methodology-content">
+        <div class="methodology-blueprint-frame group">
+          <div class="service-card-grid">
+            <div class="service-card-grid-inner -rotate-6 scale-110"></div>
+          </div>
+          
+          <span class="methodology-detail-label">Creative</span>
+          <h4 class="methodology-detail-title">Visuals within constraints.</h4>
+          <p class="methodology-detail-desc">
+            Visual design with performance built in. Every section designed for mobile and desktop simultaneously to ensure a premium feel across all breakpoints.
+          </p>
+          
+          <div class="methodology-list">
+            <span class="methodology-list-item"><i></i> UI System Design</span>
+            <span class="methodology-list-item"><i></i> Responsive Layouts</span>
+            <span class="methodology-list-item"><i></i> Brand Integration</span>
+            <span class="methodology-list-item"><i></i> Motion Principles</span>
+          </div>
+        </div>
+      </main>
+    </div>
+
+    <!-- 04 Ship -->
+    <div class="methodology-row">
+      <aside class="methodology-side">
+        <div class="methodology-sticky-header">
+          <div class="methodology-index-large">04</div>
+          <h3 class="methodology-side-title">Ship</h3>
+          <p class="badge-mono">Phase_04 // Deployment</p>
+        </div>
+      </aside>
+      
+      <main class="methodology-content">
+        <div class="methodology-blueprint-frame group">
+          <div class="service-card-grid">
+            <div class="service-card-grid-inner"></div>
+          </div>
+          
+          <span class="methodology-detail-label">Deliverable</span>
+          <h4 class="methodology-detail-title">Clean code. Tested. Done.</h4>
+          <p class="methodology-detail-desc">
+            Component handoff or clean code deployment. Every single build is rigorously tested and Lighthouse-certified before we hand over the keys.
+          </p>
+          
+          <div class="methodology-list">
+            <span class="methodology-list-item"><i></i> Frontend Code</span>
+            <span class="methodology-list-item"><i></i> CMS Connection</span>
+            <span class="methodology-list-item"><i></i> SEO Optimization</span>
+            <span class="methodology-list-item"><i></i> Handoff Docs</span>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+</section>

@@ -1,33 +1,104 @@
 ---
+import { getLangFromUrl, useTranslations } from '../i18n/utils';
+import LanguagePicker from './LanguagePicker.astro';
 import Button from './Button.astro';
+import { Image } from 'astro:assets';
+import logo from '../assets/logo_full.svg';
+
+// Modular CSS Imports
+import '../styles/components/navbar.css';
+import '../styles/components/ui.css';
+import '../styles/components/badges.css';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+const base = import.meta.env.BASE_URL.replace(/\/$/, "");
+const localizedPath = lang === 'en' ? '' : `/${lang}`;
 ---
 
-<header class="fixed top-0 w-full z-50 bg-fronta-dark/80 backdrop-blur-md border-b justify-center border-fronta-border">
-  <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
-    <div class="flex-shrink-0">
-      <a href="/" class="text-xl font-bold tracking-tight text-white flex items-center gap-2">
-        <!-- Optional logo icon, using simple red dot for now -->
-        <span class="w-2 h-2 rounded-full bg-fronta-red"></span>
-        FRONTA
+<header class="navbar-header">
+  <div class="navbar-container">
+    <!-- Left: Logo -->
+    <div class="navbar-logo-area">
+      <a href={base + localizedPath || '/'} class="navbar-logo-link">
+        <Image src={logo} alt="FRONTA" class="h-6 md:h-7 w-auto" />
       </a>
     </div>
     
-    <nav class="hidden md:flex items-center gap-8">
-      <a href="/experts" class="nav-link">Experts</a>
-      <a href="/work" class="nav-link">Work</a>
-      <a href="/services" class="nav-link">Services</a>
-      <a href="/about" class="nav-link">About</a>
+    <!-- Center: Navigation -->
+    <nav class="navbar-nav">
+      <!-- Services Dropdown Group -->
+      <div class="mega-menu-trigger">
+        <a href={`${base}${localizedPath}/services`} class="nav-link">
+          {t('nav.services')}
+          <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="transition-transform"><path d="m6 9 6 6 6-6"/></svg>
+        </a>
+        
+        <!-- Dropdown Menu -->
+        <div class="mega-menu">
+          <div class="glass-card rounded-2xl overflow-hidden shadow-2xl p-2">
+            <a href={`${base}${localizedPath}/services/websites`} class="mega-menu-item">
+              <div class="dropdown-item-indicator"><div class="dropdown-dot"></div></div>
+              <div>
+                <p class="mega-menu-item-title">{t('nav.dropdown.websites.title')}</p>
+                <p class="mega-menu-item-desc">{t('nav.dropdown.websites.desc')}</p>
+              </div>
+              <span class="mega-menu-item-arrow">→</span>
+            </a>
+            <a href={`${base}${localizedPath}/services/apps`} class="mega-menu-item">
+              <div class="dropdown-item-indicator"><div class="dropdown-dot"></div></div>
+              <div>
+                <p class="mega-menu-item-title">{t('nav.dropdown.apps.title')}</p>
+                <p class="mega-menu-item-desc">{t('nav.dropdown.apps.desc')}</p>
+              </div>
+              <span class="mega-menu-item-arrow">→</span>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <a href={`${base}${localizedPath}/work`} class="nav-link">{t('nav.work')}</a>
+      <a href={`${base}${localizedPath}/process`} class="nav-link">Process</a>
+      <a href={`${base}${localizedPath}/about`} class="nav-link">{t('nav.about')}</a>
     </nav>
     
-    <div class="hidden md:flex">
-      <Button href="/contact" variant="secondary" className="!py-2 !px-4 text-xs">
-        Book an introductory call
-      </Button>
-    </div>
+    <!-- Right: Actions -->
+    <div class="navbar-actions">
+      <div class="navbar-actions-desktop">
+        <a href={`${base}${localizedPath}/contact`} class="navbar-cta">
+          <div class="red-dot"></div>
+          {t('btn.start')}
+        </a>
+        <LanguagePicker />
+      </div>
 
-    <!-- Mobile menu button -->
-    <button class="md:hidden text-fronta-muted hover:text-white" aria-label="Menu">
-      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" x2="20" y1="12" y2="12"/><line x1="4" x2="20" y1="6" y2="6"/><line x1="4" x2="20" y1="18" y2="18"/></svg>
-    </button>
+      <!-- Mobile menu button -->
+      <button class="mobile-menu-toggle" aria-label="Menu" id="mobile-menu-toggle">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" x2="20" y1="12" y2="12"/><line x1="4" x2="20" y1="6" y2="6"/><line x1="4" x2="20" y1="18" y2="18"/></svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- Mobile Menu Overlay -->
+  <div id="mobile-menu" class="mobile-menu-overlay">
+    <nav class="mobile-nav">
+      <a href={`${base}${localizedPath}/services`}>{t('nav.services')}</a>
+      <a href={`${base}${localizedPath}/work`}>{t('nav.work')}</a>
+      <a href={`${base}${localizedPath}/about`}>{t('nav.about')}</a>
+      <a href={`${base}${localizedPath}/contact`} class="text-fronta-red">{t('btn.start')}</a>
+    </nav>
+    <div class="mt-12 pt-12 border-t border-fronta-border">
+      <LanguagePicker />
+    </div>
   </div>
 </header>
+
+<script>
+  const toggle = document.getElementById('mobile-menu-toggle');
+  const menu = document.getElementById('mobile-menu');
+  
+  toggle?.addEventListener('click', () => {
+    menu?.classList.toggle('hidden');
+    document.body.classList.toggle('overflow-hidden');
+  });
+</script>

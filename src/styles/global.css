@@ -6,53 +6,71 @@
   --color-fronta-card: #141414;
   --color-fronta-muted: #a1a1aa;
   --color-fronta-border: #ffffff15;
-  
+
   --font-sans: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  --font-display: 'Space Grotesk', var(--font-sans);
+  --font-mono: 'JetBrains Mono', 'Fira Code', 'Courier New', monospace;
 }
 
 @layer base {
   body {
     @apply bg-fronta-dark text-white font-sans antialiased;
-    /* Custom selection colors */
+
     ::selection {
       @apply bg-fronta-red text-white;
     }
   }
+
+  /* Global Paragraph Styling */
+  p {
+    @apply text-fronta-muted leading-relaxed text-sm md:text-base;
+  }
 }
 
 @layer components {
-  .btn-primary {
-    @apply inline-flex items-center justify-center px-6 py-3 bg-fronta-red text-white text-sm font-semibold rounded-md transition-all duration-300;
-  }
-  .btn-primary:hover {
-    @apply bg-red-600 shadow-[0_0_20px_rgba(255,43,43,0.4)];
-  }
-  
-  .btn-secondary {
-    @apply inline-flex items-center justify-center px-6 py-3 bg-transparent border border-fronta-border text-white text-sm font-semibold rounded-md transition-all duration-300;
-  }
-  .btn-secondary:hover {
-    @apply bg-white/5;
-  }
-  
+
+  /* Universal Section Layout */
   .section-container {
-    @apply max-w-7xl mx-auto px-6 py-24;
+    @apply max-w-7xl mx-auto px-6;
   }
-  
+
+  /* Reveal Architecture */
+  .main-content-wrapper {
+    @apply relative z-20 bg-fronta-dark;
+  }
+  .section-title {
+    @apply text-5xl md:text-6xl font-bold mb-20 tracking-tight;
+    font-family: var(--font-display);
+  }
+
+  .section-subtitle {
+    @apply text-lg md:text-xl text-fronta-muted mb-12 max-w-2xl;
+  }
+
+  /* Universal Navigation base */
   .nav-link {
     @apply text-sm text-fronta-muted hover:text-white transition-colors duration-300;
   }
 
-  /* Complex Glowing Background util */
-  .glow-bg {
-    background: radial-gradient(circle at 50% 0%, rgba(255, 43, 43, 0.12) 0%, rgba(10, 10, 10, 0) 60%);
+  /* Shared Effects */
+  @keyframes text-shimmer {
+    from {
+      background-position: 0% 50%;
+    }
+
+    to {
+      background-position: 200% 50%;
+    }
   }
 
-  .glow-grid {
-    background-image: 
-      linear-gradient(to right, rgba(255,255,255,0.03) 1px, transparent 1px),
-      linear-gradient(to bottom, rgba(255,255,255,0.03) 1px, transparent 1px);
-    background-size: 60px 60px;
-    background-position: top center;
+  .text-gradient-logo {
+    background: linear-gradient(90deg, #FFCC00, #EF0D33, #FFCC00);
+    background-size: 200% auto;
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: text-shimmer 4s linear infinite;
+    display: inline-block;
+    line-height: 1.25;
   }
 }

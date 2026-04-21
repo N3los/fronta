@@ -1,0 +1,40 @@
+@reference "../global.css";
+
+/* Shared Badge & Indicator Components */
+
+.badge {
+  @apply inline-flex items-center gap-3 px-4 py-1.5 rounded-full bg-white/5 border border-white/10 transition-all;
+}
+
+.badge-primary {
+  @apply border-fronta-red/20 bg-fronta-red/5;
+  .badge-text {
+    @apply text-white;
+  }
+}
+
+.badge-text {
+  @apply text-[10px] md:text-xs font-mono text-fronta-muted transition-colors tracking-widest uppercase;
+}
+
+.badge-mono {
+  @apply text-[10px] font-mono text-fronta-muted tracking-[0.2em] uppercase;
+}
+
+.red-dot {
+  @apply w-1.5 h-1.5 rounded-full bg-fronta-red shadow-[0_0_8px_rgba(255,43,43,0.8)];
+}
+
+.red-dot-muted {
+  @apply w-1.5 h-1.5 rounded-full bg-fronta-muted transition-colors;
+}
+
+.index-marker {
+  @apply flex items-center gap-2;
+  .index-num {
+    @apply text-[10px] font-mono text-fronta-red;
+  }
+  .index-line {
+    @apply w-8 h-[1px] bg-fronta-border;
+  }
+}

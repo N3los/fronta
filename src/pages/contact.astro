@@ -1,0 +1,61 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/Navbar.astro';
+import Footer from '../components/Footer.astro';
+import Button from '../components/Button.astro';
+---
+
+<Layout title="Contact - FRONTA">
+  <Navbar />
+  
+  <main class="pt-32 pb-24 min-h-screen relative glow-bg">
+    <div class="max-w-3xl mx-auto px-6 relative z-10">
+      <div class="mb-12">
+        <p class="text-xs font-mono text-fronta-red tracking-widest mb-4 uppercase">Get in touch</p>
+        <h1 class="text-5xl font-bold tracking-tight mb-6">Let's build it <span class="text-fronta-red">right.</span></h1>
+        <p class="text-fronta-muted text-lg">Leave your details and a brief description of your project below. We usually respond within 24 hours.</p>
+      </div>
+
+      <div class="bg-fronta-card/60 backdrop-blur-md p-8 md:p-12 rounded-2xl border border-fronta-border">
+        <form action="https://formspree.io/f/placeholder" method="POST" class="space-y-6">
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div class="space-y-2">
+              <label for="name" class="text-sm font-medium text-gray-300">Name</label>
+              <input type="text" id="name" name="name" required class="w-full bg-[#0a0a0a] border border-fronta-border rounded-md px-4 py-3 text-white focus:outline-none focus:border-fronta-red focus:ring-1 focus:ring-fronta-red transition-colors">
+            </div>
+            <div class="space-y-2">
+              <label for="email" class="text-sm font-medium text-gray-300">Email Address</label>
+              <input type="email" id="email" name="email" required class="w-full bg-[#0a0a0a] border border-fronta-border rounded-md px-4 py-3 text-white focus:outline-none focus:border-fronta-red focus:ring-1 focus:ring-fronta-red transition-colors">
+            </div>
+          </div>
+          
+          <div class="space-y-2">
+            <label for="budget" class="text-sm font-medium text-gray-300">Estimated Budget</label>
+            <select id="budget" name="budget" class="w-full bg-[#0a0a0a] border border-fronta-border rounded-md px-4 py-3 text-white focus:outline-none focus:border-fronta-red focus:ring-1 focus:ring-fronta-red transition-colors appearance-none">
+              <option value="" disabled selected>Select a range</option>
+              <option value="under-5k">&lt; $5k</option>
+              <option value="5k-10k">$5k - $10k</option>
+              <option value="10k-25k">$10k - $25k</option>
+              <option value="over-25k">$25k+</option>
+            </select>
+          </div>
+
+          <div class="space-y-2">
+            <label for="message" class="text-sm font-medium text-gray-300">Project Details</label>
+            <textarea id="message" name="message" rows="5" required class="w-full bg-[#0a0a0a] border border-fronta-border rounded-md px-4 py-3 text-white focus:outline-none focus:border-fronta-red focus:ring-1 focus:ring-fronta-red transition-colors resize-none placeholder:text-gray-600" placeholder="Tell us about the challenges you're facing..."></textarea>
+          </div>
+
+          <div class="pt-4">
+            <button type="submit" class="btn-primary w-full md:w-auto">Send Message</button>
+          </div>
+          
+          <p class="text-xs text-fronta-muted mt-4">
+            By submitting this form, you agree to our privacy policy.
+          </p>
+        </form>
+      </div>
+    </div>
+  </main>
+  
+  <Footer />
+</Layout>

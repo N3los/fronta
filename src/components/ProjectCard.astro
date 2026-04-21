@@ -1,0 +1,27 @@
+---
+interface Props {
+  label: string;
+  tag?: string;
+  title: string;
+  description: string;
+  href?: string;
+}
+
+const { label, tag, title, description, href = "#" } = Astro.props;
+---
+
+<a href={href} class="block group p-6 rounded-xl border border-fronta-border bg-fronta-card/50 hover:bg-fronta-card transition-all duration-300">
+  <div class="flex flex-col md:flex-row md:items-center gap-4 mb-4">
+    <div class="flex items-center gap-2 text-xs font-mono text-fronta-red">
+      <span>{label}</span>
+      {tag && (
+        <>
+          <span class="text-fronta-muted">•</span>
+          <span class="text-fronta-muted">{tag}</span>
+        </>
+      )}
+    </div>
+  </div>
+  <h3 class="text-xl font-semibold mb-2 group-hover:text-fronta-red transition-colors">{title}</h3>
+  <p class="text-sm text-fronta-muted">{description}</p>
+</a>

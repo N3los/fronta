@@ -1,0 +1,192 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/Navbar.astro';
+import Footer from '../components/Footer.astro';
+import Button from '../components/Button.astro';
+import ProjectCard from '../components/ProjectCard.astro';
+---
+
+<Layout title="FRONTA - Design and Frontend Practice">
+  <Navbar />
+  
+  <main class="pt-20">
+    <!-- Hero Section -->
+    <section class="glow-bg glow-grid relative min-h-[85vh] flex items-center">
+      <div class="section-container relative z-10 w-full pt-12 md:pt-0">
+        <div class="max-w-4xl">
+          <p class="text-xs font-mono text-fronta-red tracking-widest mb-6 uppercase">Fronta Freelance Practice</p>
+          <h1 class="text-6xl md:text-8xl font-bold tracking-tight mb-8 leading-[1.1]">
+            Websites and apps,<br/>
+            built <span class="text-fronta-red">right.</span>
+          </h1>
+          <p class="text-lg md:text-xl text-fronta-muted max-w-2xl mb-12 leading-relaxed">
+            FRONTA is a freelancer design and frontend practice. We help founders and product teams build beautiful, functional web applications that are ready to scale from day one.
+          </p>
+          <div class="flex flex-wrap gap-4">
+            <Button href="/services" variant="primary">Our services</Button>
+            <Button href="/contact" variant="secondary">Let's talk</Button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Services Grid -->
+    <section class="border-t border-fronta-border relative bg-fronta-dark">
+      <div class="section-container">
+        <p class="text-xs font-mono text-fronta-red tracking-widest mb-4 uppercase">Services</p>
+        <h2 class="text-4xl md:text-5xl font-bold mb-16 tracking-tight">Two practices. <span class="text-fronta-red">One standard.</span></h2>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <!-- Card 1 -->
+          <div class="p-10 rounded-2xl bg-fronta-card/40 border border-fronta-border hover:bg-fronta-card/80 transition-colors">
+            <p class="text-xs font-mono text-fronta-red mb-6 tracking-widest">PRACTICE 01</p>
+            <h3 class="text-2xl font-bold mb-4">Marketing sites &<br/>landing pages</h3>
+            <p class="text-fronta-muted mb-8 leading-relaxed">
+              We design and build visually stunning marketing sites that capture attention and drive conversions.
+            </p>
+            <ul class="space-y-3 text-sm text-fronta-muted">
+              <li class="flex items-center gap-3"><span class="w-1.5 h-1.5 rounded-full bg-fronta-red"></span> Conversion optimized</li>
+              <li class="flex items-center gap-3"><span class="w-1.5 h-1.5 rounded-full bg-fronta-red"></span> Strategy, design, development</li>
+              <li class="flex items-center gap-3"><span class="w-1.5 h-1.5 rounded-full bg-fronta-red"></span> Wireframing / Prototyping</li>
+            </ul>
+          </div>
+          
+          <!-- Card 2 -->
+          <div class="p-10 rounded-2xl bg-fronta-card/40 border border-fronta-border hover:bg-fronta-card/80 transition-colors">
+            <p class="text-xs font-mono text-fronta-red mb-6 tracking-widest">PRACTICE 02</p>
+            <h3 class="text-2xl font-bold mb-4">Product UI, dashboards &<br/>internal tools</h3>
+            <p class="text-fronta-muted mb-8 leading-relaxed">
+              Build robust digital products ranging from basic admin tools to complex multi-functional web apps.
+            </p>
+            <ul class="space-y-3 text-sm text-fronta-muted">
+              <li class="flex items-center gap-3"><span class="w-1.5 h-1.5 rounded-full bg-fronta-red"></span> Component-based design</li>
+              <li class="flex items-center gap-3"><span class="w-1.5 h-1.5 rounded-full bg-fronta-red"></span> React / Vue / Angular prep</li>
+              <li class="flex items-center gap-3"><span class="w-1.5 h-1.5 rounded-full bg-fronta-red"></span> Systematic UI patterns</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Standards Feature -->
+    <section class="border-t border-fronta-border bg-fronta-dark pt-8">
+      <div class="section-container">
+        <p class="text-xs font-mono text-fronta-red tracking-widest mb-4 uppercase">Methodology</p>
+        <h2 class="text-3xl md:text-4xl font-bold mb-16 tracking-tight">Same standard, every project.</h2>
+        
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div>
+            <div class="text-fronta-red font-mono text-sm mb-4">01</div>
+            <h4 class="text-lg font-bold mb-3">Tested thoroughly</h4>
+            <p class="text-sm text-fronta-muted leading-relaxed">Every feature is rigorously reviewed across modern browsers and devices ensuring a seamless experience.</p>
+          </div>
+          <div>
+            <div class="text-fronta-red font-mono text-sm mb-4">02</div>
+            <h4 class="text-lg font-bold mb-3">Opinionated</h4>
+            <p class="text-sm text-fronta-muted leading-relaxed">We use proven standards and modern best practices rather than reinventing the wheel on code structures.</p>
+          </div>
+          <div>
+            <div class="text-fronta-red font-mono text-sm mb-4">03</div>
+            <h4 class="text-lg font-bold mb-3">Performance-aware</h4>
+            <p class="text-sm text-fronta-muted leading-relaxed">Core Web Vitals are a priority. We optimize assets, bundle sizes, and network requests.</p>
+          </div>
+          <div>
+            <div class="text-fronta-red font-mono text-sm mb-4">04</div>
+            <h4 class="text-lg font-bold mb-3">Built for the handoff</h4>
+            <p class="text-sm text-fronta-muted leading-relaxed">We structure code cleanly and document components so your internal team can take over effortlessly.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Recent Work -->
+    <section class="border-t border-fronta-border bg-fronta-dark">
+      <div class="section-container">
+        <p class="text-xs font-mono text-fronta-red tracking-widest mb-4 uppercase">Portfolio</p>
+        <h2 class="text-3xl md:text-4xl font-bold mb-12 tracking-tight">A few recent things.</h2>
+        
+        <div class="flex flex-col gap-4">
+          <ProjectCard 
+            label="2024" 
+            tag="MARKETING" 
+            title="Marketing site for a developer-tooling startup" 
+            description="3D-heavy marketing page highlighting a highly technical infrastructure product." 
+            href="/projects/dev-tooling" 
+          />
+          <ProjectCard 
+            label="2023" 
+            tag="INTERNAL TOOL" 
+            title="Ledger dashboard for a B2B treasury platform" 
+            description="Complex financial tables and charts tailored for internal accounting teams." 
+            href="/projects/ledger-dashboard" 
+          />
+          <ProjectCard 
+            label="2023" 
+            tag="PRODUCT UI" 
+            title="Ops console for a logistics team" 
+            description="Real-time map integrations and dispatching UI built for high-stress environments." 
+            href="/projects/ops-console" 
+          />
+        </div>
+      </div>
+    </section>
+
+    <!-- Marquee Banner -->
+    <div class="border-y border-fronta-border py-6 overflow-hidden bg-white relative text-black">
+      <div class="flex whitespace-nowrap animate-marquee">
+        <div class="flex items-center gap-8 text-2xl md:text-4xl font-bold uppercase tracking-wider mx-4">
+          <span>No surprise tickets.</span> <span class="text-fronta-red">×</span>
+          <span>Ships fast.</span> <span class="text-fronta-red">×</span>
+          <span>Stays fast.</span> <span class="text-fronta-red">×</span>
+          <span>Built right.</span> <span class="text-fronta-red">×</span>
+        </div>
+        <div class="flex items-center gap-8 text-2xl md:text-4xl font-bold uppercase tracking-wider mx-4">
+          <span>No surprise tickets.</span> <span class="text-fronta-red">×</span>
+          <span>Ships fast.</span> <span class="text-fronta-red">×</span>
+          <span>Stays fast.</span> <span class="text-fronta-red">×</span>
+          <span>Built right.</span> <span class="text-fronta-red">×</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Mission & Bottom CTA -->
+    <section class="section-container border-b border-fronta-border bg-fronta-dark">
+      <div class="max-w-4xl mb-32">
+        <p class="text-xs font-mono text-fronta-red tracking-widest mb-6 uppercase">About</p>
+        <h2 class="text-3xl md:text-5xl font-bold leading-tight mb-8">
+          FRONTA is a freelance design and frontend practice — building <span class="text-fronta-red">production-ready websites and apps</span> for founders, product teams, and engineering.
+        </h2>
+        <p class="text-fronta-muted text-lg max-w-2xl leading-relaxed">
+          Our guarantee is simple - the final deliverable looks and feels premium, is highly performant, accessible and maintainable, and ready out of the box to integrate with your backend systems.
+        </p>
+      </div>
+
+      <div class="p-12 md:p-16 rounded-3xl bg-[#0a0a0a] border border-fronta-border relative overflow-hidden flex flex-col md:flex-row md:items-end justify-between gap-8">
+        <div class="absolute inset-0 glow-bg opacity-70"></div>
+        <div class="relative z-10 w-full flex flex-col md:flex-row md:items-end justify-between gap-8">
+          <div>
+            <p class="text-xs font-mono text-fronta-red tracking-widest mb-4 uppercase">Start a project</p>
+            <h2 class="text-4xl md:text-6xl font-bold tracking-tight">Build it right<br/><span class="text-fronta-red">the first time.</span></h2>
+          </div>
+          <div class="flex flex-wrap gap-4">
+            <Button href="/contact" variant="primary">Start a project</Button>
+            <Button href="/services" variant="secondary">Let's talk</Button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+  
+  <Footer />
+</Layout>
+
+<style>
+  .animate-marquee {
+    animation: marquee 25s linear infinite;
+  }
+  @keyframes marquee {
+    0% { transform: translateX(0%); }
+    100% { transform: translateX(-50%); }
+  }
+</style>

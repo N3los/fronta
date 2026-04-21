@@ -1,0 +1,17 @@
+# FRONTA
+> Websites and apps, built right.
+
+FRONTA is a freelance design and frontend practice — building production-ready websites and apps for founders, product teams, and engineering.
+
+## Practices
+- Marketing sites & landing pages
+- Product UI, dashboards & internal tools
+
+## Standard
+- Tested thoroughly
+- Opinionated
+- Performance-aware
+- Built for the handoff
+
+## Links
+- [Website](https://www.fronta.hr)

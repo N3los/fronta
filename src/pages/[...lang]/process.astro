@@ -1,0 +1,131 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import Navbar from "../../components/Navbar.astro";
+import Footer from "../../components/Footer.astro";
+import MainCTA from "../../components/sections/MainCTA.astro";
+import { getLangFromUrl, getLocalizedPath, useTranslations } from "../../i18n/utils";
+
+import "../../styles/components/buttons.css";
+import "../../styles/pages/process.css";
+
+export function getStaticPaths() {
+  return [
+    { params: { lang: undefined } },
+    { params: { lang: "hr" } },
+  ];
+}
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+const pagePath = (path: string) => getLocalizedPath(lang, path);
+
+const steps = [
+  {
+    title: t("processPage.step1.title"),
+    description: t("processPage.step1.description"),
+  },
+  {
+    title: t("processPage.step2.title"),
+    description: t("processPage.step2.description"),
+    variants: [
+      {
+        title: t("processPage.step2.websites.title"),
+        description: t("processPage.step2.websites.description"),
+      },
+      {
+        title: t("processPage.step2.apps.title"),
+        description: t("processPage.step2.apps.description"),
+      },
+    ],
+    note: t("processPage.step2.note"),
+  },
+  {
+    title: t("processPage.step3.title"),
+    description: t("processPage.step3.description"),
+  },
+  {
+    title: t("processPage.step4.title"),
+    description: t("processPage.step4.description"),
+  },
+];
+---
+
+<Layout title={t("meta.process.title")} description={t("meta.process.description")}>
+  <main class="main-content-wrapper bg-dotted">
+    <Navbar />
+
+    <section class="process-page-hero">
+      <div class="section-container">
+        <p class="process-page-kicker" data-animate="fade-up">
+          {t("processPage.hero.eyebrow")}
+        </p>
+        <h1 class="process-page-title" data-animate="fade-up" data-delay="100">
+          {t("processPage.hero.title")}
+        </h1>
+        <div class="process-page-hero-bottom" data-animate="fade-up" data-delay="200">
+          <p class="process-page-lead">{t("processPage.hero.intro")}</p>
+          <div class="process-page-actions">
+            <a href={pagePath("/project")} class="btn-primary">
+              {t("cta.project")} <span>→</span>
+            </a>
+            <a href={pagePath("/work")} class="btn-secondary">
+              {t("nav.work")} <span>→</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="process-page-flow">
+      <div class="section-container process-page-flow-layout">
+        <header class="process-page-flow-heading" data-animate="fade-right">
+          <p class="process-page-kicker">{t("processPage.flow.label")}</p>
+          <h2>{t("processPage.flow.title")}</h2>
+        </header>
+
+        <div class="process-page-steps">
+          {steps.map((step, index) => (
+            <article class="process-page-step" data-animate="fade-up">
+              <span class="process-page-step-number">
+                {String(index + 1).padStart(2, "0")}
+              </span>
+              <div class="process-page-step-content">
+                <h3>{step.title}</h3>
+                <p>{step.description}</p>
+
+                {step.variants && (
+                  <div class="process-page-variants">
+                    {step.variants.map((variant) => (
+                      <div>
+                        <h4>{variant.title}</h4>
+                        <p>{variant.description}</p>
+                      </div>
+                    ))}
+                  </div>
+                )}
+
+                {step.note && <p class="process-page-note">{step.note}</p>}
+              </div>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="process-page-continuity">
+      <div class="section-container process-page-continuity-layout">
+        <p class="process-page-kicker" data-animate="fade-right">
+          {t("processPage.after.label")}
+        </p>
+        <div data-animate="fade-up">
+          <h2>{t("processPage.after.title")}</h2>
+          <p>{t("processPage.after.description")}</p>
+          <p>{t("processPage.after.details")}</p>
+        </div>
+      </div>
+    </section>
+
+    <MainCTA />
+  </main>
+  <Footer />
+</Layout>

@@ -1,0 +1,122 @@
+@reference "../global.css";
+
+.process-page-hero {
+  @apply pb-24 md:pb-32;
+  padding-top: calc(5rem + clamp(4.5rem, 9vw, 8rem));
+}
+
+.process-page-kicker {
+  @apply mb-7 text-xs font-mono font-medium uppercase tracking-[0.18em] text-fronta-red;
+}
+
+.process-page-title {
+  @apply max-w-6xl text-5xl font-bold tracking-[-0.045em] text-fronta-text md:text-7xl lg:text-[5.75rem];
+  font-family: var(--font-display);
+  line-height: 0.98;
+}
+
+.process-page-hero-bottom {
+  @apply mt-12 grid items-end gap-10 md:mt-16 lg:grid-cols-[minmax(0,1fr)_auto] lg:gap-16;
+}
+
+.process-page-lead {
+  @apply max-w-3xl text-lg text-fronta-muted md:text-xl;
+  line-height: 1.7;
+}
+
+.process-page-actions {
+  @apply flex flex-col items-stretch gap-3 sm:flex-row;
+}
+
+.process-page-flow {
+  @apply py-24 md:py-32 lg:py-40;
+}
+
+.process-page-flow-layout {
+  @apply grid items-start gap-16 lg:grid-cols-[minmax(14rem,0.65fr)_minmax(0,1.35fr)] lg:gap-20 xl:gap-28;
+}
+
+.process-page-flow-heading {
+  @apply max-w-md lg:sticky;
+  top: calc(5rem + 2.5rem);
+}
+
+.process-page-flow-heading .process-page-kicker {
+  @apply mb-5;
+}
+
+.process-page-flow-heading h2,
+.process-page-continuity h2 {
+  @apply text-3xl font-bold tracking-[-0.03em] text-fronta-text md:text-5xl;
+  font-family: var(--font-display);
+  line-height: 1.08;
+}
+
+.process-page-steps {
+  @apply space-y-20 md:space-y-28;
+}
+
+.process-page-step {
+  @apply grid items-start gap-5 sm:grid-cols-[3.5rem_minmax(0,1fr)] sm:gap-7;
+}
+
+.process-page-step-number {
+  @apply pt-1 font-mono text-sm font-medium text-fronta-red;
+}
+
+.process-page-step-content h3 {
+  @apply mb-5 text-2xl font-semibold tracking-[-0.025em] text-fronta-text md:text-3xl;
+  font-family: var(--font-display);
+}
+
+.process-page-step-content > p {
+  @apply max-w-3xl text-base text-fronta-muted md:text-lg;
+  line-height: 1.75;
+}
+
+.process-page-variants {
+  @apply mt-8 grid gap-7 sm:grid-cols-2 sm:gap-10;
+}
+
+.process-page-variants h4 {
+  @apply mb-2 text-sm font-semibold text-fronta-text;
+}
+
+.process-page-variants p {
+  @apply text-sm text-fronta-muted;
+  line-height: 1.7;
+}
+
+.process-page-step-content .process-page-note {
+  @apply mt-7 text-sm text-fronta-muted;
+  line-height: 1.7;
+}
+
+.process-page-continuity {
+  @apply py-24 md:py-32 lg:py-40;
+}
+
+.process-page-continuity-layout {
+  @apply grid items-start gap-8 md:grid-cols-12 md:gap-10;
+}
+
+.process-page-continuity-layout > .process-page-kicker {
+  @apply md:col-span-3 md:mb-0;
+}
+
+.process-page-continuity-layout > div {
+  @apply md:col-span-8 md:col-start-5;
+}
+
+.process-page-continuity h2 {
+  @apply mb-8;
+}
+
+.process-page-continuity div > p {
+  @apply max-w-3xl text-base text-fronta-muted md:text-lg;
+  line-height: 1.8;
+}
+
+.process-page-continuity div > p + p {
+  @apply mt-5;
+}

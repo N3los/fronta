@@ -3,7 +3,11 @@
 /* Marquee Component - Client Showcase Architecture */
 
 .marquee-container {
-  @apply relative w-full bg-fronta-dark py-12 md:py-20 overflow-hidden;
+  @apply relative w-full py-12 md:py-20 overflow-hidden;
+}
+
+.marquee-label {
+  @apply relative z-30 mb-10 px-6 text-center text-[10px] font-mono uppercase tracking-[0.25em] text-fronta-muted;
 }
 
 /* Edge Fade Gradient Masks */
@@ -40,24 +44,17 @@
 }
 
 .marquee-logo-item {
-  @apply flex items-center gap-24 md:gap-40 px-12 md:px-20;
+  @apply flex items-center gap-16 md:gap-32 px-8 md:px-16;
 }
 
-/* Dummy Logo Styling */
+/* Logo Showcase Styling */
 .client-logo {
-  @apply text-xl md:text-3xl font-bold tracking-tighter text-white opacity-40 grayscale transition-all duration-500 flex items-center gap-3;
-
-  &:hover {
-    @apply opacity-100 grayscale-0;
-  }
+  @apply opacity-50 grayscale flex items-center justify-center;
+  pointer-events: none;
 }
 
-.logo-icon {
-  @apply w-6 h-6 md:w-8 md:h-8 rounded-sm bg-gradient-to-br from-fronta-red to-fronta-red/40 opacity-70;
-}
-
-.logo-mono {
-  @apply font-mono font-normal tracking-wide text-lg md:text-2xl;
+.logo-img {
+  @apply w-auto object-contain max-w-[120px] md:max-w-[160px];
 }
 
 /* Animation Engine */
@@ -71,8 +68,22 @@
   }
 }
 
+@media (prefers-reduced-motion: reduce) {
+  .marquee-track {
+    animation-play-state: paused;
+  }
+}
+
 /* Mobile Adjustments */
 @media (max-width: 768px) {
+  .marquee-container {
+    @apply py-10;
+  }
+
+  .marquee-label {
+    @apply mb-8;
+  }
+
   .marquee-track {
     animation-duration: 30s;
   }

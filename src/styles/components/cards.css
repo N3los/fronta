@@ -1,35 +1,44 @@
 @reference "../global.css";
 
-/* Shared Card Components */
+.radiant-card {
+  --mouse-x: -1000px;
+  --mouse-y: -1000px;
+  --glow-color-1: rgba(var(--fronta-red-rgb), 0.125);
+  --glow-color-2: rgba(var(--fronta-orange-rgb), 0.125);
+  --glow-size: 200px;
+
+  background:
+    padding-box linear-gradient(var(--fronta-card), var(--fronta-card)),
+    border-box radial-gradient(var(--glow-size) circle at var(--mouse-x) var(--mouse-y), var(--glow-color-1) 0%, var(--glow-color-1) 40%, var(--glow-color-2) 80%, transparent 100%);
+  background-clip: padding-box, border-box;
+  background-origin: padding-box, border-box;
+  border: 1.5px solid transparent;
+}
 
 .service-card {
-  @apply relative p-10 md:p-12 rounded-[2rem] bg-fronta-card/40 border border-fronta-border transition-all duration-500 overflow-hidden;
-  
+  @apply relative overflow-hidden rounded-2xl border-1 border-fronta-border bg-fronta-card/50 p-6 shadow-2xl shadow-black/10 transition-all duration-500 md:p-12;
+
+  &.radiant-card {
+    @apply border-transparent;
+  }
+
   &:hover {
-    @apply border-fronta-red/50 bg-fronta-card/60;
-    
-    .service-card-grid {
-      @apply opacity-100;
+    @apply bg-fronta-card;
+
+    &.radiant-card {
+      --glow-color-1: rgba(var(--fronta-orange-rgb), 1);
+      --glow-color-2: rgba(var(--fronta-red-rgb), 1);
     }
   }
 }
 
-.service-card-grid {
-  @apply absolute inset-x-8 inset-y-12 opacity-0 transition-opacity duration-700 pointer-events-none;
-}
-
-.service-card-grid-inner {
-  @apply absolute inset-0 grayscale invert opacity-5;
-  background-image: linear-gradient(rgba(255,255,255,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.05) 1px, transparent 1px);
-  background-size: 20px 20px;
-}
-
 .card-title {
-  @apply text-3xl md:text-4xl font-bold mb-6 leading-tight max-w-[15ch] transition-colors group-hover:text-white;
+  @apply text-3xl md:text-4xl font-bold mb-6 leading-tight max-w-[15ch] transition-colors group-hover:text-fronta-text;
 }
 
 .card-footer-cta {
   @apply inline-flex items-center gap-2 text-xs font-mono text-fronta-red uppercase tracking-widest transition-all;
+
   &:hover {
     span {
       @apply translate-x-1;

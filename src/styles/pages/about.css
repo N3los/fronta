@@ -1,0 +1,184 @@
+@reference "../global.css";
+
+.about-page-hero {
+  @apply pb-24 md:pb-32;
+  padding-top: calc(5rem + clamp(4.5rem, 9vw, 8rem));
+}
+
+.about-page-kicker {
+  @apply mb-7 text-xs font-mono font-medium uppercase tracking-[0.18em] text-fronta-red;
+}
+
+.about-page-title {
+  @apply max-w-6xl text-5xl font-bold tracking-[-0.045em] text-fronta-text md:text-7xl lg:text-[5.75rem];
+  font-family: var(--font-display);
+  line-height: 0.98;
+}
+
+.about-page-hero-bottom {
+  @apply mt-12 grid items-end gap-10 md:mt-16 lg:grid-cols-[minmax(0,1fr)_auto] lg:gap-16;
+}
+
+.about-page-lead {
+  @apply max-w-3xl text-lg text-fronta-muted md:text-xl;
+  line-height: 1.7;
+}
+
+.about-page-actions {
+  @apply flex flex-col items-stretch gap-3 sm:flex-row;
+}
+
+.about-page-section {
+  @apply py-24 md:py-32 lg:py-40;
+}
+
+.about-page-editorial {
+  @apply grid items-start gap-12 md:grid-cols-12 md:gap-10 lg:gap-16;
+}
+
+.about-page-section-heading {
+  @apply flex items-center gap-4 md:col-span-3 md:sticky;
+  top: calc(5rem + 2rem);
+}
+
+.about-page-section-heading::after {
+  @apply h-px flex-1 bg-fronta-border content-[''];
+}
+
+.about-page-section-heading p,
+.about-page-index {
+  @apply text-xs font-mono uppercase tracking-[0.14em];
+}
+
+.about-page-section-heading p {
+  @apply whitespace-nowrap text-fronta-muted;
+}
+
+.about-page-index {
+  @apply text-fronta-red;
+}
+
+.about-page-copy,
+.about-page-model {
+  @apply md:col-span-8 md:col-start-5;
+}
+
+.about-page-copy h2,
+.about-page-model > h2,
+.about-page-clients-heading h2 {
+  @apply text-3xl font-bold tracking-[-0.03em] text-fronta-text md:text-5xl;
+  font-family: var(--font-display);
+  line-height: 1.1;
+}
+
+.about-page-copy h2,
+.about-page-model > h2 {
+  @apply mb-10 md:mb-14;
+}
+
+.about-page-copy > p {
+  @apply max-w-3xl text-base text-fronta-muted md:text-lg;
+  line-height: 1.8;
+}
+
+.about-page-copy > p + p {
+  @apply mt-6;
+}
+
+.about-page-founder {
+  @apply grid gap-6 border-y border-fronta-border py-8 sm:grid-cols-[5rem_minmax(0,1fr)] sm:gap-8 md:py-10;
+}
+
+.about-page-founder-mark {
+  @apply flex h-16 w-16 items-center justify-center rounded-full border border-fronta-red/30 bg-fronta-red/10 font-mono text-sm font-bold tracking-wider text-fronta-red;
+}
+
+.about-page-founder h3 {
+  @apply text-xl font-semibold text-fronta-text md:text-2xl;
+}
+
+.about-page-founder-role {
+  @apply mt-1 text-xs font-mono uppercase tracking-[0.12em] text-fronta-red;
+}
+
+.about-page-founder-role + p {
+  @apply mt-5 max-w-2xl text-base text-fronta-muted;
+  line-height: 1.75;
+}
+
+.about-page-principles {
+  @apply mt-4;
+}
+
+.about-page-principle {
+  @apply grid gap-4 border-b border-fronta-border py-7 last:border-b-0 sm:grid-cols-[3rem_minmax(0,1fr)] sm:gap-6 md:py-8;
+}
+
+.about-page-principle > span {
+  @apply pt-1 font-mono text-xs text-fronta-red;
+}
+
+.about-page-principle h3 {
+  @apply mb-2 text-lg font-semibold text-fronta-text md:text-xl;
+}
+
+.about-page-principle p {
+  @apply max-w-2xl text-sm text-fronta-muted md:text-base;
+  line-height: 1.7;
+}
+
+.about-page-proof {
+  @apply py-24 md:py-32;
+}
+
+.about-page-clients {
+  @apply mt-0;
+}
+
+.about-page-clients-heading {
+  @apply mb-12 flex flex-col items-start justify-between gap-8 md:mb-16 md:flex-row md:items-end;
+}
+
+.about-page-clients-heading .about-page-kicker {
+  @apply mb-4;
+}
+
+.about-page-clients-heading a {
+  @apply inline-flex items-center gap-2 text-sm font-semibold text-fronta-text transition-colors hover:text-fronta-red;
+}
+
+.about-page-clients-heading a span {
+  @apply transition-transform;
+}
+
+.about-page-clients-heading a:hover span {
+  @apply translate-x-1;
+}
+
+.about-page-client-grid {
+  @apply grid grid-cols-2 border-l border-t border-fronta-border sm:grid-cols-3 lg:grid-cols-4;
+}
+
+.about-page-client {
+  @apply flex min-h-32 items-center justify-center border-b border-r border-fronta-border px-6 py-8 md:min-h-40;
+}
+
+.about-page-client-logo {
+  @apply h-auto max-h-9 w-auto max-w-28 opacity-60 grayscale transition-all duration-300;
+}
+
+.about-page-client:hover .about-page-client-logo {
+  @apply opacity-100;
+}
+
+@media (prefers-color-scheme: dark) {
+  .about-page-client-invert .about-page-client-logo {
+    filter: grayscale(1) invert(1);
+  }
+}
+
+@media (max-width: 767px) {
+  .about-page-section-heading {
+    position: static;
+  }
+}

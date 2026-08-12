@@ -1,0 +1,106 @@
+@reference "../global.css";
+
+.multi-step-wrapper {
+  @apply relative w-full overflow-hidden;
+}
+
+.form-step {
+  @apply absolute inset-0 w-full transition-all duration-500 ease-out;
+  opacity: 0;
+  transform: translateX(40px);
+  pointer-events: none;
+  visibility: hidden;
+}
+
+.form-step.is-active {
+  opacity: 1;
+  transform: translateX(0);
+  pointer-events: auto;
+  visibility: visible;
+  position: relative;
+}
+
+/* Radio Button Cards */
+.radio-card-input {
+  @apply sr-only;
+}
+
+.radio-card-label {
+  @apply block w-full h-full p-6 md:p-8 rounded-2xl border border-fronta-border bg-fronta-bg cursor-pointer transition-all duration-300 hover:border-fronta-red/50 hover:bg-fronta-card;
+}
+
+.radio-card-input:checked + .radio-card-label {
+  @apply border-fronta-red bg-fronta-card;
+  box-shadow: 0 0 30px rgba(255, 43, 43, 0.1);
+}
+
+.radio-card-input:focus-visible + .radio-card-label {
+  @apply outline-2 outline-offset-2 outline-fronta-red;
+}
+
+.radio-card-label h3 {
+  @apply text-xl font-bold mb-2 transition-colors text-fronta-text;
+}
+
+.radio-card-input:checked + .radio-card-label h3 {
+  @apply text-fronta-text;
+}
+
+.form-progress {
+  @apply mb-8 flex items-center justify-end gap-3;
+}
+
+.form-progress-label {
+  @apply font-mono text-[0.65rem] uppercase tracking-[0.16em] text-fronta-muted;
+}
+
+.form-progress-bar {
+  @apply h-0.5 w-20 overflow-hidden rounded-full bg-fronta-border md:w-24;
+}
+
+.form-progress-fill {
+  @apply h-full transition-all duration-500 ease-out;
+  background: linear-gradient(90deg, var(--fronta-orange), var(--fronta-red));
+  width: 0%;
+}
+
+/* Form Inputs */
+.form-label {
+  @apply text-sm font-medium text-fronta-text;
+}
+
+.form-input {
+  @apply w-full bg-fronta-bg border border-fronta-border rounded-md px-4 py-3 text-fronta-text focus:outline-none focus:border-fronta-red focus:ring-1 focus:ring-fronta-red transition-colors placeholder:text-fronta-muted;
+}
+
+.form-help-text {
+  @apply -mt-2 mb-4 text-xs leading-relaxed text-fronta-muted;
+}
+
+.form-submit-status {
+  @apply mt-6 rounded-xl border px-4 py-3 text-sm font-medium text-center md:text-left;
+  border-color: color-mix(in srgb, var(--fronta-red) 35%, transparent);
+  background: color-mix(in srgb, var(--fronta-red) 8%, transparent);
+  color: var(--fronta-text);
+}
+
+.form-submit-status[data-state="sending"] {
+  @apply animate-pulse;
+}
+
+.form-submit-status[data-state="error"] {
+  border-color: color-mix(in srgb, var(--fronta-red) 60%, transparent);
+  background: color-mix(in srgb, var(--fronta-red) 14%, transparent);
+}
+
+.form-success {
+  @apply py-10 md:py-16 text-center outline-none;
+}
+
+.form-success-icon {
+  @apply mx-auto mb-8 flex h-16 w-16 items-center justify-center rounded-full border text-3xl font-bold;
+  color: var(--fronta-red);
+  border-color: color-mix(in srgb, var(--fronta-red) 45%, transparent);
+  background: color-mix(in srgb, var(--fronta-red) 10%, transparent);
+  box-shadow: 0 0 40px color-mix(in srgb, var(--fronta-red) 18%, transparent);
+}

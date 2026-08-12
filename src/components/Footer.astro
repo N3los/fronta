@@ -1,77 +1,57 @@
 ---
-import { getLangFromUrl, useTranslations } from '../i18n/utils';
-import { Image } from 'astro:assets';
-import logo from '../assets/logo_full.svg';
+import { getLangFromUrl, getLocalizedPath, useTranslations } from "../i18n/utils";
+import logo from "../assets/logo_new.svg";
 
-// Modular CSS Import
-import '../styles/components/footer.css';
+import "../styles/components/footer.css";
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
-const base = import.meta.env.BASE_URL.replace(/\/$/, "");
-const localizedPath = lang === 'en' ? '' : `/${lang}`;
+const pagePath = (path: string) => getLocalizedPath(lang, path);
 ---
 
-<footer class="footer-reveal">
+<footer class="footer-main" id="site-footer">
   <div class="footer-content">
-    <div class="footer-grid">
-      <!-- Brand & Status -->
-      <div class="footer-info">
-        <a href={base + localizedPath || '/'} class="footer-logo-link">
-          <Image src={logo} alt="FRONTA" class="h-8 w-auto" />
-        </a>
-        <p class="footer-tagline">
-          Freelance design and frontend practice building production-grade digital products for modern engineering teams.
-        </p>
-        
-        <div class="footer-status">
-          <span class="status-dot"></span>
-          ACTIVE // AVAILABLE FOR Q3 2024
-        </div>
-      </div>
-      
-      <!-- Capabilities -->
-      <nav class="footer-nav-col">
-        <h4 class="footer-nav-title">Capabilities</h4>
-        <ul class="footer-nav-list">
-          <li><a href={`${base}${localizedPath}/work`} class="footer-nav-link">Selected Work</a></li>
-          <li><a href={`${base}${localizedPath}/services`} class="footer-nav-link">Our Services</a></li>
-          <li><a href={`${base}${localizedPath}/experts`} class="footer-nav-link">Expert Audit</a></li>
-        </ul>
-      </nav>
-
-      <!-- Practice -->
-      <nav class="footer-nav-col">
-        <h4 class="footer-nav-title">Practice</h4>
-        <ul class="footer-nav-list">
-          <li><a href={`${base}${localizedPath}/about`} class="footer-nav-link">About Study</a></li>
-          <li><a href={`${base}${localizedPath}/contact`} class="footer-nav-link">The Process</a></li>
-          <li><a href="https://twitter.com/fronta" class="footer-nav-link">X / Twitter</a></li>
-        </ul>
-      </nav>
-
-      <!-- Labs -->
-      <nav class="footer-nav-col">
-        <h4 class="footer-nav-title">Labs</h4>
-        <ul class="footer-nav-list">
-          <li><a href="#" class="footer-nav-link">Source Code</a></li>
-          <li><a href="#" class="footer-nav-link">Experiments</a></li>
-          <li><a href="#" class="footer-nav-link">Tools</a></li>
-        </ul>
-      </nav>
+    <div class="footer-brand">
+      <a href={pagePath("/")} class="footer-logo-link" aria-label="FRONTA">
+        <img src={logo.src} alt="FRONTA" class="footer-logo" />
+      </a>
+      <p class="footer-description">{t("footer.tagline")}</p>
     </div>
-    
-    <!-- Bottom Metadata -->
-    <div class="footer-bottom">
-      <p class="footer-copyright">
-        &copy; {new Date().getFullYear()} FRONTA PTY LTD. ALL RIGHTS RESERVED.
-      </p>
-      
-      <div class="footer-legal-links">
-        <a href={`${base}${localizedPath}/privacy`} class="footer-legal-link">Privacy</a>
-        <a href={`${base}${localizedPath}/terms`} class="footer-legal-link">Terms</a>
-        <a href="mailto:hello@fronta.studio" class="footer-legal-link">Email</a>
-      </div>
+
+    <nav class="footer-column" aria-labelledby="footer-navigation-title">
+      <h2 id="footer-navigation-title" class="footer-heading">
+        {t("footer.navigation")}
+      </h2>
+      <ul class="footer-links">
+        <li><a href={pagePath("/work")}>{t("nav.work")}</a></li>
+        <li><a href={pagePath("/services")}>{t("nav.services")}</a></li>
+        <li><a href={pagePath("/process")}>{t("nav.process")}</a></li>
+        <li><a href={pagePath("/about")}>{t("nav.about")}</a></li>
+      </ul>
+    </nav>
+
+    <nav class="footer-column" aria-labelledby="footer-services-title">
+      <h2 id="footer-services-title" class="footer-heading">
+        {t("footer.capabilities")}
+      </h2>
+      <ul class="footer-links">
+        <li><a href={`${pagePath("/services")}#websites`}>{t("footer.websites")}</a></li>
+        <li><a href={`${pagePath("/services")}#applications`}>{t("footer.apps")}</a></li>
+        <li><a href={`${pagePath("/services")}#b2b`}>{t("footer.b2b")}</a></li>
+      </ul>
+    </nav>
+
+    <div class="footer-column footer-contact">
+      <h2 class="footer-heading">{t("footer.connect")}</h2>
+      <a class="footer-email" href="mailto:toni@fronta.hr">toni@fronta.hr</a>
+      <a class="footer-project-link" href={pagePath("/project")}>
+        {t("cta.project")} <span aria-hidden="true">&rarr;</span>
+      </a>
     </div>
+  </div>
+
+  <div class="footer-bottom">
+    <p>&copy; 2017&ndash;{new Date().getFullYear()} FRONTA. {t("footer.rights")}</p>
+    <a href={pagePath("/impressum")}>{t("footer.impressum")}</a>
   </div>
 </footer>

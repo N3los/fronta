@@ -1,0 +1,206 @@
+@reference "../global.css";
+
+.work-page-hero {
+  @apply pb-24 md:pb-32;
+  padding-top: calc(5rem + clamp(4.5rem, 9vw, 8rem));
+}
+
+.work-page-kicker {
+  @apply mb-7 text-xs font-mono font-medium uppercase tracking-[0.18em] text-fronta-red;
+}
+
+.work-page-title {
+  @apply max-w-6xl text-5xl font-bold tracking-[-0.045em] text-fronta-text md:text-7xl lg:text-[5.75rem];
+  font-family: var(--font-display);
+  line-height: 0.98;
+}
+
+.work-page-hero-bottom {
+  @apply mt-12 grid items-end gap-10 md:mt-16 lg:gap-16;
+}
+
+.work-page-lead {
+  @apply max-w-3xl text-lg text-fronta-muted md:text-xl;
+  line-height: 1.7;
+}
+
+.work-page-jump-nav {
+  @apply flex flex-wrap gap-x-8 gap-y-3;
+}
+
+.work-page-jump-nav a {
+  @apply inline-flex items-center gap-2 text-sm font-semibold text-fronta-text transition-colors hover:text-fronta-red;
+}
+
+.work-page-jump-nav a::after {
+  content: "↓";
+  @apply text-fronta-red;
+}
+
+.work-page-group {
+  @apply scroll-mt-24 py-24 md:py-32 lg:py-40;
+}
+
+.work-page-group--apps {
+  @apply pt-28 md:pt-40 lg:pt-52;
+}
+
+.work-page-group-heading {
+  @apply mb-20 grid items-start gap-7 md:mb-28 md:grid-cols-12 md:gap-10;
+}
+
+.work-page-group-heading>.work-page-kicker {
+  @apply mb-0 md:col-span-3;
+}
+
+.work-page-group-heading>div {
+  @apply md:col-span-8 md:col-start-5;
+}
+
+.work-page-group-heading h2 {
+  @apply max-w-4xl text-3xl font-bold tracking-[-0.03em] text-fronta-text md:text-5xl;
+  font-family: var(--font-display);
+  line-height: 1.08;
+}
+
+.work-page-group-heading div>p {
+  @apply mt-6 max-w-2xl text-base text-fronta-muted md:text-lg;
+  line-height: 1.75;
+}
+
+.work-project-list {
+  @apply space-y-28 md:space-y-44 lg:space-y-56;
+}
+
+.work-project {
+  @apply grid min-w-0 items-start gap-7 md:grid-cols-12 md:gap-10;
+}
+
+.work-project-heading {
+  @apply flex items-baseline gap-4 md:col-span-3 md:gap-5;
+}
+
+.work-project-title {
+  @apply text-3xl font-bold tracking-[-0.035em] text-fronta-text md:text-4xl lg:text-[2.75rem];
+  font-family: var(--font-display);
+  line-height: 1.05;
+}
+
+.work-project-title a {
+  @apply transition-colors hover:text-fronta-red;
+}
+
+.work-project-meta {
+  @apply flex flex-wrap items-center justify-between gap-3 font-mono text-[0.68rem] uppercase tracking-[0.13em] text-fronta-muted md:col-span-3 md:flex-col md:items-start md:justify-start md:gap-2.5;
+}
+
+.work-project-meta>div {
+  @apply flex items-center gap-4;
+}
+
+.work-project-number,
+.work-project-status {
+  @apply text-fronta-red;
+}
+
+.work-project-number {
+  @apply shrink-0 font-mono text-[0.68rem] font-medium tracking-[0.12em];
+}
+
+.work-project-main {
+  @apply min-w-0 md:col-span-8 md:col-start-5;
+}
+
+.work-project-media {
+  @apply relative block overflow-hidden rounded-[1.25rem] bg-fronta-card;
+  aspect-ratio: 16 / 9;
+}
+
+.work-project-image {
+  @apply h-full w-full object-cover transition-transform duration-700 ease-out;
+}
+
+.work-project-media:hover .work-project-image {
+  transform: scale(1.012);
+}
+
+.work-project--app .work-project-media {
+  @apply flex items-center bg-[#080b1e] p-3 sm:p-6 md:p-10 lg:p-14;
+}
+
+.work-project--app .work-project-image {
+  @apply h-auto w-full rounded-lg border border-white/10 object-contain shadow-2xl shadow-black/40;
+}
+
+.work-project--app .work-project-media:hover .work-project-image {
+  transform: translateY(-3px);
+}
+
+.work-project-details {
+  @apply mt-7 grid items-start gap-7 md:col-span-12 md:mt-10 md:grid-cols-12 md:gap-10;
+}
+
+.work-project-description {
+  @apply max-w-2xl text-base text-fronta-muted md:col-span-4 md:col-start-5 md:text-[1.05rem];
+  line-height: 1.72;
+}
+
+.work-project-aside {
+  @apply grid gap-4 md:col-span-3 md:col-start-10;
+}
+
+.work-project-collaboration {
+  @apply font-mono text-[0.65rem] uppercase tracking-[0.13em] text-fronta-muted;
+}
+
+.work-project-collaboration a {
+  @apply ml-1 text-fronta-text transition-colors hover:text-fronta-red;
+}
+
+.work-project-actions {
+  @apply grid gap-3;
+}
+
+.work-project-link {
+  @apply inline-flex h-10 w-fit items-center gap-3 font-mono text-[0.68rem] font-medium uppercase tracking-[0.13em] text-fronta-muted transition-colors hover:text-fronta-text;
+}
+
+.work-project-link--details {
+  @apply text-fronta-red hover:text-fronta-text;
+}
+
+.work-project-link span {
+  @apply text-fronta-red transition-transform;
+}
+
+.work-project-link:hover span {
+  transform: translate(2px, -2px);
+}
+
+.work-project-link--details:hover span {
+  transform: translateX(3px);
+}
+
+@media (min-width: 1024px) {
+  .work-page-hero-bottom {
+    grid-template-columns: minmax(0, 1fr) auto;
+  }
+}
+
+@media (max-width: 767px) {
+  .work-page-group {
+    scroll-margin-top: 5rem;
+  }
+
+  .work-project-list {
+    @apply space-y-24;
+  }
+
+  .work-project-media {
+    aspect-ratio: 16 / 10;
+  }
+
+  .work-project--app .work-project-media {
+    aspect-ratio: 4 / 3;
+  }
+}

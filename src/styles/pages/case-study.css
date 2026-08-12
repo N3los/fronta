@@ -1,0 +1,332 @@
+@reference "../global.css";
+
+.case-study {
+  @apply overflow-clip;
+}
+
+.case-study-hero {
+  padding-top: calc(5rem + clamp(3.5rem, 8vw, 7rem));
+}
+
+.case-study-back {
+  @apply inline-flex items-center gap-3 font-mono text-[0.68rem] font-medium uppercase tracking-[0.13em] text-fronta-muted transition-colors hover:text-fronta-red;
+}
+
+.case-study-back span {
+  @apply text-fronta-red transition-transform;
+}
+
+.case-study-back:hover span {
+  transform: translateX(-3px);
+}
+
+.case-study-heading {
+  @apply mt-16 grid items-end gap-9 md:mt-24 md:grid-cols-12 md:gap-10;
+  grid-template-columns: minmax(0, 1fr);
+}
+
+.case-study-heading > * {
+  min-width: 0;
+}
+
+@media (min-width: 768px) {
+  .case-study-heading {
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+  }
+}
+
+.case-study-meta {
+  @apply flex flex-wrap items-center gap-x-5 gap-y-2 font-mono text-[0.68rem] font-medium uppercase tracking-[0.13em] text-fronta-muted md:col-span-12;
+}
+
+.case-study-meta > span + span::before {
+  content: "·";
+  @apply mr-5 text-fronta-muted/50;
+}
+
+.case-study-live i {
+  @apply mr-2 inline-block size-1.5 rounded-full bg-fronta-red;
+  box-shadow: 0 0 0 4px rgba(var(--fronta-red-rgb), 0.12);
+}
+
+.case-study-heading h1 {
+  @apply text-6xl font-bold tracking-[-0.055em] text-fronta-text md:col-span-8 md:text-8xl lg:text-[8rem];
+  font-family: var(--font-display);
+  line-height: 0.9;
+}
+
+.case-study-lead {
+  @apply max-w-2xl text-lg text-fronta-muted md:col-span-7 md:col-start-1 md:text-xl;
+  line-height: 1.7;
+}
+
+.case-study-live-link {
+  @apply inline-flex w-fit items-center gap-3 font-mono text-[0.68rem] font-medium uppercase tracking-[0.13em] text-fronta-red transition-colors hover:text-fronta-text md:col-span-3 md:col-start-10 md:justify-self-end;
+}
+
+.case-study-live-link span {
+  @apply transition-transform;
+}
+
+.case-study-live-link:hover span {
+  transform: translate(2px, -2px);
+}
+
+.case-study-brand {
+  @apply relative mt-16 flex min-h-44 items-center justify-center py-10 md:mt-24 md:min-h-64 md:py-16;
+  min-width: 0;
+  width: 100%;
+}
+
+.case-study-brand-logo {
+  @apply h-auto max-w-xl object-contain;
+  width: min(62%, 36rem);
+  filter: none;
+}
+
+@media (prefers-color-scheme: dark) {
+  .case-study-brand-logo {
+    filter: invert(1);
+  }
+}
+
+.case-study-cover-wrap {
+  @apply mt-8 md:mt-12;
+}
+
+.case-study-cover {
+  @apply overflow-hidden rounded-[1.25rem] bg-black;
+  aspect-ratio: 16 / 9;
+}
+
+.case-study-cover-image {
+  @apply h-full w-full object-cover;
+}
+
+.case-study-overview {
+  @apply grid items-start gap-10 py-28 md:grid-cols-12 md:gap-10 md:py-40 lg:py-52;
+}
+
+.case-study-section-label {
+  @apply font-mono text-[0.68rem] font-medium uppercase tracking-[0.15em] text-fronta-red md:col-span-2;
+}
+
+.case-study-overview-copy {
+  @apply md:col-span-5 md:col-start-4;
+}
+
+.case-study-overview-copy h2,
+.case-study-gallery-heading h2 {
+  @apply text-3xl font-bold tracking-[-0.035em] text-fronta-text md:text-5xl;
+  font-family: var(--font-display);
+  line-height: 1.08;
+}
+
+.case-study-prose {
+  @apply mt-8 grid gap-5;
+}
+
+.case-study-prose p,
+.case-study-gallery-heading div > p {
+  @apply text-base text-fronta-muted md:text-lg;
+  line-height: 1.75;
+}
+
+.case-study-facts {
+  @apply grid gap-10 md:col-span-3 md:col-start-10;
+}
+
+.case-study-facts h3 {
+  @apply mb-4 font-mono text-[0.65rem] font-medium uppercase tracking-[0.14em] text-fronta-muted;
+}
+
+.case-study-facts ul {
+  @apply grid gap-2.5;
+}
+
+.case-study-facts li {
+  @apply text-sm text-fronta-text md:text-base;
+  line-height: 1.55;
+}
+
+.case-study-gallery {
+  @apply pb-28 md:pb-40 lg:pb-52;
+}
+
+.case-study-gallery-heading {
+  @apply mb-20 grid items-start gap-7 md:mb-28 md:grid-cols-12 md:gap-10;
+}
+
+.case-study-gallery-heading > .case-study-section-label {
+  @apply md:col-span-3;
+}
+
+.case-study-gallery-heading > div {
+  @apply md:col-span-7 md:col-start-5;
+}
+
+.case-study-gallery-heading div > p {
+  @apply mt-6 max-w-2xl;
+}
+
+.case-study-gallery-grid {
+  @apply grid items-start gap-x-10 gap-y-16 md:grid-cols-12 md:gap-y-28;
+}
+
+.case-study-visual--portrait {
+  @apply md:col-span-4;
+}
+
+.case-study-visual--landscape {
+  @apply md:col-span-7 md:col-start-6 md:mt-24;
+}
+
+.case-study-visual--wide {
+  @apply md:col-span-12;
+}
+
+.case-study-visual--closing {
+  @apply md:col-span-8 md:col-start-3;
+}
+
+.case-study-visual-frame {
+  @apply w-full max-w-full overflow-hidden rounded-[1.25rem] bg-fronta-card;
+}
+
+.case-study-visual-frame img {
+  @apply block h-auto w-full max-w-full transition-transform duration-700 ease-out;
+}
+
+.case-study-visual:hover .case-study-visual-frame img {
+  transform: scale(1.012);
+}
+
+.case-study-visual figcaption {
+  @apply mt-4 max-w-xl font-mono text-[0.65rem] uppercase tracking-[0.11em] text-fronta-muted;
+  line-height: 1.6;
+}
+
+.case-study-cta {
+  @apply grid items-start gap-8 pb-28 md:grid-cols-12 md:gap-10 md:pb-40;
+}
+
+.case-study-cta > .case-study-section-label {
+  @apply md:col-span-2;
+}
+
+.case-study-cta-copy {
+  @apply md:col-span-5 md:col-start-4;
+}
+
+.case-study-cta-copy h2 {
+  @apply text-3xl font-bold tracking-[-0.035em] text-fronta-text md:text-5xl;
+  font-family: var(--font-display);
+  line-height: 1.08;
+}
+
+.case-study-cta-copy p {
+  @apply mt-6 max-w-xl text-base text-fronta-muted md:text-lg;
+  line-height: 1.75;
+}
+
+.case-study-cta-actions {
+  @apply flex flex-col items-start gap-6 md:col-span-3 md:col-start-10 md:pt-2;
+}
+
+.case-study-cta-actions > p {
+  @apply text-sm text-fronta-muted;
+}
+
+.case-study-cta-actions > p a {
+  @apply ml-1 font-medium text-fronta-text underline decoration-fronta-border underline-offset-4 transition-colors hover:text-fronta-red hover:decoration-fronta-red;
+}
+
+.case-study-next {
+  @apply pb-28 md:pb-40 lg:pb-52;
+}
+
+.case-study-next-header {
+  @apply mb-8 flex items-center justify-between gap-6 md:mb-12;
+}
+
+.case-study-all-work {
+  @apply inline-flex items-center gap-3 font-mono text-[0.65rem] font-medium uppercase tracking-[0.13em] text-fronta-muted transition-colors hover:text-fronta-red;
+}
+
+.case-study-all-work span {
+  @apply transition-transform;
+}
+
+.case-study-all-work:hover span {
+  transform: translate(2px, -2px);
+}
+
+.case-study-next-link {
+  @apply relative grid min-h-64 items-center gap-8 py-6 md:grid-cols-12 md:gap-10 md:py-10;
+}
+
+.case-study-next-copy {
+  @apply relative z-10 md:col-span-10;
+}
+
+.case-study-next-copy > span {
+  @apply mb-5 block font-mono text-[0.65rem] font-medium uppercase tracking-[0.13em] text-fronta-muted;
+}
+
+.case-study-next-copy h2 {
+  @apply text-5xl font-bold tracking-[-0.05em] text-fronta-text transition-colors md:text-7xl lg:text-8xl;
+  font-family: var(--font-display);
+  line-height: 0.95;
+}
+
+.case-study-next-arrow {
+  @apply text-3xl text-fronta-red transition-transform md:col-span-1 md:col-start-12 md:justify-self-end md:text-5xl;
+}
+
+.case-study-next-link:hover .case-study-next-copy h2,
+.case-study-next-link:focus-visible .case-study-next-copy h2 {
+  @apply text-fronta-red;
+}
+
+.case-study-next-link:hover .case-study-next-arrow,
+.case-study-next-link:focus-visible .case-study-next-arrow {
+  transform: translateX(6px);
+}
+
+::view-transition-group(*) {
+  animation-duration: 780ms;
+  animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@media (max-width: 767px) {
+  .case-study-heading h1 {
+    font-size: clamp(2.85rem, 13vw, 3.5rem);
+  }
+
+  .case-study-brand {
+    @apply min-h-40;
+  }
+
+  .case-study-brand-logo {
+    width: min(78%, 18rem);
+  }
+
+  .case-study-cover {
+    aspect-ratio: 16 / 10;
+  }
+
+  .case-study-next-arrow {
+    @apply absolute bottom-8 right-0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-group(*) {
+    animation-duration: 1ms;
+  }
+
+  .case-study-visual:hover .case-study-visual-frame img,
+  .case-study-next-arrow {
+    transform: none;
+  }
+}

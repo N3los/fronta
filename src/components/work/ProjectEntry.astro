@@ -1,0 +1,95 @@
+---
+import { Image } from "astro:assets";
+import { hasCaseStudy } from "../../data/caseStudies";
+import type { PortfolioProject } from "../../data/projects";
+import { getProjectImage } from "../../data/projects";
+import { getLocalizedPath, useTranslations } from "../../i18n/utils";
+import type { ui } from "../../i18n/ui";
+
+interface Props {
+  project: PortfolioProject;
+  index: number;
+  lang: keyof typeof ui;
+}
+
+const { project, index, lang } = Astro.props;
+const t = useTranslations(lang);
+type TranslationKey = Parameters<typeof t>[0];
+const projectKey = (field: "category" | "title" | "description") =>
+  `projects.${project.id}.${field}` as TranslationKey;
+const image = getProjectImage(project, lang);
+const title = t(projectKey("title"));
+const cta = project.type === "app" ? t("workPage.open.app") : t("workPage.open.website");
+const detailsHref = getLocalizedPath(lang, `/work/${project.id}`);
+const projectHasCaseStudy = hasCaseStudy(project.id);
+const mediaHref = projectHasCaseStudy ? detailsHref : project.href;
+---
+
+<article
+  class:list={["work-project", { "work-project--app": project.type === "app" }]}
+  data-animate="fade-up"
+>
+  <div class="work-project-heading">
+    <span class="work-project-number">{String(index + 1).padStart(2, "0")}</span>
+    <h3 class="work-project-title">
+      {projectHasCaseStudy ? <a href={detailsHref}>{title}</a> : title}
+    </h3>
+  </div>
+
+  <div class="work-project-main">
+    <a
+      href={mediaHref}
+      class="work-project-media"
+      target={projectHasCaseStudy ? undefined : "_blank"}
+      rel={projectHasCaseStudy ? undefined : "noopener noreferrer"}
+      aria-label={projectHasCaseStudy ? `${t("workPage.details")}: ${title}` : `${cta}: ${title}`}
+      transition:name={projectHasCaseStudy ? `project-media-${project.id}` : undefined}
+    >
+      <Image
+        src={image}
+        alt={`${title} — ${t("port.preview_alt")}`}
+        class="work-project-image"
+        style={`object-position: ${project.imagePosition}`}
+        widths={[640, 960, 1280, 1600]}
+        sizes="(max-width: 768px) 100vw, 860px"
+      />
+    </a>
+
+  </div>
+
+  <div class="work-project-details">
+    <header class="work-project-meta">
+      <div>
+        <span>{t(projectKey("category"))}</span>
+      </div>
+      {project.status === "in-development" && (
+        <div>
+          <span class="work-project-status">{t("workPage.status.inDevelopment")}</span>
+        </div>
+      )}
+    </header>
+
+    <p class="work-project-description">{t(projectKey("description"))}</p>
+
+    <div class="work-project-aside">
+      {project.collaborator && (
+        <p class="work-project-collaboration">
+          {t("workPage.collaboration.with")}
+          <a href={project.collaborator.href} target="_blank" rel="noopener noreferrer">
+            {project.collaborator.name}
+          </a>
+        </p>
+      )}
+      <div class="work-project-actions">
+        {projectHasCaseStudy && (
+          <a class="work-project-link work-project-link--details" href={detailsHref}>
+            {t("workPage.details")} <span aria-hidden="true">→</span>
+          </a>
+        )}
+        <a class="work-project-link" href={project.href} target="_blank" rel="noopener noreferrer">
+          {cta} <span aria-hidden="true">↗</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</article>

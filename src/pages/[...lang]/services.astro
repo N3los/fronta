@@ -1,0 +1,207 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import Navbar from "../../components/Navbar.astro";
+import Footer from "../../components/Footer.astro";
+import MainCTA from "../../components/sections/MainCTA.astro";
+
+import { getLangFromUrl, getLocalizedPath, useTranslations } from "../../i18n/utils";
+
+import "../../styles/components/buttons.css";
+import "../../styles/pages/services.css";
+
+export function getStaticPaths() {
+  return [
+    { params: { lang: undefined } },
+    { params: { lang: "hr" } },
+  ];
+}
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+const pagePath = (path: string) => getLocalizedPath(lang, path);
+
+const serviceSections = [
+  {
+    id: "websites",
+    number: "01",
+    label: t("servicesPage.websites.label"),
+    title: t("servicesPage.websites.title"),
+    description: t("servicesPage.websites.description"),
+    examplesLabel: t("servicesPage.commonProjects"),
+    examples: [
+      t("servicesPage.websites.example1"),
+      t("servicesPage.websites.example2"),
+      t("servicesPage.websites.example3"),
+      t("servicesPage.websites.example4"),
+    ],
+    scopeLabel: t("servicesPage.websites.scopeLabel"),
+    scope: [
+      t("servicesPage.websites.scope1"),
+      t("servicesPage.websites.scope2"),
+      t("servicesPage.websites.scope3"),
+      t("servicesPage.websites.scope4"),
+      t("servicesPage.websites.scope5"),
+      t("servicesPage.websites.scope6"),
+    ],
+  },
+  {
+    id: "applications",
+    number: "02",
+    label: t("servicesPage.apps.label"),
+    title: t("servicesPage.apps.title"),
+    description: t("servicesPage.apps.description"),
+    examplesLabel: t("servicesPage.commonProjects"),
+    examples: [
+      t("servicesPage.apps.example1"),
+      t("servicesPage.apps.example2"),
+      t("servicesPage.apps.example3"),
+      t("servicesPage.apps.example4"),
+    ],
+    scopeLabel: t("servicesPage.apps.scopeLabel"),
+    scope: [
+      t("servicesPage.apps.scope1"),
+      t("servicesPage.apps.scope2"),
+      t("servicesPage.apps.scope3"),
+      t("servicesPage.apps.scope4"),
+      t("servicesPage.apps.scope5"),
+      t("servicesPage.apps.scope6"),
+    ],
+  },
+];
+
+const b2bServices = [
+  t("servicesPage.b2b.item1"),
+  t("servicesPage.b2b.item2"),
+  t("servicesPage.b2b.item3"),
+  t("servicesPage.b2b.item4"),
+];
+
+const siteOrigin = Astro.site ?? new URL(Astro.url.origin);
+const serviceSchema = [
+  ...serviceSections.map((service) => ({
+    "@type": "Service",
+    "@id": `${new URL(pagePath("/services"), siteOrigin).href}#${service.id}`,
+    name: service.title,
+    description: service.description,
+    serviceType: service.label,
+    provider: { "@id": new URL("/#organization", siteOrigin).href },
+  })),
+  {
+    "@type": "Service",
+    "@id": `${new URL(pagePath("/services"), siteOrigin).href}#b2b`,
+    name: t("servicesPage.b2b.title"),
+    description: t("servicesPage.b2b.description"),
+    provider: { "@id": new URL("/#organization", siteOrigin).href },
+  },
+];
+---
+
+<Layout
+  title={t("meta.services.title")}
+  description={t("meta.services.description")}
+  schema={serviceSchema}
+>
+  <main class="main-content-wrapper bg-dotted">
+    <Navbar />
+
+    <section class="services-page-hero">
+      <div class="section-container">
+        <p class="services-page-kicker" data-animate="fade-up">
+          {t("servicesPage.hero.eyebrow")}
+        </p>
+        <h1 class="services-page-title" data-animate="fade-up" data-delay="100">
+          {t("servicesPage.hero.title")}
+        </h1>
+        <div class="services-page-hero-bottom" data-animate="fade-up" data-delay="200">
+          <p class="services-page-lead">{t("servicesPage.hero.intro")}</p>
+          <a href={pagePath("/project")} class="btn-primary">
+            {t("cta.project")} <span aria-hidden="true">→</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <div class="services-page-offers">
+      {serviceSections.map((service) => (
+        <section class="services-page-offer" id={service.id}>
+          <div class="section-container services-page-offer-layout">
+            <header class="services-page-offer-heading" data-animate="fade-right">
+              <span>{service.number}</span>
+              <p>{service.label}</p>
+            </header>
+
+            <div class="services-page-offer-content">
+              <div class="services-page-offer-intro" data-animate="fade-up">
+                <h2>{service.title}</h2>
+                <p>{service.description}</p>
+              </div>
+
+              <div class="services-page-offer-details" data-animate="fade-up" data-delay="100">
+                <div>
+                  <h3>{service.examplesLabel}</h3>
+                  <ul>
+                    {service.examples.map((item) => <li>{item}</li>)}
+                  </ul>
+                </div>
+                <div>
+                  <h3>{service.scopeLabel}</h3>
+                  <ul>
+                    {service.scope.map((item) => <li>{item}</li>)}
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      ))}
+    </div>
+
+    <section class="services-page-b2b" id="b2b">
+      <div class="section-container services-page-b2b-layout">
+        <div class="services-page-b2b-heading" data-animate="fade-right">
+          <p class="services-page-kicker">{t("servicesPage.b2b.label")}</p>
+          <h2>{t("servicesPage.b2b.title")}</h2>
+        </div>
+        <div class="services-page-b2b-content" data-animate="fade-up">
+          <p>{t("servicesPage.b2b.description")}</p>
+          <ul>
+            {b2bServices.map((item) => <li>{item}</li>)}
+          </ul>
+          <p class="services-page-b2b-note">{t("servicesPage.b2b.note")}</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="services-page-existing">
+      <div class="section-container services-page-existing-layout">
+        <p class="services-page-kicker" data-animate="fade-right">
+          {t("servicesPage.existing.label")}
+        </p>
+        <div data-animate="fade-up">
+          <h2>{t("servicesPage.existing.title")}</h2>
+          <p>{t("servicesPage.existing.description")}</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="services-page-links">
+      <div class="section-container services-page-links-layout">
+        <div data-animate="fade-up">
+          <p>{t("servicesPage.links.workText")}</p>
+          <a href={pagePath("/work")}>
+            {t("servicesPage.links.workCta")} <span aria-hidden="true">→</span>
+          </a>
+        </div>
+        <div data-animate="fade-up" data-delay="100">
+          <p>{t("servicesPage.links.processText")}</p>
+          <a href={pagePath("/process")}>
+            {t("servicesPage.links.processCta")} <span aria-hidden="true">→</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <MainCTA />
+  </main>
+  <Footer />
+</Layout>

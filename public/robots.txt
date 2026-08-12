@@ -1,3 +1,4 @@
 User-agent: *
 Allow: /
-Sitemap: https://www.fronta.hr/sitemap.xml
+
+Sitemap: https://fronta.hr/sitemap-index.xml

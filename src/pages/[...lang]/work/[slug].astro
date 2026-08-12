@@ -1,0 +1,58 @@
+---
+import CaseStudy from "../../../components/work/CaseStudy.astro";
+import { caseStudies, getCaseStudyBySlug } from "../../../data/caseStudies";
+import { getProjectById, getProjectImage } from "../../../data/projects";
+import { useTranslations, getLangFromUrl } from "../../../i18n/utils";
+import type { ui } from "../../../i18n/ui";
+import Layout from "../../../layouts/Layout.astro";
+
+import "/src/styles/pages/case-study.css";
+
+export function getStaticPaths() {
+  return caseStudies.flatMap((caseStudy) => [
+    { params: { lang: undefined, slug: caseStudy.slug } },
+    { params: { lang: "hr", slug: caseStudy.slug } },
+  ]);
+}
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+type TranslationKey = keyof typeof ui.en;
+const caseStudy = getCaseStudyBySlug(Astro.params.slug);
+
+if (!caseStudy) {
+  throw new Error(`Case study configuration is missing for slug: ${Astro.params.slug}`);
+}
+
+const project = getProjectById(caseStudy.projectId);
+
+if (!project) {
+  throw new Error(`Project data is missing for case study: ${caseStudy.slug}`);
+}
+
+const title = t(`projects.${project.id}.title` as TranslationKey);
+const lead = t(caseStudy.leadKey);
+const socialImage = caseStudy.coverImage ?? getProjectImage(project, lang);
+const siteOrigin = Astro.site ?? new URL(Astro.url.origin);
+const canonicalUrl = new URL(Astro.url.pathname, siteOrigin);
+const caseStudySchema = {
+  "@type": "CreativeWork",
+  "@id": `${canonicalUrl.href}#case-study`,
+  url: canonicalUrl.href,
+  name: title,
+  description: lead,
+  inLanguage: lang,
+  image: new URL(socialImage.src, siteOrigin).href,
+  creator: { "@id": new URL("/#organization", siteOrigin).href },
+};
+---
+
+<Layout
+  title={`${title} | ${t("meta.caseStudy.suffix")} | FRONTA`}
+  description={lead}
+  image={socialImage.src}
+  imageAlt={`${title} — ${t("port.preview_alt")}`}
+  schema={caseStudySchema}
+>
+  <CaseStudy caseStudy={caseStudy} project={project} lang={lang} />
+</Layout>

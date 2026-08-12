@@ -1,0 +1,13 @@
+---
+export function getStaticPaths() {
+  return [
+    { params: { lang: undefined } },
+    { params: { lang: "hr" } },
+  ];
+}
+
+const { lang } = Astro.params;
+const target = lang === "hr" ? "/hr/project/" : "/project/";
+
+return Astro.redirect(target, 308);
+---

@@ -2,26 +2,29 @@
 
 /* Hero Section Styles */
 
-.section-hero {
-  @apply relative min-h-[90vh] flex items-center bg-fronta-dark overflow-hidden;
+.hero-section {
+  @apply relative min-h-[90vh] flex items-center overflow-hidden;
 
   /* Decorative Effects */
   &.glow-bg {
-    background: radial-gradient(circle at 50% 0%, rgba(255, 43, 43, 0.12) 0%, rgba(10, 10, 10, 0) 60%);
+    background: radial-gradient(circle at 50% 0%, rgba(255, 43, 43, 0.12) 0%, transparent 60%);
   }
 
   &.glow-grid {
     background-image:
-      linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
-      linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+      linear-gradient(to right, var(--pattern-color) 1px, transparent 1px),
+      linear-gradient(to bottom, var(--pattern-color) 1px, transparent 1px);
     background-size: 60px 60px;
     background-position: top center;
   }
 }
 
+.hero-section:hover .corner-bracket {
+  @apply border-fronta-red/30;
+}
+
 .hero-title {
-  @apply text-6xl md:text-8xl font-bold tracking-tight mb-8 leading-[1.05] transition-colors;
-  font-family: var(--font-display);
+  @apply text-6xl md:text-8xl font-bold tracking-tight mb-8 leading-[0.9] transition-colors font-display;
 }
 
 .hero-description {
@@ -33,7 +36,7 @@
 }
 
 .hero-badge {
-  @apply inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 mb-8;
+  @apply inline-flex items-center gap-2 px-3 py-1 rounded-full bg-fronta-text/5 border border-fronta-border mb-8;
 }
 
 .hero-badge-text {
@@ -51,7 +54,7 @@
   transition: border-color 0.5s ease;
 }
 
-.section-hero:hover .corner-bracket {
+.hero-section:hover .corner-bracket {
   @apply border-fronta-red/30;
 }
 
@@ -73,4 +76,31 @@
 
 .hero-bottom-flair {
   @apply absolute bottom-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-fronta-border to-transparent opacity-50;
+}
+
+@media (max-width: 767px) {
+  .hero-section {
+    min-height: 100svh;
+    padding-top: calc(6.75rem + env(safe-area-inset-top));
+    padding-bottom: 4rem;
+  }
+
+  .hero-title {
+    margin-bottom: 1.5rem;
+    font-size: clamp(2.65rem, 11.8vw, 3.15rem);
+    line-height: 0.95;
+  }
+
+  .hero-description {
+    @apply mx-auto mb-8 max-w-xl text-[0.95rem];
+  }
+
+  .hero-actions {
+    @apply gap-3;
+  }
+
+  .bracket-frame {
+    @apply inset-4;
+    top: calc(5.75rem + env(safe-area-inset-top));
+  }
 }

@@ -1,0 +1,60 @@
+@reference "../global.css";
+
+.impressum-page {
+  /* The navbar is fixed and exactly 5rem tall. */
+  @apply pb-24 md:pb-32;
+  padding-top: calc(5rem + clamp(3.5rem, 7vw, 6.5rem));
+  min-height: calc(100vh - 5rem);
+}
+
+.impressum-layout {
+  @apply grid items-start gap-14 lg:grid-cols-[minmax(0,0.8fr)_minmax(32rem,1.2fr)] lg:gap-20 xl:gap-28;
+}
+
+.impressum-header {
+  @apply max-w-xl;
+}
+
+.impressum-kicker {
+  @apply mb-5 text-xs font-mono font-medium uppercase tracking-[0.18em] text-fronta-red;
+}
+
+.impressum-title {
+  @apply mb-7 text-4xl font-bold tracking-[-0.035em] text-fronta-text md:text-5xl lg:text-6xl;
+  font-family: var(--font-display);
+  line-height: 1.02;
+}
+
+.impressum-intro {
+  @apply max-w-lg text-base text-fronta-muted md:text-lg;
+  line-height: 1.7;
+}
+
+.impressum-details {
+  @apply border-y border-fronta-border;
+}
+
+.impressum-row {
+  @apply grid gap-2 border-b border-fronta-border py-5 last:border-b-0 sm:grid-cols-[11rem_minmax(0,1fr)] sm:gap-8 md:py-6;
+}
+
+.impressum-row dt {
+  @apply text-xs font-medium uppercase tracking-[0.08em] text-fronta-muted;
+  line-height: 1.6;
+}
+
+.impressum-row dd {
+  @apply text-[0.9375rem] font-medium text-fronta-text md:text-base;
+  line-height: 1.6;
+}
+
+.impressum-row a {
+  @apply underline decoration-fronta-border underline-offset-4 transition-colors hover:text-fronta-red hover:decoration-fronta-red;
+}
+
+@media (min-width: 1024px) {
+  .impressum-header {
+    @apply sticky;
+    top: calc(5rem + 3rem);
+  }
+}

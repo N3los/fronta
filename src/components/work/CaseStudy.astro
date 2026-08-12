@@ -1,0 +1,198 @@
+---
+import { Image } from "astro:assets";
+
+import Footer from "../Footer.astro";
+import Navbar from "../Navbar.astro";
+import { getNextCaseStudy } from "../../data/caseStudies";
+import type { CaseStudyDefinition, CaseStudyVisualLayout } from "../../data/caseStudies";
+import type { PortfolioProject } from "../../data/projects";
+import { getProjectById, getProjectImage } from "../../data/projects";
+import { getLocalizedPath, useTranslations } from "../../i18n/utils";
+import type { ui } from "../../i18n/ui";
+
+import "../../styles/components/buttons.css";
+
+interface Props {
+  caseStudy: CaseStudyDefinition;
+  project: PortfolioProject;
+  lang: keyof typeof ui;
+}
+
+const { caseStudy, project, lang } = Astro.props;
+const t = useTranslations(lang);
+type TranslationKey = Parameters<typeof t>[0];
+const projectKey = (field: "category" | "title") =>
+  `projects.${project.id}.${field}` as TranslationKey;
+const pagePath = (path: string) => getLocalizedPath(lang, path);
+const title = t(projectKey("title"));
+const category = t(projectKey("category"));
+const coverImage = caseStudy.coverImage ?? getProjectImage(project, lang);
+const isLive = project.status === "live";
+const statusLabel = isLive
+  ? t(project.type === "app" ? "caseStudy.status.liveApp" : "caseStudy.status.liveWebsite")
+  : t("workPage.status.inDevelopment");
+const visitLabel = t(project.type === "app" ? "caseStudy.visit.app" : "caseStudy.visit.website");
+const imageSettings: Record<CaseStudyVisualLayout, { widths: number[]; sizes: string }> = {
+  portrait: { widths: [480, 720, 960], sizes: "(max-width: 768px) 100vw, 420px" },
+  landscape: { widths: [640, 960, 1280], sizes: "(max-width: 768px) 100vw, 760px" },
+  wide: { widths: [720, 1080, 1440, 1920], sizes: "(max-width: 768px) 100vw, 1280px" },
+  closing: { widths: [640, 960, 1280], sizes: "(max-width: 768px) 100vw, 760px" },
+};
+const nextCaseStudy = getNextCaseStudy(caseStudy.slug);
+const nextProject = nextCaseStudy ? getProjectById(nextCaseStudy.projectId) : undefined;
+const nextProjectTitle = nextProject
+  ? t(`projects.${nextProject.id}.title` as TranslationKey)
+  : undefined;
+const nextProjectCategory = nextProject
+  ? t(`projects.${nextProject.id}.category` as TranslationKey)
+  : undefined;
+---
+
+<main class="main-content-wrapper bg-dotted">
+  <Navbar />
+
+  <article class="case-study">
+    <header class="case-study-hero section-container">
+      <a class="case-study-back" href={pagePath("/work")} data-animate="fade-right">
+        <span aria-hidden="true">←</span> {t("caseStudy.back")}
+      </a>
+
+      <div class="case-study-heading" data-animate="fade-up">
+        <div class="case-study-meta">
+          <span>{t("caseStudy.projectLabel")}</span>
+          <span>{category}</span>
+          <span class:list={{ "case-study-live": isLive }}>
+            {isLive && <i aria-hidden="true"></i>}{statusLabel}
+          </span>
+        </div>
+
+        <h1 class="text-gradient-logo">{title}</h1>
+        <p class="case-study-lead">{t(caseStudy.leadKey)}</p>
+
+        <a class="case-study-live-link" href={project.href} target="_blank" rel="noopener noreferrer">
+          {visitLabel} <span aria-hidden="true">↗</span>
+        </a>
+      </div>
+
+      {caseStudy.logo && (
+        <div class="case-study-brand" data-animate="fade-up" data-delay="100">
+          <Image
+            src={caseStudy.logo}
+            alt={title}
+            class="case-study-brand-logo"
+            widths={[320, 640, 960]}
+            sizes="(max-width: 768px) 70vw, 620px"
+          />
+        </div>
+      )}
+    </header>
+
+    <section class="case-study-cover-wrap section-container" aria-label={t("port.preview_alt")}>
+      <div class="case-study-cover" transition:name={`project-media-${project.id}`}>
+        <Image
+          src={coverImage}
+          alt={`${title} — ${t("port.preview_alt")}`}
+          class="case-study-cover-image"
+          widths={[720, 1080, 1440, 1920]}
+          sizes="(max-width: 768px) 100vw, 1280px"
+        />
+      </div>
+    </section>
+
+    <section class="case-study-overview section-container">
+      <p class="case-study-section-label" data-animate="fade-right">
+        {t("caseStudy.overview.label")}
+      </p>
+
+      <div class="case-study-overview-copy" data-animate="fade-up">
+        <h2>{t(caseStudy.overview.titleKey)}</h2>
+        <div class="case-study-prose">
+          {caseStudy.overview.paragraphKeys.map((paragraphKey) => <p>{t(paragraphKey)}</p>)}
+        </div>
+      </div>
+
+      <aside class="case-study-facts" data-animate="fade-up" data-delay="100">
+        {caseStudy.overview.facts.map((fact) => (
+          <div>
+            <h3>{t(fact.labelKey)}</h3>
+            <ul>
+              {fact.itemKeys.map((itemKey) => <li>{t(itemKey)}</li>)}
+            </ul>
+          </div>
+        ))}
+      </aside>
+    </section>
+
+    {caseStudy.gallery && (
+      <section class="case-study-gallery section-container">
+        <div class="case-study-gallery-heading">
+          <p class="case-study-section-label" data-animate="fade-right">
+            {t("caseStudy.gallery.label")}
+          </p>
+          <div data-animate="fade-up">
+            <h2>{t(caseStudy.gallery.titleKey)}</h2>
+            <p>{t(caseStudy.gallery.introKey)}</p>
+          </div>
+        </div>
+
+        <div class="case-study-gallery-grid">
+          {caseStudy.gallery.items.map((item) => (
+            <figure
+              class:list={["case-study-visual", `case-study-visual--${item.layout}`]}
+              data-animate="fade-up"
+              data-delay={item.delay}
+            >
+              <div class="case-study-visual-frame">
+                <Image
+                  src={item.image}
+                  alt={t(item.altKey)}
+                  widths={imageSettings[item.layout].widths}
+                  sizes={imageSettings[item.layout].sizes}
+                />
+              </div>
+              {item.captionKey && <figcaption>{t(item.captionKey)}</figcaption>}
+            </figure>
+          ))}
+        </div>
+      </section>
+    )}
+
+    <section class="case-study-cta section-container" data-animate="fade-up">
+      <p class="case-study-section-label">{t("cta.badge")}</p>
+      <div class="case-study-cta-copy">
+        <h2>{t("cta.title")}</h2>
+        <p>{t("cta.subtitle")}</p>
+      </div>
+      <div class="case-study-cta-actions">
+        <a class="btn-primary" href={pagePath("/project")}>
+          {t("cta.project")} <span aria-hidden="true">→</span>
+        </a>
+        <p>
+          {t("cta.email_intro")}
+          <a href="mailto:toni@fronta.hr">toni@fronta.hr</a>
+        </p>
+      </div>
+    </section>
+
+    {nextCaseStudy && nextProject && nextProjectTitle && nextProjectCategory && (
+      <nav class="case-study-next section-container" aria-label={t("caseStudy.next.label")}>
+        <div class="case-study-next-header">
+          <p class="case-study-section-label">{t("caseStudy.next.label")}</p>
+          <a class="case-study-all-work" href={pagePath("/work")}>
+            {t("caseStudy.backToWork")} <span aria-hidden="true">↗</span>
+          </a>
+        </div>
+
+        <a class="case-study-next-link" href={pagePath(`/work/${nextCaseStudy.slug}`)}>
+          <div class="case-study-next-copy">
+            <span>{nextProjectCategory}</span>
+            <h2>{nextProjectTitle}</h2>
+          </div>
+          <span class="case-study-next-arrow" aria-hidden="true">→</span>
+        </a>
+      </nav>
+    )}
+  </article>
+</main>
+
+<Footer />

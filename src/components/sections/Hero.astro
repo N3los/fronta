@@ -1,18 +1,17 @@
 ---
-import { getLangFromUrl, useTranslations } from '../../i18n/utils';
+import { getLangFromUrl, getLocalizedPath, useTranslations } from "../../i18n/utils";
 
 // Modular CSS Imports
-import '../../styles/sections/hero.css';
-import '../../styles/components/badges.css';
-import '../../styles/components/buttons.css';
+import "../../styles/sections/hero.css";
+import "../../styles/components/badges.css";
+import "../../styles/components/buttons.css";
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
-const base = import.meta.env.BASE_URL.replace(/\/$/, "");
-const localizedPath = lang === "en" ? "" : `/${lang}`;
+const pagePath = (path: string) => getLocalizedPath(lang, path);
 ---
 
-<section class="section-hero glow-bg glow-grid" id="Hero">
+<section class="hero-section" id="Hero">
   <!-- Architectural Frame -->
   <div class="bracket-frame">
     <div class="corner-bracket corner-bracket-tl"></div>
@@ -21,38 +20,27 @@ const localizedPath = lang === "en" ? "" : `/${lang}`;
     <div class="corner-bracket corner-bracket-br"></div>
   </div>
 
-  <div class="section-container relative z-10 w-full pt-12 md:pt-0 text-center md:text-left">
+  <div class="section-container relative z-10 w-full text-center md:text-left">
     <div class="max-w-4xl mx-auto md:mx-0">
-      <!-- Semantic Badge -->
-      <div class="hero-badge">
-        <div class="red-dot"></div>
-        <p class="hero-badge-text">
-          Freelance UI/UX <span class="mx-1 text-fronta-border">·</span> Frontend specialist
-        </p>
-      </div>
-
-      <h1 class="hero-title">
-        Websites and apps,<br />
-        built <span class="text-gradient-logo">right.</span>
+      <h1 class="hero-title" data-animate="blur-in" data-delay="300">
+        <span class="text-gradient-logo">{t("hero.title_top")}</span><br />
+        {t("hero.title_bottom")}
       </h1>
 
-      <p class="hero-description">
+      <p class="hero-description" data-animate="blur-in" data-delay="500">
         {t("footer.copy")}
       </p>
 
-      <div class="hero-actions">
-        <a href={`${base}${localizedPath}/work`} class="btn-primary group">
-          See websites
+      <div class="hero-actions" data-animate="blur-in" data-delay="700">
+        <a href={pagePath("/project")} class="btn-primary group">
+          {t("cta.project")}
           <span class="ml-2 transition-transform">→</span>
         </a>
-        <a href={`${base}${localizedPath}/services`} class="btn-glass group">
-          See apps
+        <a href={pagePath("/work")} class="btn-glass group">
+          {t("hero.cta_websites")}
           <span class="ml-2 transition-transform">→</span>
         </a>
       </div>
     </div>
   </div>
-
-  <!-- Subtle Bottom Flair -->
-  <div class="hero-bottom-flair"></div>
 </section>

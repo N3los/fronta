@@ -1,0 +1,83 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import Navbar from "../../components/Navbar.astro";
+import Footer from "../../components/Footer.astro";
+import { getLangFromUrl, useTranslations } from "../../i18n/utils";
+import "../../styles/pages/impressum.css";
+
+export function getStaticPaths() {
+  return [
+    { params: { lang: undefined } },
+    { params: { lang: "hr" } },
+  ];
+}
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+const details = [
+  {
+    label: t("impressum.business_name"),
+    value: "FRONTA, obrt za dizajn i programiranje, vl. Toni Andrić",
+  },
+  { label: t("impressum.owner"), value: "Toni Andrić" },
+  { label: t("impressum.address"), value: "Matoševa 16A, 47 000 Karlovac" },
+  { label: t("impressum.mbo"), value: "97735868" },
+  { label: t("impressum.oib"), value: "80594123352" },
+];
+---
+
+<Layout
+  title={t("meta.impressum.title")}
+  description={t("meta.impressum.description")}
+>
+  <main class="main-content-wrapper bg-dotted">
+    <Navbar />
+
+    <section class="impressum-page">
+      <div class="section-container impressum-layout">
+        <header class="impressum-header">
+          <p class="impressum-kicker">
+            FRONTA
+          </p>
+          <h1 class="impressum-title">
+            {t("impressum.title")}
+          </h1>
+          <p class="impressum-intro">
+            {t("impressum.intro")}
+          </p>
+        </header>
+
+        <dl class="impressum-details">
+          {details.map(({ label, value }) => (
+            <div class="impressum-row">
+              <dt>{label}</dt>
+              <dd>{value}</dd>
+            </div>
+          ))}
+          <div class="impressum-row">
+            <dt>{t("impressum.register")}</dt>
+            <dd>
+              <a
+                href="https://pretrazivac-obrta.gov.hr/pretraga.htm"
+                target="_blank"
+                rel="noreferrer"
+              >
+                {t("impressum.register_value")} ↗
+              </a>
+            </dd>
+          </div>
+          <div class="impressum-row">
+            <dt>{t("impressum.contact")}</dt>
+            <dd>
+              <a href="mailto:toni@fronta.hr">
+                toni@fronta.hr
+              </a>
+            </dd>
+          </div>
+        </dl>
+      </div>
+    </section>
+  </main>
+  <Footer />
+</Layout>

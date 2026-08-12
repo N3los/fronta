@@ -3,5 +3,19 @@
 /* Shared UI Components */
 
 .glass-card {
-  @apply bg-[#0f0f0f]/80 backdrop-blur-xl border border-fronta-border;
+  background-color: light-dark(rgba(255, 255, 255, 0.7), rgba(15, 15, 15, 0.8));
+  backdrop-blur: light-dark(12px, 20px);
+  border: 1px solid var(--fronta-border);
+}
+
+.bg-gradient-glow {
+  background: radial-gradient(
+    circle at center,
+    light-dark(rgba(255, 204, 0, 0.12), rgba(255, 204, 0, 0.2)) 0%,
+    light-dark(rgba(239, 13, 51, 0.06), rgba(239, 13, 51, 0.12)) 45%,
+    transparent 75%
+  );
+  filter: blur(60px);
+  pointer-events: none;
+  @apply transition-opacity duration-1000;
 }

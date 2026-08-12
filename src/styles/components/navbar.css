@@ -1,63 +1,13 @@
 @reference "../global.css";
 
-/* Navbar & Mega Menu Components */
-
-.mega-menu-trigger {
-  @apply relative;
-  &:hover {
-    .mega-menu {
-      @apply opacity-100 visible translate-y-0;
-    }
-    svg {
-      @apply rotate-180;
-    }
-  }
-}
-
-.mega-menu {
-  @apply absolute top-[calc(100%-8px)] left-1/2 -translate-x-1/2 w-[320px] pt-4 opacity-0 invisible transition-all duration-300 transform translate-y-2;
-}
-
-.mega-menu-item {
-  @apply flex items-start gap-4 p-4 rounded-xl hover:bg-white/5 transition-colors relative;
-  &:hover {
-    .mega-menu-item-arrow {
-      @apply opacity-100;
-    }
-    .dropdown-dot {
-       @apply bg-fronta-red;
-    }
-  }
-}
-
-.dropdown-item-indicator {
-  @apply pt-1.5;
-}
-
-.dropdown-dot {
-  @apply w-1.5 h-1.5 rounded-full bg-fronta-muted transition-colors;
-}
-
-.mega-menu-item-title {
-  @apply text-sm font-bold text-white mb-0.5;
-}
-
-.mega-menu-item-desc {
-  @apply text-[11px] text-fronta-muted;
-}
-
-.mega-menu-item-arrow {
-  @apply absolute right-4 top-1/2 -translate-y-1/2 text-fronta-red opacity-0 transition-opacity;
-}
-
-/* New Semantic Layout Classes */
+/* Navigation */
 
 .navbar-header {
-  @apply fixed top-0 w-full z-50 bg-fronta-dark/80 backdrop-blur-md border-b border-fronta-border;
+  @apply fixed top-0 w-full z-50 bg-fronta-dark/5 backdrop-blur-md;
 }
 
 .navbar-container {
-  @apply px-6 md:px-12 h-20 flex items-center justify-between gap-4;
+  @apply px-6 md:px-12 h-20 flex items-center justify-between gap-4 relative z-50;
 }
 
 .navbar-logo-area {
@@ -66,6 +16,7 @@
 
 .navbar-logo-link {
   @apply flex items-center transition-transform duration-300;
+
   &:hover {
     @apply scale-[1.02];
   }
@@ -76,9 +27,10 @@
 }
 
 .nav-link {
-  @apply text-sm font-medium text-fronta-muted hover:text-white transition-colors relative flex items-center gap-1.5 focus:outline-none;
+  @apply text-sm font-medium text-fronta-muted hover:text-fronta-text transition-colors relative flex items-center gap-1.5 rounded-sm focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-fronta-red;
+
   &.active {
-    @apply text-white;
+    @apply text-fronta-text;
   }
 }
 
@@ -92,16 +44,98 @@
 
 .navbar-cta {
   @apply flex items-center gap-2 px-5 py-2.5 rounded-full border border-fronta-border text-xs font-bold hover:border-fronta-red transition-all;
+  color: var(--fronta-text);
+}
+
+/* Mobile Icon Animation */
+.hamburger-icon {
+  @apply w-6 h-5 relative flex flex-col justify-between items-end;
+
+  span {
+    @apply h-[2px] bg-current rounded-full transition-all duration-500 origin-right;
+
+    &:nth-child(1) {
+      @apply w-full;
+    }
+
+    &:nth-child(2) {
+      @apply w-2/3;
+    }
+
+    &:nth-child(3) {
+      @apply w-full;
+    }
+  }
 }
 
 .mobile-menu-toggle {
-  @apply lg:hidden text-fronta-muted hover:text-white transition-colors focus:outline-none;
+  @apply lg:hidden text-fronta-muted hover:text-fronta-text transition-colors p-2 -mr-2 rounded-md focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-fronta-red;
 }
 
 .mobile-menu-overlay {
-  @apply hidden fixed inset-0 top-20 bg-fronta-dark z-40 p-6 lg:hidden;
+  @apply fixed inset-0 z-[100] lg:hidden backdrop-blur-3xl transition-all duration-700 transform translate-x-full opacity-0 pointer-events-none flex flex-col;
+  background-color: var(--fronta-bg);
+
+  &.is-active {
+    @apply translate-x-0 opacity-100 pointer-events-auto;
+
+    .mobile-nav-link {
+      @apply translate-y-0 opacity-100;
+    }
+
+    .mobile-menu-footer {
+      @apply opacity-100 translate-y-0;
+    }
+  }
+}
+
+.mobile-menu-header {
+  @apply flex items-center justify-between px-6 h-20;
+}
+
+.mobile-menu-close {
+  @apply p-2 text-fronta-text hover:text-fronta-red transition-colors rounded-md focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-fronta-red;
 }
 
 .mobile-nav {
-  @apply flex flex-col gap-6 text-xl font-bold;
+  @apply flex-1 flex flex-col justify-center px-6 gap-2 overflow-y-auto;
+}
+
+.mobile-nav-link {
+  @apply flex flex-col py-4 border-b border-fronta-border/30 transition-all duration-700 opacity-0 translate-y-8 no-underline;
+  transition-delay: calc(var(--i) * 80ms);
+
+  &.highlight {
+    .mobile-nav-title {
+      @apply text-fronta-red;
+    }
+  }
+
+  &:last-child {
+    @apply border-b-0;
+  }
+
+  &:hover {
+
+    .mobile-nav-title,
+    .mobile-nav-subtitle {
+      @apply translate-x-2;
+    }
+  }
+}
+
+.mobile-nav-title {
+  @apply text-xl font-bold tracking-tight text-fronta-text transition-transform duration-500;
+}
+
+.mobile-nav-subtitle {
+  @apply text-xs uppercase tracking-widest text-fronta-muted font-mono mt-1 transition-transform duration-500 delay-75;
+}
+
+.mobile-menu-footer {
+  @apply p-6 opacity-0 translate-y-4 transition-all duration-700 delay-500 flex items-center justify-between gap-4;
+}
+
+.mobile-footer-label {
+  @apply text-[10px] uppercase tracking-[0.2em] text-fronta-muted font-bold;
 }

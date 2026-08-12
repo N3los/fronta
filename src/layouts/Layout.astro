@@ -1,16 +1,97 @@
 ---
-import '../styles/global.css';
+import "../styles/global.css";
+import { ClientRouter } from "astro:transitions";
 
-import { getLangFromUrl } from '../i18n/utils';
+import { getLangFromUrl, getRelativePathWithoutLang } from "../i18n/utils";
 
 interface Props {
 	title: string;
 	description?: string;
+	image?: string;
+	imageAlt?: string;
+	robots?: string;
+	schema?: Record<string, unknown> | Record<string, unknown>[];
 }
 
-const { title, description = "Websites and apps, built right. FRONTA is a freelance design and frontend practice." } = Astro.props;
+const {
+	title,
+	description = "FRONTA is a digital product studio designing and building focused websites and web applications.",
+	image,
+	imageAlt,
+	robots = "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+	schema,
+} = Astro.props;
 const lang = getLangFromUrl(Astro.url);
 const base = import.meta.env.BASE_URL.replace(/\/$/, "");
+const withTrailingSlash = (pathname: string) =>
+	pathname === "/" ? "/" : `${pathname.replace(/\/+$/, "")}/`;
+const pathWithoutLang = withTrailingSlash(getRelativePathWithoutLang(Astro.url));
+const englishPath = pathWithoutLang;
+const croatianPath = withTrailingSlash(`/hr${pathWithoutLang === "/" ? "" : pathWithoutLang}`);
+const canonicalUrl = Astro.site
+	? new URL(withTrailingSlash(Astro.url.pathname), Astro.site)
+	: Astro.url;
+const siteOrigin = Astro.site ?? new URL(Astro.url.origin);
+const socialImageUrl = new URL(image ?? `${base}/og-default.png`, siteOrigin);
+const socialImageAlt = imageAlt ?? (lang === "hr"
+	? "FRONTA studio za dizajn i razvoj web stranica i aplikacija"
+	: "FRONTA website and web application design and development studio");
+const englishUrl = new URL(englishPath, siteOrigin);
+const croatianUrl = new URL(croatianPath, siteOrigin);
+const organizationId = new URL("/#organization", siteOrigin).href;
+const websiteId = new URL("/#website", siteOrigin).href;
+const webpageId = `${canonicalUrl.href}#webpage`;
+const extraSchema = schema ? (Array.isArray(schema) ? schema : [schema]) : [];
+const structuredData = {
+	"@context": "https://schema.org",
+	"@graph": [
+		{
+			"@type": "Organization",
+			"@id": organizationId,
+			name: "FRONTA",
+			legalName: "FRONTA, obrt za dizajn i programiranje, vl. Toni Andrić",
+			url: new URL("/", siteOrigin).href,
+			logo: {
+				"@type": "ImageObject",
+				url: new URL("/icon-512.png", siteOrigin).href,
+				width: 512,
+				height: 512,
+			},
+			email: "toni@fronta.hr",
+			foundingDate: "2017",
+			address: {
+				"@type": "PostalAddress",
+				streetAddress: "Matoševa 16A",
+				postalCode: "47000",
+				addressLocality: "Karlovac",
+				addressCountry: "HR",
+			},
+		},
+		{
+			"@type": "WebSite",
+			"@id": websiteId,
+			url: new URL("/", siteOrigin).href,
+			name: "FRONTA",
+			inLanguage: ["en", "hr"],
+			publisher: { "@id": organizationId },
+		},
+		{
+			"@type": "WebPage",
+			"@id": webpageId,
+			url: canonicalUrl.href,
+			name: title,
+			description,
+			inLanguage: lang,
+			isPartOf: { "@id": websiteId },
+			about: { "@id": organizationId },
+			primaryImageOfPage: {
+				"@type": "ImageObject",
+				url: socialImageUrl.href,
+			},
+		},
+		...extraSchema,
+	],
+};
 ---
 
 <!doctype html>
@@ -18,24 +99,62 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, "");
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="description" content={description} />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href={`${base}/favicon.svg`} />
+		<meta name="google-site-verification" content="y1LbnLLBeSOjKNdTZfFDDyw5C8XizhVi48ia9j8V_nI" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta name="robots" content={robots} />
+		<meta name="theme-color" content="#fcfcfc" media="(prefers-color-scheme: light)" />
+		<meta name="theme-color" content="#0a0a0a" media="(prefers-color-scheme: dark)" />
+		<meta property="og:type" content="website" />
+		<meta property="og:site_name" content="FRONTA" />
+		<meta property="og:title" content={title} />
+		<meta property="og:description" content={description} />
+		<meta property="og:url" content={canonicalUrl} />
+		<meta property="og:locale" content={lang === "hr" ? "hr_HR" : "en_US"} />
+		<meta property="og:locale:alternate" content={lang === "hr" ? "en_US" : "hr_HR"} />
+		<meta property="og:image" content={socialImageUrl} />
+		<meta property="og:image:alt" content={socialImageAlt} />
+		{!image && <meta property="og:image:width" content="1200" />}
+		{!image && <meta property="og:image:height" content="630" />}
+		<meta name="twitter:card" content="summary_large_image" />
+		<meta name="twitter:title" content={title} />
+		<meta name="twitter:description" content={description} />
+		<meta name="twitter:image" content={socialImageUrl} />
+		<meta name="twitter:image:alt" content={socialImageAlt} />
+		<link rel="icon" type="image/png" sizes="32x32" href={`${base}/favicon-32.png`} />
+		<link rel="icon" type="image/png" sizes="192x192" href={`${base}/icon-192.png`} />
+		<link rel="apple-touch-icon" href={`${base}/apple-touch-icon.png`} />
+		<link rel="manifest" href={`${base}/site.webmanifest`} />
+		<link rel="sitemap" type="application/xml" href={`${base}/sitemap-index.xml`} />
 		<meta name="generator" content={Astro.generator} />
-		
-    <!-- Canonical URL -->
-    {Astro.site && <link rel="canonical" href={new URL(Astro.url.pathname, Astro.site)} />}
+
+		<!-- Canonical URL -->
+		{
+			Astro.site && (
+				<>
+					<link rel="canonical" href={canonicalUrl} />
+					<link rel="alternate" hreflang="en" href={englishUrl} />
+					<link rel="alternate" hreflang="hr" href={croatianUrl} />
+					<link rel="alternate" hreflang="x-default" href={englishUrl} />
+				</>
+			)
+		}
 
 		<!-- Google Fonts: Inter & Space Grotesk -->
-		<link rel="preconnect" href="https://fonts.googleapis.com">
-		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-		<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-		
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@300;400;500;600;700&display=swap"
+			rel="stylesheet"
+		/>
+
+		<ClientRouter />
+		<script type="application/ld+json" set:html={JSON.stringify(structuredData)} />
+
 		<title>{title}</title>
 	</head>
-	<body>
-    <main class="main-content-wrapper">
-		  <slot />
-    </main>
-    <script src="../scripts/animations.js"></script>
+	<body class="bg-fronta-dark bg-dotted min-h-screen">
+		<slot />
+		<script src="../scripts/animations.js"></script>
+		<script src="../scripts/smoothScroll.js"></script>
 	</body>
 </html>

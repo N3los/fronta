@@ -1,7 +1,7 @@
 # FRONTA
 > Websites and apps, built right.
 
-FRONTA is a freelance design and frontend practice — building production-ready websites and apps for founders, product teams, and engineering.
+FRONTA is a Croatian design and development studio creating websites, web applications, and digital products for companies and product teams.
 
 ## Practices
 - Marketing sites & landing pages
@@ -14,4 +14,9 @@ FRONTA is a freelance design and frontend practice — building production-ready
 - Built for the handoff
 
 ## Links
-- [Website](https://www.fronta.hr)
+- [Website](https://fronta.hr/)
+- [Services](https://fronta.hr/services/)
+- [Selected work](https://fronta.hr/work/)
+- [Process](https://fronta.hr/process/)
+- [About](https://fronta.hr/about/)
+- [Start a project](https://fronta.hr/project/)

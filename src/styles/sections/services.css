@@ -3,7 +3,7 @@
 /* Services Section Styles */
 
 .section-services {
-  @apply py-24 md:py-24;
+  @apply py-20 md:py-24;
 }
 
 .services-grid {
@@ -11,7 +11,7 @@
 }
 
 .service-feature-list {
-  @apply space-y-4 mb-12;
+  @apply mb-8 space-y-3 md:mb-12 md:space-y-4;
 }
 
 .service-feature-item {
@@ -21,6 +21,6 @@
 /* Specific card variation overrides if needed */
 .service-card:hover {
   .service-feature-item {
-    @apply text-white;
+    color: var(--fronta-text);
   }
 }

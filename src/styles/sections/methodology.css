@@ -3,16 +3,20 @@
 /* Methodology Section - The Blueprint Split */
 
 .section-methodology {
-  @apply py-24 md:py-48 overflow-visible;
+  @apply overflow-visible py-20 md:py-48;
+}
+
+.methodology-section-header {
+  @apply mb-16 md:mb-32;
 }
 
 .methodology-row {
-  @apply grid grid-cols-1 md:grid-cols-12 gap-12 md:gap-24 relative mb-32 md:mb-64 last:mb-0;
+  @apply relative mb-20 grid grid-cols-1 gap-5 last:mb-0 md:mb-64 md:grid-cols-12 md:gap-24;
 }
 
 /* Left Sidebar - Sticky Title */
 .methodology-side {
-  @apply md:col-span-4;
+  @apply md:col-span-4 relative z-1;
 }
 
 .methodology-sticky-header {
@@ -20,48 +24,53 @@
 }
 
 .methodology-index-large {
-  @apply text-[120px] md:text-[180px] font-bold leading-none tracking-tighter text-white/5 font-mono mb-[-40px] md:mb-[-60px];
+  @apply text-[120px] md:text-[180px] lg:text-[360px] font-mono font-bold leading-none tracking-tighter;
+  @apply absolute top-0 right-[-50%] -z-1 opacity-25;
 }
 
 .methodology-side-title {
-  @apply text-3xl md:text-5xl font-bold tracking-tight text-white mb-6;
+  @apply text-3xl md:text-5xl font-bold tracking-tight mb-6;
   font-family: var(--font-display);
 }
 
 /* Right Content - Scrolling Details */
 .methodology-content {
-  @apply md:col-span-8 relative pt-12 md:pt-0;
-}
-
-.methodology-blueprint-frame {
-  @apply relative p-8 md:p-16 border border-fronta-border rounded-[2rem] bg-fronta-card/20 backdrop-blur-sm overflow-hidden;
+  @apply relative z-1 pt-0 md:col-span-8;
+  transform: translateZ(0);
+  /* Force GPU */
+  isolation: isolate;
 
   &::before {
     content: "";
-    @apply absolute top-0 left-0 w-8 h-8 border-t border-l border-fronta-red/40;
+    @apply absolute inset-0 -z-1 backdrop-blur-md rounded-4xl;
+    pointer-events: none;
   }
 }
 
+.methodology-blueprint-frame {
+  @apply relative overflow-hidden rounded-2xl bg-fronta-card/50 p-6 shadow-2xl shadow-black/10 md:p-16;
+}
+
 .methodology-detail-label {
-  @apply text-[10px] font-mono tracking-[0.2em] uppercase text-fronta-red mb-10 block;
+  @apply mb-4 block font-mono text-[10px] uppercase tracking-[0.2em] text-fronta-red md:mb-10;
 }
 
 .methodology-detail-title {
-  @apply text-2xl md:text-4xl font-bold mb-8 text-white max-w-md;
+  @apply mb-4 max-w-md text-2xl font-bold md:mb-8 md:text-4xl;
   font-family: var(--font-display);
 }
 
 .methodology-detail-desc {
-  @apply text-lg text-fronta-muted leading-relaxed max-w-2xl mb-12;
+  @apply mb-8 max-w-2xl text-base leading-relaxed text-fronta-muted md:mb-12 md:text-lg;
 }
 
 /* Technical Deliverables List */
 .methodology-list {
-  @apply grid grid-cols-1 sm:grid-cols-2 gap-6 pt-12 border-t border-fronta-border/30;
+  @apply grid grid-cols-1 gap-4 border-t border-fronta-border/30 pt-6 sm:grid-cols-2 md:gap-6 md:pt-12;
 }
 
 .methodology-list-item {
-  @apply flex items-center gap-3 text-xs md:text-sm font-mono text-fronta-muted uppercase tracking-wider;
+  @apply flex items-center gap-3 text-xs md:text-sm font-mono uppercase tracking-wider;
 
   i {
     @apply w-1 h-1 rounded-full bg-fronta-red;
@@ -71,14 +80,6 @@
 /* Decorative Card Grid (Reused) */
 .service-card-grid {
   @apply absolute inset-0 opacity-0 transition-opacity duration-1000 pointer-events-none;
-}
-
-.methodology-blueprint-frame:hover {
-  @apply border-fronta-red/20 bg-fronta-card/40;
-
-  .service-card-grid {
-    @apply opacity-100;
-  }
 }
 
 /* Blueprint Coordinate System */
@@ -91,5 +92,23 @@
   .methodology-sticky-header::before {
     content: "";
     @apply absolute -left-16 top-1/2 w-8 h-[1px] bg-fronta-red opacity-40;
+  }
+}
+
+@media (max-width: 767px) {
+  .methodology-section-header .section-title {
+    @apply mb-5;
+  }
+
+  .methodology-section-header .section-subtitle {
+    @apply mb-0 mt-4;
+  }
+
+  .methodology-side-title {
+    @apply mb-3 text-[2rem];
+  }
+
+  .methodology-index-large {
+    @apply right-0 text-[7rem];
   }
 }

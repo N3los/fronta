@@ -1,99 +1,128 @@
 ---
-import { Image } from 'astro:assets';
-import { getLangFromUrl, useTranslations } from '../../i18n/utils';
-
-// Placeholder Assets
-import img1 from '../../assets/placeholders/image.png';
-import img2 from '../../assets/placeholders/image copy.png';
-import img3 from '../../assets/placeholders/image copy 2.png';
+import { Image } from "astro:assets";
+import { getLangFromUrl, getLocalizedPath, useTranslations } from "../../i18n/utils";
+import { getFeaturedProjects, getProjectImage } from "../../data/projects";
+import { getCaseStudyByProjectId } from "../../data/caseStudies";
 
 // Modular CSS Import
-import '../../styles/sections/portfolio.css';
+import "../../styles/sections/portfolio.css";
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
-const base = import.meta.env.BASE_URL.replace(/\/$/, "");
-const localizedPath = lang === 'en' ? '' : `/${lang}`;
-
-const projects = [
-  {
-    year: "2024",
-    tag: "MARKETING",
-    title: "Marketing site for a developer-tooling startup",
-    description: "3D-heavy marketing page highlighting a highly technical infrastructure product.",
-    image: img1,
-    href: "/projects/dev-tooling"
-  },
-  {
-    year: "2023",
-    tag: "INTERNAL TOOL",
-    title: "Ledger dashboard for a B2B treasury platform",
-    description: "Complex financial tables and charts tailored for internal accounting teams.",
-    image: img2,
-    href: "/projects/ledger-dashboard"
-  },
-  {
-    year: "2023",
-    tag: "PRODUCT UI",
-    title: "Ops console for a logistics team",
-    description: "Real-time map integrations and dispatching UI built for high-stress environments.",
-    image: img3,
-    href: "/projects/ops-console"
-  }
-];
+type TranslationKey = Parameters<typeof t>[0];
+const projectText = (id: string, field: "category" | "title" | "description") =>
+  t(`projects.${id}.${field}` as TranslationKey);
+const projects = getFeaturedProjects();
+const pagePath = (path: string) => getLocalizedPath(lang, path);
 ---
 
-<section class="section-portfolio" id="Portfolio">
+<section class="section-portfolio" id="Work">
   <div class="section-container">
-    <header class="mb-24">
+    <header class="mb-16 md:mb-24">
       <div class="index-marker mb-8">
         <div class="index-marker">
-          <span class="index-num">03</span>
+          <span class="index-num">01</span>
           <span class="index-line"></span>
         </div>
-        <p class="badge-mono uppercase">Portfolio</p>
+        <p class="badge-mono uppercase">{t("port.badge")}</p>
       </div>
-      
+
       <h2 class="section-title">
-        Selected work <br />
-        <span class="text-gradient-logo">built to last.</span>
+        {t("port.title_top")}
+        <br />
+        <span class="text-gradient-logo">{t("port.title_bottom")}</span>
       </h2>
     </header>
-    
-    <div class="portfolio-stack">
-      {projects.map((project) => (
-        <article class="portfolio-item group">
-          <div class="portfolio-layout">
-            <!-- Project Info -->
-            <div class="portfolio-info">
-              <div>
-                <div class="portfolio-metadata">
-                  <span class="portfolio-year">{project.year}</span>
-                  <span class="text-fronta-border">/</span>
-                  <span class="portfolio-tag">{project.tag}</span>
-                </div>
-                
-                <h3 class="portfolio-title">{project.title}</h3>
-                <p class="portfolio-description">{project.description}</p>
-              </div>
-              
-              <a href={`${base}${localizedPath}${project.href}`} class="portfolio-cta">
-                View Project <span>→</span>
-              </a>
-            </div>
 
-            <!-- Project Image -->
-            <div class="portfolio-image-container">
-              <Image 
-                src={project.image} 
-                alt={project.title} 
-                class="portfolio-image"
-              />
-              <div class="portfolio-image-overlay"></div>
+    <div class="portfolio-stack">
+      {
+        projects.map((project, index) => (
+          <article
+            class:list={[
+              "portfolio-item group bg-dotted",
+              { "portfolio-item--app": project.type === "app" },
+            ]}
+            style={`--stack-z: ${(index + 1) * 10}; --stack-top: ${92 + index * 24}px; --stack-margin: ${index === 0 ? 0 : 48}px;`}
+            data-animate="fade-up"
+            data-delay={index * 100}
+            data-threshold="0.1"
+            data-margin="0px"
+          >
+            <div class="portfolio-sheet">
+              <header class="portfolio-sheet-header">
+                <div class="portfolio-metadata">
+                  <span class="portfolio-index">
+                    {String(index + 1).padStart(2, "0")}
+                  </span>
+                  <span class="portfolio-divider">/</span>
+                  <span class="portfolio-tag">
+                    {projectText(project.id, "category")}
+                    {project.status === "in-development" &&
+                      ` · ${t("workPage.status.inDevelopment")}`}
+                  </span>
+                </div>
+
+                <h3 class="portfolio-title">
+                  {projectText(project.id, "title")}
+                </h3>
+
+                <a
+                  href={project.href}
+                  class="portfolio-cta"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={`${project.type === "app" ? t("port.view_product") : t("port.view_website")}: ${projectText(project.id, "title")}`}
+                >
+                  {project.type === "app"
+                    ? t("port.view_product")
+                    : t("port.view_website")}{" "}
+                  <span aria-hidden="true">↗</span>
+                </a>
+              </header>
+
+              <a
+                class="portfolio-image-container portfolio-image-link"
+                href={getCaseStudyByProjectId(project.id)
+                  ? pagePath(`/work/${getCaseStudyByProjectId(project.id)?.slug}`)
+                  : project.href}
+                target={getCaseStudyByProjectId(project.id) ? undefined : "_blank"}
+                rel={getCaseStudyByProjectId(project.id) ? undefined : "noopener noreferrer"}
+                aria-label={`${getCaseStudyByProjectId(project.id) ? t("workPage.details") : project.type === "app" ? t("port.view_product") : t("port.view_website")}: ${projectText(project.id, "title")}`}
+                transition:name={getCaseStudyByProjectId(project.id) ? `project-media-${project.id}` : undefined}
+              >
+                <Image
+                  src={getProjectImage(project, lang)}
+                  alt={`${projectText(project.id, "title")} — ${t("port.preview_alt")}`}
+                  class="portfolio-image"
+                  style={`object-position: ${project.imagePosition}`}
+                />
+                <div class="portfolio-image-overlay" />
+                {getCaseStudyByProjectId(project.id) && (
+                  <span class="portfolio-image-details" aria-hidden="true">
+                    {t("workPage.details")} <span>→</span>
+                  </span>
+                )}
+              </a>
+
+              <footer class="portfolio-sheet-footer">
+                <p class="portfolio-description">
+                  {projectText(project.id, "description")}
+                </p>
+                <span class="portfolio-sheet-mark" aria-hidden="true">
+                  FRONTA / {String(index + 1).padStart(2, "0")}
+                </span>
+              </footer>
             </div>
-          </div>
-        </article>
-      ))}
+          </article>
+        ))
+      }
+    </div>
+
+    <div class="portfolio-all-projects" data-animate="fade-up">
+      <a href={pagePath("/work")}>
+        {t("port.view_all")}
+        <span aria-hidden="true">→</span>
+      </a>
     </div>
   </div>
 </section>

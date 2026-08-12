@@ -1,62 +1,79 @@
 ---
-import { getLangFromUrl, useTranslations } from '../../i18n/utils';
+import { getLangFromUrl, useTranslations } from "../../i18n/utils";
 
 // Modular CSS Imports
-import '../../styles/components/badges.css';
-import '../../styles/sections/methodology.css';
+import "../../styles/components/badges.css";
+import "../../styles/sections/methodology.css";
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 ---
 
-<section class="section-methodology" id="Process">
+<section class="section-methodology" id="Methodology">
   <div class="section-container">
     <!-- Section Header -->
-    <header class="mb-32">
+    <header
+      class="methodology-section-header"
+      data-animate="fade-right"
+      data-threshold="0.5"
+      data-margin="-150px"
+    >
       <div class="index-marker mb-8">
         <div class="index-marker">
-          <span class="index-num">02</span>
+          <span class="index-num">03</span>
           <span class="index-line"></span>
         </div>
-        <p class="badge-mono uppercase">Methodology</p>
+        <p class="badge-mono uppercase">{t("meth.badge")}</p>
       </div>
-      
+
       <h2 class="section-title">
-        Standard Process, <br />
-        <span class="text-gradient-logo">Predictable Results.</span>
+        {t("meth.title_top")} <br />
+        <span class="text-gradient-logo">{t("meth.title_bottom")}</span>
       </h2>
       <p class="section-subtitle mt-6">
-        A predictable process yields predictable results. No creative epiphanies — just a tight loop from brief to build.
+        {t("meth.subtitle")}
       </p>
     </header>
 
     <!-- 01 Understand -->
     <div class="methodology-row">
-      <aside class="methodology-side">
+      <aside
+        class="methodology-side"
+        data-animate="fade-right"
+        data-threshold="0.33"
+      >
         <div class="methodology-sticky-header">
-          <div class="methodology-index-large">01</div>
-          <h3 class="methodology-side-title">Understand</h3>
-          <p class="badge-mono">Phase_01 // Discovery</p>
+          <div class="methodology-index-large text-gradient-logo">01</div>
+          <h3 class="methodology-side-title">{t("meth.p1.title")}</h3>
+          <p class="badge-mono">{t("meth.p1.label")}</p>
         </div>
       </aside>
-      
+
       <main class="methodology-content">
-        <div class="methodology-blueprint-frame group">
+        <div
+          class="methodology-blueprint-frame group"
+          data-animate="fade-left"
+          data-threshold="0.33"
+        >
           <div class="service-card-grid">
             <div class="service-card-grid-inner opacity-10"></div>
           </div>
-          
-          <span class="methodology-detail-label">Objective</span>
-          <h4 class="methodology-detail-title">Define success before design.</h4>
+
+          <span class="methodology-detail-label">{t("meth.p1.detail_label")}</span>
+          <h4 class="methodology-detail-title">{t("meth.p1.detail_title")}</h4>
           <p class="methodology-detail-desc">
-            Business goals, audience research, conversion paths, and CMS requirements. We build a bulletproof brief before touching a single frame.
+            {t("meth.p1.detail_desc")}
           </p>
-          
+
           <div class="methodology-list">
-            <span class="methodology-list-item"><i></i> Stakeholder Interviews</span>
-            <span class="methodology-list-item"><i></i> Audience Analysis</span>
-            <span class="methodology-list-item"><i></i> Tech Stack Audit</span>
-            <span class="methodology-list-item"><i></i> Performance Targets</span>
+            <span class="methodology-list-item"
+              ><i></i> {t("meth.p1.feat1")}</span
+            >
+            <span class="methodology-list-item"><i></i> {t("meth.p1.feat2")}</span>
+            <span class="methodology-list-item"><i></i> {t("meth.p1.feat3")}</span>
+            <span class="methodology-list-item"
+              ><i></i> {t("meth.p1.feat4")}</span
+            >
           </div>
         </div>
       </main>
@@ -64,31 +81,41 @@ const t = useTranslations(lang);
 
     <!-- 02 Structure -->
     <div class="methodology-row">
-      <aside class="methodology-side">
+      <aside
+        class="methodology-side"
+        data-animate="fade-left"
+        data-threshold="0.33"
+      >
         <div class="methodology-sticky-header">
-          <div class="methodology-index-large">02</div>
-          <h3 class="methodology-side-title">Structure</h3>
-          <p class="badge-mono">Phase_02 // Foundation</p>
+          <div class="methodology-index-large text-gradient-logo">02</div>
+          <h3 class="methodology-side-title">{t("meth.p2.title")}</h3>
+          <p class="badge-mono">{t("meth.p2.label")}</p>
         </div>
       </aside>
-      
+
       <main class="methodology-content">
-        <div class="methodology-blueprint-frame group">
+        <div
+          class="methodology-blueprint-frame group"
+          data-animate="fade-right"
+          data-threshold="0.33"
+        >
           <div class="service-card-grid">
             <div class="service-card-grid-inner rotate-3"></div>
           </div>
-          
-          <span class="methodology-detail-label">Architecture</span>
-          <h4 class="methodology-detail-title">Functionality above aesthetics.</h4>
+
+          <span class="methodology-detail-label">{t("meth.p2.detail_label")}</span>
+          <h4 class="methodology-detail-title">{t("meth.p2.detail_title")}</h4>
           <p class="methodology-detail-desc">
-            Information architecture, content hierarchy, and CTA flow. The wireframe phase determines how a user moves through your story without visual distractions.
+            {t("meth.p2.detail_desc")}
           </p>
-          
+
           <div class="methodology-list">
-            <span class="methodology-list-item"><i></i> User Flow Map</span>
-            <span class="methodology-list-item"><i></i> Content Hierarchy</span>
-            <span class="methodology-list-item"><i></i> Wireframe Prototype</span>
-            <span class="methodology-list-item"><i></i> CTA Strategy</span>
+            <span class="methodology-list-item"><i></i> {t("meth.p2.feat1")}</span>
+            <span class="methodology-list-item"><i></i> {t("meth.p2.feat2")}</span>
+            <span class="methodology-list-item"
+              ><i></i> {t("meth.p2.feat3")}</span
+            >
+            <span class="methodology-list-item"><i></i> {t("meth.p2.feat4")}</span>
           </div>
         </div>
       </main>
@@ -96,31 +123,40 @@ const t = useTranslations(lang);
 
     <!-- 03 Design -->
     <div class="methodology-row">
-      <aside class="methodology-side">
+      <aside
+        class="methodology-side"
+        data-animate="fade-right"
+        data-threshold="0.33"
+      >
         <div class="methodology-sticky-header">
-          <div class="methodology-index-large">03</div>
-          <h3 class="methodology-side-title">Design</h3>
-          <p class="badge-mono">Phase_03 // Interaction</p>
+          <div class="methodology-index-large text-gradient-logo">03</div>
+          <h3 class="methodology-side-title">{t("meth.p3.title")}</h3>
+          <p class="badge-mono">{t("meth.p3.label")}</p>
         </div>
       </aside>
-      
+
       <main class="methodology-content">
-        <div class="methodology-blueprint-frame group">
+        <div
+          class="methodology-blueprint-frame group"
+          data-animate="fade-left"
+          data-threshold="0.33"
+        >
           <div class="service-card-grid">
             <div class="service-card-grid-inner -rotate-6 scale-110"></div>
           </div>
-          
-          <span class="methodology-detail-label">Creative</span>
-          <h4 class="methodology-detail-title">Visuals within constraints.</h4>
+
+          <span class="methodology-detail-label">{t("meth.p3.detail_label")}</span>
+          <h4 class="methodology-detail-title">{t("meth.p3.detail_title")}</h4>
           <p class="methodology-detail-desc">
-            Visual design with performance built in. Every section designed for mobile and desktop simultaneously to ensure a premium feel across all breakpoints.
+            {t("meth.p3.detail_desc")}
           </p>
-          
+
           <div class="methodology-list">
-            <span class="methodology-list-item"><i></i> UI System Design</span>
-            <span class="methodology-list-item"><i></i> Responsive Layouts</span>
-            <span class="methodology-list-item"><i></i> Brand Integration</span>
-            <span class="methodology-list-item"><i></i> Motion Principles</span>
+            <span class="methodology-list-item"><i></i> {t("meth.p3.feat1")}</span>
+            <span class="methodology-list-item"><i></i> {t("meth.p3.feat2")}</span
+            >
+            <span class="methodology-list-item"><i></i> {t("meth.p3.feat3")}</span>
+            <span class="methodology-list-item"><i></i> {t("meth.p3.feat4")}</span>
           </div>
         </div>
       </main>
@@ -128,31 +164,39 @@ const t = useTranslations(lang);
 
     <!-- 04 Ship -->
     <div class="methodology-row">
-      <aside class="methodology-side">
+      <aside
+        class="methodology-side"
+        data-animate="fade-left"
+        data-threshold="0.33"
+      >
         <div class="methodology-sticky-header">
-          <div class="methodology-index-large">04</div>
-          <h3 class="methodology-side-title">Ship</h3>
-          <p class="badge-mono">Phase_04 // Deployment</p>
+          <div class="methodology-index-large text-gradient-logo">04</div>
+          <h3 class="methodology-side-title">{t("meth.p4.title")}</h3>
+          <p class="badge-mono">{t("meth.p4.label")}</p>
         </div>
       </aside>
-      
+
       <main class="methodology-content">
-        <div class="methodology-blueprint-frame group">
+        <div
+          class="methodology-blueprint-frame group"
+          data-animate="fade-right"
+          data-threshold="0.33"
+        >
           <div class="service-card-grid">
             <div class="service-card-grid-inner"></div>
           </div>
-          
-          <span class="methodology-detail-label">Deliverable</span>
-          <h4 class="methodology-detail-title">Clean code. Tested. Done.</h4>
+
+          <span class="methodology-detail-label">{t("meth.p4.detail_label")}</span>
+          <h4 class="methodology-detail-title">{t("meth.p4.detail_title")}</h4>
           <p class="methodology-detail-desc">
-            Component handoff or clean code deployment. Every single build is rigorously tested and Lighthouse-certified before we hand over the keys.
+            {t("meth.p4.detail_desc")}
           </p>
-          
+
           <div class="methodology-list">
-            <span class="methodology-list-item"><i></i> Frontend Code</span>
-            <span class="methodology-list-item"><i></i> CMS Connection</span>
-            <span class="methodology-list-item"><i></i> SEO Optimization</span>
-            <span class="methodology-list-item"><i></i> Handoff Docs</span>
+            <span class="methodology-list-item"><i></i> {t("meth.p4.feat1")}</span>
+            <span class="methodology-list-item"><i></i> {t("meth.p4.feat2")}</span>
+            <span class="methodology-list-item"><i></i> {t("meth.p4.feat3")}</span>
+            <span class="methodology-list-item"><i></i> {t("meth.p4.feat4")}</span>
           </div>
         </div>
       </main>

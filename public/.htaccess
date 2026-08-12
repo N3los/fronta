@@ -3,6 +3,10 @@
   AddOutputFilterByType DEFLATE text/html text/plain text/xml text/css text/javascript application/javascript application/json application/svg+xml
 </IfModule>
 
+<IfModule mod_mime.c>
+  AddType application/manifest+json .webmanifest
+</IfModule>
+
 # Browser Caching
 <IfModule mod_expires.c>
   ExpiresActive On
@@ -10,11 +14,69 @@
   ExpiresByType image/jpeg "access plus 1 year"
   ExpiresByType image/png "access plus 1 year"
   ExpiresByType image/gif "access plus 1 year"
+  ExpiresByType image/webp "access plus 1 year"
+  ExpiresByType image/avif "access plus 1 year"
   ExpiresByType image/svg+xml "access plus 1 year"
+  ExpiresByType font/woff2 "access plus 1 year"
   ExpiresByType text/css "access plus 1 month"
   ExpiresByType application/pdf "access plus 1 month"
   ExpiresByType text/javascript "access plus 1 month"
   ExpiresByType application/javascript "access plus 1 month"
+</IfModule>
+
+# Deployment manifest is used only by the FTP sync script
+<Files ".fronta-deploy-manifest.json">
+  Require all denied
+</Files>
+
+# HTTPS, canonical host, and former staging URL
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteCond %{HTTPS} !=on [OR]
+  RewriteCond %{HTTP_HOST} !^fronta\.hr$ [NC]
+  RewriteRule ^ https://fronta.hr%{REQUEST_URI} [R=301,L,NE]
+</IfModule>
+
+# Generated Astro pages are served from index.html files. Redirect direct
+# index and index.html requests to their clean, trailing-slash URL so search
+# engines and visitors only ever use one address per page.
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteCond %{THE_REQUEST} \s/+(.*/)?index(?:\.html)?(?:[?\s]|$) [NC]
+  RewriteRule ^(.*/)?index(?:\.html)?$ /$1 [R=301,L,NE]
+</IfModule>
+
+# Basic production security headers
+<IfModule mod_headers.c>
+  Header always set X-Content-Type-Options "nosniff"
+  Header always set Referrer-Policy "strict-origin-when-cross-origin"
+  Header always set Permissions-Policy "camera=(), microphone=(), geolocation=()"
+</IfModule>
+
+<IfModule mod_setenvif.c>
+  SetEnvIf Request_URI "^/_astro/" fronta_immutable
+</IfModule>
+
+<IfModule mod_headers.c>
+  Header set Cache-Control "public, max-age=31536000, immutable" env=fronta_immutable
+</IfModule>
+
+<IfModule mod_alias.c>
+  RedirectMatch 301 ^/2026(?:/(.*))?/?$ /$1
+</IfModule>
+
+# Legacy service pages now live on the main Services page
+<IfModule mod_alias.c>
+  RedirectMatch 301 ^/services/websites/?$ /services/
+  RedirectMatch 301 ^/services/apps/?$ /services/
+  RedirectMatch 301 ^/hr/services/websites/?$ /hr/services/
+  RedirectMatch 301 ^/hr/services/apps/?$ /hr/services/
+</IfModule>
+
+# Former contact URLs now point to the project form
+<IfModule mod_alias.c>
+  RedirectMatch 301 ^/contact/?$ /project/
+  RedirectMatch 301 ^/hr/contact/?$ /hr/project/
 </IfModule>
 
 # Remove .html extension

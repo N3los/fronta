@@ -1,48 +1,33 @@
 ---
-import { getLangFromUrl, useTranslations } from "../../i18n/utils";
+import { getLangFromUrl, getLocalizedPath, useTranslations } from "../../i18n/utils";
 
 // Modular CSS Import
-import "../../styles/sections/about.css";
+import "../../styles/components/buttons.css";
+import "../../styles/sections/maincta.css";
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
-const base = import.meta.env.BASE_URL.replace(/\/$/, "");
-const localizedPath = lang === "en" ? "" : `/${lang}`;
+const pagePath = (path: string) => getLocalizedPath(lang, path);
 ---
 
 <section class="section-cta" id="mainCTA">
-  <div class="section-container">
-    <div class="cta-container">
-      <div class="cta-frame">
-        <div class="cta-grid-overlay"></div>
-        <div class="cta-glow-effect"></div>
+  <div class="section-container cta-layout" data-animate="fade-up" data-threshold="0.2">
+    <div class="cta-heading-block">
+      <p class="cta-label">{t("cta.badge")}</p>
+      <h2 class="cta-heading">{t("cta.title")}</h2>
+    </div>
 
-        <div class="relative z-10">
-          <div class="index-marker mb-10">
-            <span class="index-num">05</span>
-            <span class="index-line"></span>
-            <p class="badge-mono uppercase">Let's Build</p>
-          </div>
+    <div class="cta-content">
+      <p class="cta-subtitle">{t("cta.subtitle")}</p>
 
-          <h2 class="cta-heading">
-            Build it right <br />
-            <span class="about-highlight">the first time.</span>
-          </h2>
-
-          <p class="cta-subtitle">
-            Whether it's a launch site or a product UI — one designer,
-            production thinking, end-to-end.
-          </p>
-
-          <div class="cta-actions">
-            <a href={`${base}${localizedPath}/contact`} class="btn-primary">
-              Start a project <span>→</span>
-            </a>
-            <a href="mailto:hello@fronta.studio" class="btn-glass">
-              hello@fronta.studio
-            </a>
-          </div>
-        </div>
+      <div class="cta-actions">
+        <a href={pagePath("/project")} class="btn-primary">
+          {t("cta.project")} <span aria-hidden="true">→</span>
+        </a>
+        <p class="cta-email">
+          {t("cta.email_intro")}
+          <a href="mailto:toni@fronta.hr">toni@fronta.hr</a>
+        </p>
       </div>
     </div>
   </div>

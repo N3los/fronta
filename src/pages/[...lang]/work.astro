@@ -1,0 +1,90 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import Navbar from "../../components/Navbar.astro";
+import Footer from "../../components/Footer.astro";
+import ProjectEntry from "../../components/work/ProjectEntry.astro";
+import MainCTA from "../../components/sections/MainCTA.astro";
+import { getProjectsByType } from "../../data/projects";
+import { getLangFromUrl, useTranslations } from "../../i18n/utils";
+
+import "/src/styles/pages/work.css";
+
+export function getStaticPaths() {
+  return [
+    { params: { lang: undefined } },
+    { params: { lang: "hr" } },
+  ];
+}
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+const websiteProjects = getProjectsByType("website");
+const appProjects = getProjectsByType("app");
+---
+
+<Layout title={t("meta.work.title")} description={t("meta.work.description")}>
+  <main class="main-content-wrapper bg-dotted">
+    <Navbar />
+
+    <section class="work-page-hero">
+      <div class="section-container">
+        <p class="work-page-kicker" data-animate="fade-up">
+          {t("workPage.hero.eyebrow")}
+        </p>
+        <h1 class="work-page-title" data-animate="fade-up" data-delay="100">
+          {t("workPage.hero.title")}
+        </h1>
+        <div class="work-page-hero-bottom" data-animate="fade-up" data-delay="200">
+          <p class="work-page-lead">{t("workPage.hero.intro")}</p>
+          <nav class="work-page-jump-nav" aria-label={t("workPage.hero.eyebrow")}>
+            <a href="#websites">{t("workPage.websites.label")}</a>
+            <a href="#applications">{t("workPage.apps.label")}</a>
+          </nav>
+        </div>
+      </div>
+    </section>
+
+    <section class="work-page-group" id="websites">
+      <div class="section-container">
+        <header class="work-page-group-heading">
+          <p class="work-page-kicker" data-animate="fade-right">
+            {t("workPage.websites.label")}
+          </p>
+          <div data-animate="fade-up">
+            <h2>{t("workPage.websites.title")}</h2>
+            <p>{t("workPage.websites.intro")}</p>
+          </div>
+        </header>
+
+        <div class="work-project-list">
+          {websiteProjects.map((project, index) => (
+            <ProjectEntry project={project} index={index} lang={lang} />
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="work-page-group work-page-group--apps" id="applications">
+      <div class="section-container">
+        <header class="work-page-group-heading">
+          <p class="work-page-kicker" data-animate="fade-right">
+            {t("workPage.apps.label")}
+          </p>
+          <div data-animate="fade-up">
+            <h2>{t("workPage.apps.title")}</h2>
+            <p>{t("workPage.apps.intro")}</p>
+          </div>
+        </header>
+
+        <div class="work-project-list">
+          {appProjects.map((project, index) => (
+            <ProjectEntry project={project} index={websiteProjects.length + index} lang={lang} />
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <MainCTA />
+  </main>
+  <Footer />
+</Layout>

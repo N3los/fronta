@@ -1,48 +1,41 @@
 ---
-import { getLangFromUrl, useTranslations } from "../../i18n/utils";
-import MainCTA from "../sections/MainCTA.astro";
+import { getLangFromUrl, getLocalizedPath, useTranslations } from "../../i18n/utils";
 
 // Modular CSS Import
 import "../../styles/sections/about.css";
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
+const pagePath = (path: string) => getLocalizedPath(lang, path);
 ---
 
 <section class="section-about" id="About">
   <div class="section-container">
     <div class="about-header-split">
       <!-- Side Marker -->
-      <div class="md:col-span-4">
-        <div class="index-marker mb-12">
+      <div class="md:col-span-4" data-animate="fade-right">
+        <div class="index-marker mb-0 md:mb-12">
           <span class="index-num">04</span>
           <span class="index-line"></span>
-          <p class="badge-mono uppercase">About</p>
+          <p class="badge-mono uppercase">{t("about.badge")}</p>
         </div>
       </div>
 
       <!-- Content Block -->
-      <div class="md:col-span-8 flex flex-col">
+      <div class="md:col-span-8 flex flex-col" data-animate="fade-up" data-delay="200">
         <h2 class="about-title">
-          FRONTA is a freelance design and frontend practice — building
-          <span class="text-gradient-logo"
-            >production-ready websites and apps</span
-          >
-          for founders, product teams, and engineering.
+          {t("about.title_top")}
+          <span class="text-gradient-logo">{t("about.title_bottom")}</span>
         </h2>
 
         <p class="about-meta">
-          One person, end-to-end. From first sketch to shipped code. No vendor
-          handoff, no design-vs-engineering tug-of-war — just things that work,
-          and keep working.
+          {t("about.desc")}
         </p>
 
-        <a href="#Contact" class="about-link">
-          More about the practice <span>→</span>
+        <a href={pagePath("/about")} class="about-link">
+          {t("about.link")} <span>→</span>
         </a>
       </div>
     </div>
   </div>
-
-  <MainCTA />
 </section>

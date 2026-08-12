@@ -1,68 +1,93 @@
 ---
-// Modular CSS Import
-import '../../styles/components/marquee.css';
+import { Image } from "astro:assets";
+import { getLangFromUrl, useTranslations } from "../../i18n/utils";
+import "../../styles/components/marquee.css";
 
-const row1 = [
-  { name: "QUANTO", icon: true, mono: false },
-  { name: "NEXUS", icon: false, mono: true },
-  { name: "APEX", icon: true, mono: false },
-  { name: "STAX", icon: false, mono: true },
-  { name: "VERTEX", icon: true, mono: false },
-  { name: "ORBIT", icon: false, mono: true },
+// Client Logos
+import consumable from "../../assets/clients/consumable.png";
+import dax from "../../assets/clients/dax.png";
+import global from "../../assets/clients/global.png";
+import kargo from "../../assets/clients/kargo.png";
+import remixd from "../../assets/clients/remixd.png";
+import videobyte from "../../assets/clients/videobyte.png";
+import wcs from "../../assets/clients/wcs.png";
+
+const logos = [
+  { src: global, alt: "Global", height: 45, filter: "invert(1)" },
+  { src: kargo, alt: "Kargo", height: 35, filter: "invert(1)" },
+  { src: dax, alt: "DAX", height: 30, filter: "invert(1)" },
+  {
+    src: videobyte,
+    alt: "VideoByte",
+    height: 35,
+    filter: "",
+  },
+  { src: consumable, alt: "Consumable", height: 35, filter: "brightness(1.1)" },
+  { src: remixd, alt: "Remixd", height: 35, filter: "invert(1)" },
+  { src: wcs, alt: "WCS", height: 40, filter: "brightness(1.1)" },
 ];
 
-const row2 = [
-  { name: "CORE", icon: true, mono: false },
-  { name: "PRISM", icon: false, mono: true },
-  { name: "AXIS", icon: true, mono: false },
-  { name: "FLUX", icon: false, mono: true },
-  { name: "DELTA", icon: true, mono: false },
-  { name: "NODE", icon: false, mono: true },
-];
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
 ---
 
 <section class="marquee-container">
+  <p class="marquee-label">{t("marquee.label")}</p>
   <div class="marquee-stack">
-    <!-- Row 01: Scrolling Left -->
+    <!-- Single Unified Marquee Track -->
     <div class="marquee-content">
       <div class="marquee-track">
-        <div class="marquee-logo-item">
-          {row1.map((logo) => (
-            <div class="client-logo">
-              {logo.icon && <div class="logo-icon"></div>}
-              <span class={logo.mono ? "logo-mono" : ""}>{logo.name}</span>
-            </div>
-          ))}
+        <div class="marquee-logo-item" aria-hidden="true">
+          {
+            logos.map((logo) => (
+              <div
+                class="client-logo"
+                style={logo.filter ? `filter: grayscale(1) ${logo.filter}` : ""}
+              >
+                <Image
+                  src={logo.src}
+                  alt=""
+                  height={logo.height}
+                  class="logo-img"
+                />
+              </div>
+            ))
+          }
         </div>
-        <div class="marquee-logo-item">
-          {row1.map((logo) => (
-            <div class="client-logo">
-              {logo.icon && <div class="logo-icon"></div>}
-              <span class={logo.mono ? "logo-mono" : ""}>{logo.name}</span>
-            </div>
-          ))}
+        <div class="marquee-logo-item" aria-hidden="true">
+          {
+            logos.map((logo) => (
+              <div
+                class="client-logo"
+                style={logo.filter ? `filter: grayscale(1) ${logo.filter}` : ""}
+              >
+                <Image
+                  src={logo.src}
+                  alt=""
+                  height={logo.height}
+                  class="logo-img"
+                />
+              </div>
+            ))
+          }
         </div>
-      </div>
-    </div>
-
-    <!-- Row 02: Scrolling Right -->
-    <div class="marquee-content marquee-reverse">
-      <div class="marquee-track">
+        <!-- Triple for smooth looping on large screens -->
         <div class="marquee-logo-item">
-          {row2.map((logo) => (
-            <div class="client-logo">
-              {logo.icon && <div class="logo-icon"></div>}
-              <span class={logo.mono ? "logo-mono" : ""}>{logo.name}</span>
-            </div>
-          ))}
-        </div>
-        <div class="marquee-logo-item">
-          {row2.map((logo) => (
-            <div class="client-logo">
-              {logo.icon && <div class="logo-icon"></div>}
-              <span class={logo.mono ? "logo-mono" : ""}>{logo.name}</span>
-            </div>
-          ))}
+          {
+            logos.map((logo) => (
+              <div
+                class="client-logo"
+                style={logo.filter ? `filter: grayscale(1) ${logo.filter}` : ""}
+              >
+                <Image
+                  src={logo.src}
+                  alt={logo.alt}
+                  height={logo.height}
+                  class="logo-img"
+                />
+              </div>
+            ))
+          }
         </div>
       </div>
     </div>

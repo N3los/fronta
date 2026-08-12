@@ -52,6 +52,9 @@ const pagePath = (path: string) => getLocalizedPath(lang, path);
 
   <div class="footer-bottom">
     <p>&copy; 2017&ndash;{new Date().getFullYear()} FRONTA. {t("footer.rights")}</p>
-    <a href={pagePath("/impressum")}>{t("footer.impressum")}</a>
+    <nav class="footer-legal" aria-label={t("footer.legal")}>
+      <a href={pagePath("/privacy")}>{t("footer.privacy")}</a>
+      <a href={pagePath("/impressum")}>{t("footer.impressum")}</a>
+    </nav>
   </div>
 </footer>

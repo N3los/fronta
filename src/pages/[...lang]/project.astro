@@ -1,521 +1,320 @@
 ---
-import Layout from "../../layouts/Layout.astro";
-import Navbar from "../../components/Navbar.astro";
-import Footer from "../../components/Footer.astro";
+import ProjectLayout from "../../layouts/ProjectLayout.astro";
 import { getLangFromUrl, getLocalizedPath, useTranslations } from "../../i18n/utils";
 
 import "../../styles/sections/project.css";
-import "../../styles/components/buttons.css";
 
 export function getStaticPaths() {
-    return [{ params: { lang: undefined } }, { params: { lang: "hr" } }];
+  return [{ params: { lang: undefined } }, { params: { lang: "hr" } }];
 }
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
+type TranslationKey = Parameters<typeof t>[0];
 const homePath = getLocalizedPath(lang, "/");
+const privacyPath = getLocalizedPath(lang, "/privacy");
 ---
 
-<Layout title={t("meta.project.title")} description={t("meta.project.description")}>
-    <Navbar />
-
-    <main
-        class="main-content-wrapper bg-dotted pt-32 pb-24 min-h-screen relative glow-bg"
-    >
-        <div class="max-w-3xl mx-auto px-6 relative z-10">
-            <div class="mb-12">
-                <p
-                    class="text-xs font-mono text-fronta-red tracking-widest mb-4 uppercase"
-                >
-                    {t("contact.badge")}
-                </p>
-                <h1 class="text-5xl font-bold tracking-tight mb-6">
-                    {t("contact.title")}
-                </h1>
-                <p class="text-fronta-muted text-lg">{t("contact.desc")}</p>
-            </div>
-
-            <div
-                class="bg-fronta-card/60 backdrop-blur-md p-8 md:p-12 rounded-2xl border border-fronta-border"
-            >
-                <div class="multi-step-wrapper">
-                    <form
-                        id="onboarding-form"
-                        action="https://formspree.io/f/xeajadjr"
-                        method="POST"
-                        data-formspree-endpoint="https://formspree.io/f/xeajadjr"
-                        data-selection-error={t("project.selectionError")}
-                        data-progress-template={t("project.progress")}
-                        data-email-label-project-type={t("project.email.label.projectType")}
-                        data-email-label-context={t("project.email.label.context")}
-                        data-email-label-current-url={t("project.email.label.currentUrl")}
-                        data-email-label-timeline={t("project.email.label.timeline")}
-                        data-email-label-budget={t("project.email.label.budget")}
-                        data-email-label-name={t("project.email.label.name")}
-                        data-email-label-email={t("project.email.label.email")}
-                        data-email-label-company={t("project.email.label.company")}
-                        data-email-label-details={t("project.email.label.details")}
-                        data-email-label-summary={t("project.email.label.summary")}
-                        data-email-subject-prefix={t("project.email.subjectPrefix")}
-                        data-email-default-subject={t("project.email.defaultSubject")}
-                        data-submit-sending={t("project.submit.sending")}
-                        data-submit-success={t("project.submit.success")}
-                        data-submit-error={t("project.submit.error")}
-                    >
-                        <div class="form-progress">
-                            <span id="progress-label" class="form-progress-label">
-                                {t("project.progress").replace("{current}", "1").replace("{total}", "4")}
-                            </span>
-                            <div class="form-progress-bar" aria-hidden="true">
-                                <div class="form-progress-fill" id="progress-fill"></div>
-                            </div>
-                        </div>
-
-                        <!-- STEP 1: Category -->
-                        <fieldset class="form-step is-active" data-step="0">
-                            <legend class="text-2xl font-bold mb-8 font-display"
-                            >{t("project.build.title")}</legend
-                            >
-                            <div
-                                class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8"
-                            >
-                                <label>
-                                    <input
-                                        type="radio"
-                                        name="project_type"
-                                        value={t("project.build.website.title")}
-                                        class="radio-card-input"
-                                        required
-                                    />
-                                    <div class="radio-card-label">
-                                            <h3>{t("project.build.website.title")}</h3>
-                                        <p class="text-sm text-fronta-muted">
-                                                {t("project.build.website.description")}
-                                        </p>
-                                    </div>
-                                </label>
-                                <label>
-                                    <input
-                                        type="radio"
-                                        name="project_type"
-                                        value={t("project.build.app.title")}
-                                        class="radio-card-input"
-                                    />
-                                    <div class="radio-card-label">
-                                            <h3>{t("project.build.app.title")}</h3>
-                                        <p class="text-sm text-fronta-muted">
-                                                {t("project.build.app.description")}
-                                        </p>
-                                    </div>
-                                </label>
-                                <label>
-                                    <input
-                                        type="radio"
-                                        name="project_type"
-                                        value={t("project.build.shop.title")}
-                                        class="radio-card-input"
-                                    />
-                                    <div class="radio-card-label">
-                                            <h3>{t("project.build.shop.title")}</h3>
-                                        <p class="text-sm text-fronta-muted">
-                                                {t("project.build.shop.description")}
-                                        </p>
-                                    </div>
-                                </label>
-                                <label>
-                                    <input
-                                        type="radio"
-                                        name="project_type"
-                                        value={t("project.build.other.title")}
-                                        class="radio-card-input"
-                                    />
-                                    <div class="radio-card-label">
-                                            <h3>{t("project.build.other.title")}</h3>
-                                        <p class="text-sm text-fronta-muted">
-                                                {t("project.build.other.description")}
-                                        </p>
-                                    </div>
-                                </label>
-                            </div>
-                            <div class="flex justify-end">
-                                <button
-                                    type="button"
-                                    class="btn-primary next-step-btn group"
-                                    >{t("project.next")} <span
-                                        class="ml-2 group-hover:translate-x-1 transition-transform"
-                                        >→</span
-                                    ></button
-                                >
-                            </div>
-                        </fieldset>
-
-                        <!-- STEP 2: Project Context -->
-                        <fieldset class="form-step" data-step="1">
-                            <legend class="text-2xl font-bold mb-8 font-display"
-                                >{t("project.context.title")}</legend
-                            >
-
-                            <p
-                                class="text-sm font-medium text-fronta-text mb-4"
-                            >
-                                {t("project.context.question")}
-                            </p>
-                            <div
-                                class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8"
-                            >
-                                <label>
-                                    <input
-                                        type="radio"
-                                        name="project_nature"
-                                        value={t("project.context.new.title")}
-                                        class="radio-card-input"
-                                        required
-                                    />
-                                    <div class="radio-card-label">
-                                        <h3>{t("project.context.new.title")}</h3>
-                                        <p class="text-sm text-fronta-muted">
-                                            {t("project.context.new.description")}
-                                        </p>
-                                    </div>
-                                </label>
-                                <label>
-                                    <input
-                                        type="radio"
-                                        name="project_nature"
-                                        value={t("project.context.redesign.title")}
-                                        data-has-existing="true"
-                                        class="radio-card-input"
-                                    />
-                                    <div class="radio-card-label">
-                                        <h3>{t("project.context.redesign.title")}</h3>
-                                        <p class="text-sm text-fronta-muted">
-                                            {t("project.context.redesign.description")}
-                                        </p>
-                                    </div>
-                                </label>
-                            </div>
-
-                            <div class="space-y-2 mb-8" data-current-url-wrapper hidden>
-                                <label for="current_url" class="form-label"
-                                    >{t("project.currentUrl")}</label
-                                >
-                                <input
-                                    type="text"
-                                    id="current_url"
-                                    name="current_url"
-                                    placeholder="https://..."
-                                    inputmode="url"
-                                    autocapitalize="none"
-                                    class="form-input"
-                                />
-                            </div>
-
-                            <div class="flex justify-between items-center">
-                                <button
-                                    type="button"
-                                    class="btn-glass prev-step-btn group"
-                                    ><span
-                                        class="mr-2 group-hover:-translate-x-1 transition-transform"
-                                        >←</span
-                                    > {t("project.back")}</button
-                                >
-                                <button
-                                    type="button"
-                                    class="btn-primary next-step-btn group"
-                                    >{t("project.next")} <span
-                                        class="ml-2 group-hover:translate-x-1 transition-transform"
-                                        >→</span
-                                    ></button
-                                >
-                            </div>
-                        </fieldset>
-
-                        <!-- STEP 3: Timeline & Budget -->
-                        <fieldset class="form-step" data-step="2">
-                            <legend class="text-2xl font-bold mb-8 font-display"
-                                >{t("project.timeline.title")}</legend
-                            >
-
-                            <p
-                                class="text-sm font-medium text-fronta-text mb-4"
-                            >
-                                {t("project.timeline.question")}
-                            </p>
-                            <div
-                                class="grid grid-cols-2 gap-3 mb-8"
-                            >
-                                <label
-                                    ><input
-                                        type="radio"
-                                        name="timeline"
-                                        value={t("project.timeline.soon")}
-                                        class="radio-card-input"
-                                        required
-                                    /><div
-                                        class="radio-card-label !p-4 text-center"
-                                    >
-                                        <h3 class="!mb-0 !text-sm">{t("project.timeline.soon")}</h3>
-                                    </div></label
-                                >
-                                <label
-                                    ><input
-                                        type="radio"
-                                        name="timeline"
-                                        value={t("project.timeline.months")}
-                                        class="radio-card-input"
-                                    /><div
-                                        class="radio-card-label !p-4 text-center"
-                                    >
-                                        <h3 class="!mb-0 !text-sm">
-                                            {t("project.timeline.months")}
-                                        </h3>
-                                    </div></label
-                                >
-                                <label
-                                    ><input
-                                        type="radio"
-                                        name="timeline"
-                                        value={t("project.timeline.later")}
-                                        class="radio-card-input"
-                                    /><div
-                                        class="radio-card-label !p-4 text-center"
-                                    >
-                                        <h3 class="!mb-0 !text-sm">{t("project.timeline.later")}</h3>
-                                    </div></label
-                                >
-                                <label
-                                    ><input
-                                        type="radio"
-                                        name="timeline"
-                                        value={t("project.timeline.unknown")}
-                                        class="radio-card-input"
-                                    /><div
-                                        class="radio-card-label !p-4 text-center"
-                                    >
-                                        <h3 class="!mb-0 !text-sm">{t("project.timeline.unknown")}</h3>
-                                    </div></label
-                                >
-                            </div>
-
-                            <p
-                                class="text-sm font-medium text-fronta-text mb-4"
-                            >
-                                {t("project.budget.question")}
-                            </p>
-                            <p class="form-help-text">{t("project.budget.note")}</p>
-                            <div class="grid grid-cols-2 md:grid-cols-3 gap-3 mb-8">
-                                <label
-                                    ><input
-                                        type="radio"
-                                        name="budget"
-                                        value="< 5k EUR"
-                                        class="radio-card-input"
-                                        required
-                                    /><div
-                                        class="radio-card-label !p-4 text-center"
-                                    >
-                                        <h3 class="!mb-0 !text-sm">&lt; €5k</h3>
-                                    </div></label
-                                >
-                                <label
-                                    ><input
-                                        type="radio"
-                                        name="budget"
-                                        value="5k - 10k EUR"
-                                        class="radio-card-input"
-                                    /><div
-                                        class="radio-card-label !p-4 text-center"
-                                    >
-                                        <h3 class="!mb-0 !text-sm">
-                                            €5k - €10k
-                                        </h3>
-                                    </div></label
-                                >
-                                <label
-                                    ><input
-                                        type="radio"
-                                        name="budget"
-                                        value="10k - 25k EUR"
-                                        class="radio-card-input"
-                                    /><div
-                                        class="radio-card-label !p-4 text-center"
-                                    >
-                                        <h3 class="!mb-0 !text-sm">
-                                            €10k - €25k
-                                        </h3>
-                                    </div></label
-                                >
-                                <label
-                                    ><input
-                                        type="radio"
-                                        name="budget"
-                                        value="25k+ EUR"
-                                        class="radio-card-input"
-                                    /><div
-                                        class="radio-card-label !p-4 text-center"
-                                    >
-                                        <h3 class="!mb-0 !text-sm">€25k+</h3>
-                                    </div></label
-                                >
-                                <label class="col-span-2 md:col-span-1"
-                                    ><input
-                                        type="radio"
-                                        name="budget"
-                                        value={t("project.budget.unknown")}
-                                        class="radio-card-input"
-                                    /><div
-                                        class="radio-card-label !p-4 text-center"
-                                    >
-                                        <h3 class="!mb-0 !text-sm">{t("project.budget.unknown")}</h3>
-                                    </div></label
-                                >
-                            </div>
-
-                            <div class="flex justify-between items-center">
-                                <button
-                                    type="button"
-                                    class="btn-glass prev-step-btn group"
-                                    ><span
-                                        class="mr-2 group-hover:-translate-x-1 transition-transform"
-                                        >←</span
-                                    > {t("project.back")}</button
-                                >
-                                <button
-                                    type="button"
-                                    class="btn-primary next-step-btn group"
-                                    >{t("project.next")} <span
-                                        class="ml-2 group-hover:translate-x-1 transition-transform"
-                                        >→</span
-                                    ></button
-                                >
-                            </div>
-                        </fieldset>
-
-                        <!-- STEP 4: Details -->
-                        <fieldset class="form-step" data-step="3">
-                            <legend class="text-2xl font-bold mb-8 font-display"
-                                >{t("project.details.title")}</legend
-                            >
-
-                            <div class="space-y-6 mb-8">
-                                <div
-                                    class="grid grid-cols-1 md:grid-cols-2 gap-6"
-                                >
-                                    <div class="space-y-2">
-                                        <label for="name" class="form-label"
-                                            >{t("contact.label.name")}</label
-                                        >
-                                        <input
-                                            type="text"
-                                            id="name"
-                                            name="name"
-                                            autocomplete="name"
-                                            required
-                                            class="form-input"
-                                        />
-                                    </div>
-                                    <div class="space-y-2">
-                                        <label for="email" class="form-label"
-                                            >{t("contact.label.email")}</label
-                                        >
-                                        <input
-                                            type="email"
-                                            id="email"
-                                            name="email"
-                                            autocomplete="email"
-                                            required
-                                            class="form-input"
-                                        />
-                                    </div>
-                                </div>
-
-                                <div class="space-y-2">
-                                    <label for="company" class="form-label">
-                                        {t("contact.label.company")}
-                                    </label>
-                                    <input
-                                        type="text"
-                                        id="company"
-                                        name="company"
-                                        autocomplete="organization"
-                                        class="form-input"
-                                    />
-                                </div>
-
-                                <div class="space-y-2">
-                                    <label for="message" class="form-label"
-                                        >{t("project.details.label")}</label
-                                    >
-                                    <textarea
-                                        id="message"
-                                        name="message"
-                                        rows="4"
-                                        required
-                                        placeholder={t("project.details.placeholder")}
-                                        class="form-input resize-none"
-                                    ></textarea>
-                                </div>
-                            </div>
-
-                            <div class="flex justify-between items-center">
-                                <button
-                                    type="button"
-                                    class="btn-glass prev-step-btn group"
-                                    ><span
-                                        class="mr-2 group-hover:-translate-x-1 transition-transform"
-                                        >←</span
-                                    > {t("project.back")}</button
-                                >
-                                <button
-                                    type="submit"
-                                    class="btn-primary w-full md:w-auto"
-                                    >{t("contact.btn")}</button
-                                >
-                            </div>
-                            <p class="text-xs text-fronta-muted mt-6 text-center md:text-left">
-                                {t("contact.privacy")}
-                            </p>
-                            <p
-                                id="form-status"
-                                role="status"
-                                aria-live="polite"
-                                class="form-submit-status"
-                                hidden
-                            ></p>
-                        </fieldset>
-                    </form>
-                    <section
-                        id="form-success"
-                        class="form-success"
-                        tabindex="-1"
-                        hidden
-                    >
-                        <div class="form-success-icon" aria-hidden="true">✓</div>
-                        <p class="badge-mono text-fronta-red mb-4">FRONTA</p>
-                        <h2 class="text-3xl md:text-4xl font-bold mb-4">
-                            {t("project.submit.successTitle")}
-                        </h2>
-                        <p class="text-fronta-muted text-lg leading-relaxed mb-8">
-                            {t("project.submit.success")}
-                        </p>
-                        <a
-                            href={homePath}
-                            class="btn-primary inline-flex"
-                        >
-                            {t("project.submit.successCta")}
-                        </a>
-                    </section>
-                </div>
-            </div>
+<ProjectLayout title={t("meta.project.title")} description={t("meta.project.description")}>
+  <main class="project-flow-main" id="project-flow-main">
+    <div class="project-flow-container">
+      <form
+        id="onboarding-form"
+        class="project-form"
+        action="https://formspree.io/f/xeajadjr"
+        method="POST"
+        aria-describedby="project-form-note"
+        data-formspree-endpoint="https://formspree.io/f/xeajadjr"
+        data-selection-error={t("project.selectionError")}
+        data-progress-template={t("project.progress")}
+        data-email-label-project-type={t("project.email.label.projectType")}
+        data-email-label-context={t("project.email.label.context")}
+        data-email-label-current-url={t("project.email.label.currentUrl")}
+        data-email-label-timeline={t("project.email.label.timeline")}
+        data-email-label-budget={t("project.email.label.budget")}
+        data-email-label-name={t("project.email.label.name")}
+        data-email-label-email={t("project.email.label.email")}
+        data-email-label-company={t("project.email.label.company")}
+        data-email-label-details={t("project.email.label.details")}
+        data-email-label-summary={t("project.email.label.summary")}
+        data-email-subject-prefix={t("project.email.subjectPrefix")}
+        data-email-default-subject={t("project.email.defaultSubject")}
+        data-submit-sending={t("project.submit.sending")}
+        data-submit-error={t("project.submit.error")}
+      >
+        <div class="form-progress" aria-label={t("project.progressLabel")}>
+          <span id="progress-label" class="form-progress-label">
+            {t("project.progress").replace("{current}", "1").replace("{total}", "5")}
+          </span>
+          <div class="form-progress-track" aria-hidden="true">
+            <div class="form-progress-fill" id="progress-fill"></div>
+          </div>
         </div>
-    </main>
 
-    <Footer />
-</Layout>
+        <div class="form-stage" id="form-stage">
+          <section class="form-step is-active" data-step="0">
+            <header class="project-form-intro">
+              <p class="project-form-kicker">{t("contact.badge")}</p>
+              <h1>{t("contact.title")}</h1>
+              <p id="project-form-note">{t("contact.desc")}</p>
+            </header>
+
+            <fieldset class="form-question-group">
+              <legend class="form-step-title" data-step-heading tabindex="-1">
+                {t("project.build.title")}
+              </legend>
+
+              <div class="choice-list">
+                <label class="choice-card">
+                  <input type="radio" name="project_type" value={t("project.build.website.title")} required />
+                  <span class="choice-card-copy">
+                    <strong>{t("project.build.website.title")}</strong>
+                    <small>{t("project.build.website.description")}</small>
+                  </span>
+                  <span class="choice-marker" aria-hidden="true"></span>
+                </label>
+
+                <label class="choice-card">
+                  <input type="radio" name="project_type" value={t("project.build.app.title")} />
+                  <span class="choice-card-copy">
+                    <strong>{t("project.build.app.title")}</strong>
+                    <small>{t("project.build.app.description")}</small>
+                  </span>
+                  <span class="choice-marker" aria-hidden="true"></span>
+                </label>
+
+                <label class="choice-card">
+                  <input type="radio" name="project_type" value={t("project.build.b2b.title")} />
+                  <span class="choice-card-copy">
+                    <strong>{t("project.build.b2b.title")}</strong>
+                    <small>{t("project.build.b2b.description")}</small>
+                  </span>
+                  <span class="choice-marker" aria-hidden="true"></span>
+                </label>
+
+                <label class="choice-card">
+                  <input type="radio" name="project_type" value={t("project.build.other.title")} />
+                  <span class="choice-card-copy">
+                    <strong>{t("project.build.other.title")}</strong>
+                    <small>{t("project.build.other.description")}</small>
+                  </span>
+                  <span class="choice-marker" aria-hidden="true"></span>
+                </label>
+              </div>
+            </fieldset>
+
+            <p class="form-step-error" data-step-error role="alert" hidden></p>
+            <div class="form-navigation form-navigation--first">
+              <button type="button" class="btn-primary next-step-btn" disabled>
+                {t("project.next")} <span aria-hidden="true">&rarr;</span>
+              </button>
+            </div>
+          </section>
+
+          <section class="form-step" data-step="1" hidden>
+            <fieldset class="form-question-group">
+              <legend class="form-step-title" data-step-heading tabindex="-1">
+                {t("project.context.question")}
+              </legend>
+              <p class="form-step-hint">{t("project.context.hint")}</p>
+
+              <div class="choice-list">
+                <label class="choice-card">
+                  <input type="radio" name="project_nature" value={t("project.context.new.title")} required />
+                  <span class="choice-card-copy">
+                    <strong>{t("project.context.new.title")}</strong>
+                    <small>{t("project.context.new.description")}</small>
+                  </span>
+                  <span class="choice-marker" aria-hidden="true"></span>
+                </label>
+
+                <label class="choice-card">
+                  <input type="radio" name="project_nature" value={t("project.context.redesign.title")} data-has-existing="true" />
+                  <span class="choice-card-copy">
+                    <strong>{t("project.context.redesign.title")}</strong>
+                    <small>{t("project.context.redesign.description")}</small>
+                  </span>
+                  <span class="choice-marker" aria-hidden="true"></span>
+                </label>
+
+                <label class="choice-card">
+                  <input type="radio" name="project_nature" value={t("project.context.team.title")} data-has-existing="true" />
+                  <span class="choice-card-copy">
+                    <strong>{t("project.context.team.title")}</strong>
+                    <small>{t("project.context.team.description")}</small>
+                  </span>
+                  <span class="choice-marker" aria-hidden="true"></span>
+                </label>
+              </div>
+            </fieldset>
+
+            <div class="conditional-field" data-current-url-wrapper hidden>
+              <label for="current_url" class="form-label">{t("project.currentUrl")}</label>
+              <input
+                type="text"
+                id="current_url"
+                name="current_url"
+                placeholder="https://..."
+                inputmode="url"
+                autocapitalize="none"
+                class="form-input"
+              />
+            </div>
+
+            <p class="form-step-error" data-step-error role="alert" hidden></p>
+            <div class="form-navigation">
+              <button type="button" class="form-back prev-step-btn">&larr; {t("project.back")}</button>
+              <button type="button" class="btn-primary next-step-btn" disabled>
+                {t("project.next")} <span aria-hidden="true">&rarr;</span>
+              </button>
+            </div>
+          </section>
+
+          <section class="form-step" data-step="2" hidden>
+            <fieldset class="form-question-group">
+              <legend class="form-step-title" data-step-heading tabindex="-1">
+                {t("project.timeline.question")}
+              </legend>
+              <p class="form-step-hint">{t("project.timeline.hint")}</p>
+
+              <div class="choice-grid">
+                {["soon", "months", "later", "unknown"].map((option) => (
+                  <label class="choice-card choice-card--compact">
+                    <input
+                      type="radio"
+                      name="timeline"
+                      value={t(`project.timeline.${option}` as TranslationKey)}
+                      required={option === "soon"}
+                    />
+                    <span class="choice-card-copy">
+                      <strong>{t(`project.timeline.${option}` as TranslationKey)}</strong>
+                    </span>
+                    <span class="choice-marker" aria-hidden="true"></span>
+                  </label>
+                ))}
+              </div>
+            </fieldset>
+
+            <p class="form-step-error" data-step-error role="alert" hidden></p>
+            <div class="form-navigation">
+              <button type="button" class="form-back prev-step-btn">&larr; {t("project.back")}</button>
+              <button type="button" class="btn-primary next-step-btn" disabled>
+                {t("project.next")} <span aria-hidden="true">&rarr;</span>
+              </button>
+            </div>
+          </section>
+
+          <section class="form-step" data-step="3" hidden>
+            <fieldset class="form-question-group">
+              <legend class="form-step-title" data-step-heading tabindex="-1">
+                {t("project.budget.question")}
+              </legend>
+              <p class="form-step-hint">{t("project.budget.note")}</p>
+
+              <div class="choice-grid">
+                {[
+                  ["< 5k EUR", "< €5k"],
+                  ["5k - 10k EUR", "€5k – €10k"],
+                  ["10k - 25k EUR", "€10k – €25k"],
+                  ["25k+ EUR", "€25k+"],
+                ].map(([value, label], index) => (
+                  <label class="choice-card choice-card--compact">
+                    <input type="radio" name="budget" value={value} required={index === 0} />
+                    <span class="choice-card-copy"><strong>{label}</strong></span>
+                    <span class="choice-marker" aria-hidden="true"></span>
+                  </label>
+                ))}
+                <label class="choice-card choice-card--compact choice-card--wide">
+                  <input type="radio" name="budget" value={t("project.budget.unknown")} />
+                  <span class="choice-card-copy"><strong>{t("project.budget.unknown")}</strong></span>
+                  <span class="choice-marker" aria-hidden="true"></span>
+                </label>
+              </div>
+            </fieldset>
+
+            <p class="form-step-error" data-step-error role="alert" hidden></p>
+            <div class="form-navigation">
+              <button type="button" class="form-back prev-step-btn">&larr; {t("project.back")}</button>
+              <button type="button" class="btn-primary next-step-btn" disabled>
+                {t("project.next")} <span aria-hidden="true">&rarr;</span>
+              </button>
+            </div>
+          </section>
+
+          <section class="form-step" data-step="4" hidden>
+            <div class="form-details-heading">
+              <h2 class="form-step-title" data-step-heading tabindex="-1">{t("project.details.title")}</h2>
+              <p class="form-step-hint">{t("project.details.hint")}</p>
+            </div>
+
+            <div class="form-fields">
+              <div class="form-fields-row">
+                <div class="form-field">
+                  <label for="name" class="form-label">{t("contact.label.name")}</label>
+                  <input type="text" id="name" name="name" autocomplete="name" required class="form-input" />
+                </div>
+                <div class="form-field">
+                  <label for="email" class="form-label">{t("contact.label.email")}</label>
+                  <input type="email" id="email" name="email" autocomplete="email" required class="form-input" />
+                </div>
+              </div>
+
+              <div class="form-field">
+                <label for="company" class="form-label">{t("contact.label.company")}</label>
+                <input type="text" id="company" name="company" autocomplete="organization" class="form-input" />
+              </div>
+
+              <div class="form-field">
+                <label for="message" class="form-label">{t("project.details.label")}</label>
+                <textarea
+                  id="message"
+                  name="message"
+                  rows="5"
+                  required
+                  placeholder={t("project.details.placeholder")}
+                  class="form-input form-textarea"
+                ></textarea>
+              </div>
+            </div>
+
+            <div class="form-submit-row">
+              <button type="button" class="form-back prev-step-btn">&larr; {t("project.back")}</button>
+              <button type="submit" class="btn-primary form-submit-button">
+                <span data-submit-label>{t("contact.btn")}</span>
+                <span class="form-submit-spinner" aria-hidden="true" hidden></span>
+              </button>
+            </div>
+
+            <p class="form-privacy-note">
+              {t("project.privacy.prefix")}
+              <a href={privacyPath}>{t("project.privacy.link")}</a>.
+            </p>
+            <p id="form-status" role="status" aria-live="polite" class="form-submit-status" hidden></p>
+          </section>
+        </div>
+      </form>
+
+      <section id="form-success" class="form-success" aria-labelledby="form-success-title" hidden>
+        <span class="form-success-mark" aria-hidden="true">✓</span>
+        <p class="project-form-kicker">FRONTA</p>
+        <h2 id="form-success-title" tabindex="-1">{t("project.submit.successTitle")}</h2>
+        <p>{t("project.submit.success")}</p>
+        <div class="form-success-actions">
+          <a href={homePath} class="btn-primary">{t("project.submit.successCta")}</a>
+          <a href="mailto:toni@fronta.hr" class="form-success-email">toni@fronta.hr</a>
+        </div>
+      </section>
+
+      <div class="project-flow-footer">
+        <a href="mailto:toni@fronta.hr">toni@fronta.hr</a>
+        <a href={privacyPath}>{t("footer.privacy")}</a>
+      </div>
+    </div>
+  </main>
+</ProjectLayout>
 
 <script>
-    import { initOnboardingForm } from "../../scripts/onboarding.js";
-    document.addEventListener("DOMContentLoaded", initOnboardingForm);
-    // Also support Astro's internal view transitions if used
-    document.addEventListener("astro:page-load", initOnboardingForm);
+  import { initOnboardingForm } from "../../scripts/onboarding.js";
+  document.addEventListener("DOMContentLoaded", initOnboardingForm);
+  document.addEventListener("astro:page-load", initOnboardingForm);
 </script>

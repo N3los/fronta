@@ -75,6 +75,10 @@
   @apply text-xs text-fronta-muted transition-colors hover:text-fronta-text;
 }
 
+.footer-legal {
+  @apply flex flex-wrap items-center gap-x-5 gap-y-2;
+}
+
 @media (min-width: 1024px) {
   .footer-content {
     grid-template-columns: minmax(20rem, 2fr) repeat(3, minmax(9rem, 1fr));

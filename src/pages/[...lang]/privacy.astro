@@ -1,0 +1,105 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import Navbar from "../../components/Navbar.astro";
+import Footer from "../../components/Footer.astro";
+import { getLangFromUrl, useTranslations } from "../../i18n/utils";
+
+import "../../styles/pages/privacy.css";
+
+export function getStaticPaths() {
+  return [{ params: { lang: undefined } }, { params: { lang: "hr" } }];
+}
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+---
+
+<Layout title={t("meta.privacy.title")} description={t("meta.privacy.description")}>
+  <main class="main-content-wrapper bg-dotted">
+    <Navbar />
+
+    <section class="privacy-page">
+      <div class="section-container privacy-layout">
+        <header class="privacy-header">
+          <p class="privacy-kicker">FRONTA</p>
+          <h1 class="privacy-title">{t("privacy.title")}</h1>
+          <p class="privacy-intro">{t("privacy.intro")}</p>
+          <p class="privacy-updated">{t("privacy.updated")}</p>
+        </header>
+
+        <article class="privacy-content">
+          <section>
+            <h2>{t("privacy.controller.title")}</h2>
+            <p>{t("privacy.controller.body")}</p>
+          </section>
+
+          <section>
+            <h2>{t("privacy.data.title")}</h2>
+            <p>{t("privacy.data.body")}</p>
+            <p>{t("privacy.data.technical")}</p>
+          </section>
+
+          <section>
+            <h2>{t("privacy.purpose.title")}</h2>
+            <p>{t("privacy.purpose.body1")}</p>
+            <p>{t("privacy.purpose.body2")}</p>
+          </section>
+
+          <section>
+            <h2>{t("privacy.providers.title")}</h2>
+            <p>
+              {t("privacy.providers.formspree")}
+              <a href="https://formspree.io/legal/privacy-policy/" target="_blank" rel="noreferrer">
+                {t("privacy.providers.formspreeLink")} ↗
+              </a>
+            </p>
+            <p>{t("privacy.providers.fonts")}</p>
+            <p>{t("privacy.providers.hosting")}</p>
+          </section>
+
+          <section>
+            <h2>{t("privacy.retention.title")}</h2>
+            <p>{t("privacy.retention.body")}</p>
+          </section>
+
+          <section>
+            <h2>{t("privacy.sharing.title")}</h2>
+            <p>{t("privacy.sharing.body")}</p>
+          </section>
+
+          <section>
+            <h2>{t("privacy.rights.title")}</h2>
+            <p>{t("privacy.rights.body")}</p>
+            <p>
+              <a href="https://azop.hr/prava-ispitanika/" target="_blank" rel="noreferrer">
+                {t("privacy.rights.azop")} ↗
+              </a>
+            </p>
+          </section>
+
+          <section>
+            <h2>{t("privacy.cookies.title")}</h2>
+            <p>{t("privacy.cookies.body")}</p>
+          </section>
+
+          <section>
+            <h2>{t("privacy.security.title")}</h2>
+            <p>{t("privacy.security.body")}</p>
+          </section>
+
+          <section>
+            <h2>{t("privacy.changes.title")}</h2>
+            <p>{t("privacy.changes.body")}</p>
+          </section>
+
+          <section>
+            <h2>{t("privacy.contact.title")}</h2>
+            <p>{t("privacy.contact.body")}</p>
+            <a class="privacy-email" href="mailto:toni@fronta.hr">toni@fronta.hr</a>
+          </section>
+        </article>
+      </div>
+    </section>
+  </main>
+  <Footer />
+</Layout>

@@ -1,0 +1,51 @@
+@reference "../global.css";
+
+.project-shell {
+  @apply min-h-screen text-fronta-text;
+  min-height: 100svh;
+  background-color: var(--fronta-bg);
+  background-image: radial-gradient(var(--dot-color) 1px, transparent 1px);
+  background-size: 60px 60px;
+  background-position: top center;
+  background-attachment: fixed;
+}
+
+.project-shell-header {
+  @apply sticky top-0 z-50 flex h-16 items-center justify-between px-5 md:h-20 md:px-10;
+  background: color-mix(in srgb, var(--fronta-bg) 88%, transparent);
+  backdrop-filter: blur(18px);
+}
+
+.project-shell-logo {
+  @apply inline-flex items-center rounded-sm transition-opacity hover:opacity-75 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-fronta-red;
+}
+
+.project-shell-logo img {
+  @apply h-6 w-auto md:h-7;
+}
+
+.project-shell-actions {
+  @apply flex items-center gap-2 md:gap-4;
+}
+
+.project-shell-actions .btn-pill {
+  @apply px-3.5 py-2 md:px-4;
+}
+
+.project-shell-close {
+  @apply inline-flex min-h-10 items-center gap-2 rounded-full px-2 text-xs font-semibold text-fronta-muted transition-colors hover:text-fronta-text focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-fronta-red md:px-3;
+}
+
+.project-shell-close svg {
+  @apply shrink-0;
+}
+
+@media (max-width: 479px) {
+  .project-shell-close span {
+    @apply sr-only;
+  }
+
+  .project-shell-close {
+    @apply w-10 justify-center p-0;
+  }
+}

@@ -11,6 +11,7 @@ interface Props {
 	imageAlt?: string;
 	robots?: string;
 	schema?: Record<string, unknown> | Record<string, unknown>[];
+	transitions?: boolean;
 }
 
 const {
@@ -20,6 +21,7 @@ const {
 	imageAlt,
 	robots = "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
 	schema,
+	transitions = true,
 } = Astro.props;
 const lang = getLangFromUrl(Astro.url);
 const base = import.meta.env.BASE_URL.replace(/\/$/, "");
@@ -147,7 +149,7 @@ const structuredData = {
 			rel="stylesheet"
 		/>
 
-		<ClientRouter />
+		{transitions && <ClientRouter />}
 		<script type="application/ld+json" set:html={JSON.stringify(structuredData)} />
 
 		<title>{title}</title>

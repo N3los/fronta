@@ -51,19 +51,7 @@ export function initOnboardingForm() {
     if (error && requiredGroupsAreComplete(step)) error.hidden = true;
   };
 
-  const focusCurrentHeading = () => {
-    const heading = steps[currentStep]?.querySelector("[data-step-heading]");
-    heading?.focus({ preventScroll: true });
-  };
-
-  const scrollToFormStart = () => {
-    form.scrollIntoView({
-      behavior: reducedMotion.matches ? "auto" : "smooth",
-      block: "start",
-    });
-  };
-
-  const showStep = (index, { direction = "forward", moveFocus = true } = {}) => {
+  const showStep = (index, { direction = "forward" } = {}) => {
     if (index < 0 || index >= steps.length || index === currentStep) return;
 
     const previousStep = steps[currentStep];
@@ -79,7 +67,6 @@ export function initOnboardingForm() {
     currentStep = index;
     updateProgress();
     updateStepControls(nextStep);
-    scrollToFormStart();
 
     window.requestAnimationFrame(() => {
       nextStep.classList.add("is-active");
@@ -89,7 +76,6 @@ export function initOnboardingForm() {
     transitionTimer = window.setTimeout(() => {
       previousStep.hidden = true;
       previousStep.classList.remove("is-leaving-back");
-      if (moveFocus) focusCurrentHeading();
     }, reducedMotion.matches ? 1 : 230);
   };
 
@@ -210,7 +196,7 @@ export function initOnboardingForm() {
 
       if (!response.ok) throw new Error(`Formspree request failed: ${response.status}`);
 
-      const remainingFeedbackTime = Math.max(0, 550 - (performance.now() - startedAt));
+      const remainingFeedbackTime = Math.max(0, 1500 - (performance.now() - startedAt));
       await wait(remainingFeedbackTime);
 
       if (status) status.hidden = true;
@@ -219,8 +205,6 @@ export function initOnboardingForm() {
         successPanel.hidden = false;
         window.requestAnimationFrame(() => successPanel.classList.add("is-active"));
       }
-
-      scrollToFormStart();
 
       await wait(reducedMotion.matches ? 1 : 260);
       form.hidden = true;

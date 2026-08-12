@@ -12,7 +12,6 @@ const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 type TranslationKey = Parameters<typeof t>[0];
 const homePath = getLocalizedPath(lang, "/");
-const privacyPath = getLocalizedPath(lang, "/privacy");
 ---
 
 <ProjectLayout title={t("meta.project.title")} description={t("meta.project.description")}>
@@ -23,7 +22,6 @@ const privacyPath = getLocalizedPath(lang, "/privacy");
         class="project-form"
         action="https://formspree.io/f/xeajadjr"
         method="POST"
-        aria-describedby="project-form-note"
         data-formspree-endpoint="https://formspree.io/f/xeajadjr"
         data-selection-error={t("project.selectionError")}
         data-progress-template={t("project.progress")}
@@ -53,17 +51,13 @@ const privacyPath = getLocalizedPath(lang, "/privacy");
 
         <div class="form-stage" id="form-stage">
           <section class="form-step is-active" data-step="0">
-            <header class="project-form-intro">
-              <p class="project-form-kicker">{t("contact.badge")}</p>
-              <h1>{t("contact.title")}</h1>
-              <p id="project-form-note">{t("contact.desc")}</p>
-            </header>
-
-            <fieldset class="form-question-group">
-              <legend class="form-step-title" data-step-heading tabindex="-1">
+            <div class="form-question-group">
+              <h1 id="project-build-title" class="form-step-title" data-step-heading tabindex="-1">
                 {t("project.build.title")}
-              </legend>
+              </h1>
+              <p class="form-step-hint">{t("project.build.hint")}</p>
 
+              <fieldset aria-labelledby="project-build-title">
               <div class="choice-list">
                 <label class="choice-card">
                   <input type="radio" name="project_type" value={t("project.build.website.title")} required />
@@ -101,7 +95,8 @@ const privacyPath = getLocalizedPath(lang, "/privacy");
                   <span class="choice-marker" aria-hidden="true"></span>
                 </label>
               </div>
-            </fieldset>
+              </fieldset>
+            </div>
 
             <p class="form-step-error" data-step-error role="alert" hidden></p>
             <div class="form-navigation form-navigation--first">
@@ -285,10 +280,6 @@ const privacyPath = getLocalizedPath(lang, "/privacy");
               </button>
             </div>
 
-            <p class="form-privacy-note">
-              {t("project.privacy.prefix")}
-              <a href={privacyPath}>{t("project.privacy.link")}</a>.
-            </p>
             <p id="form-status" role="status" aria-live="polite" class="form-submit-status" hidden></p>
           </section>
         </div>
@@ -301,14 +292,9 @@ const privacyPath = getLocalizedPath(lang, "/privacy");
         <p>{t("project.submit.success")}</p>
         <div class="form-success-actions">
           <a href={homePath} class="btn-primary">{t("project.submit.successCta")}</a>
-          <a href="mailto:toni@fronta.hr" class="form-success-email">toni@fronta.hr</a>
         </div>
       </section>
 
-      <div class="project-flow-footer">
-        <a href="mailto:toni@fronta.hr">toni@fronta.hr</a>
-        <a href={privacyPath}>{t("footer.privacy")}</a>
-      </div>
     </div>
   </main>
 </ProjectLayout>

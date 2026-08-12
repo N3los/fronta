@@ -284,8 +284,6 @@ export const ui = {
     'contact.label.message': 'Project Details',
     'contact.placeholder.message': 'For example: We need a new website that explains our services clearly and helps generate more inquiries.',
     'contact.btn': 'Send inquiry',
-    'project.privacy.prefix': 'By sending the inquiry, you confirm that you have read the',
-    'project.privacy.link': 'privacy policy',
     // About page
     'aboutPage.hero.eyebrow': 'About FRONTA',
     'aboutPage.hero.title': 'An independent studio for websites and web applications.',
@@ -391,6 +389,7 @@ export const ui = {
     'project.progressLabel': 'Project inquiry progress',
     'project.close': 'Close',
     'project.build.title': 'What do you need?',
+    'project.build.hint': 'Choose the option that best describes the work you need.',
     'project.build.website.title': 'Website or online store',
     'project.build.website.description': 'Company website, landing page, portfolio, campaign, or e-commerce website.',
     'project.build.app.title': 'Web application or digital product',
@@ -437,7 +436,7 @@ export const ui = {
     'project.email.label.summary': 'Project inquiry',
     'project.submit.sending': 'Sending your inquiry…',
     'project.submit.successTitle': 'Inquiry sent',
-    'project.submit.success': 'Thank you. I will review the information and reply by email with the next step.',
+    'project.submit.success': 'Thank you for your inquiry. I will review the information and reply by email within two business days.',
     'project.submit.successCta': 'Back to homepage',
     'project.submit.error': 'We could not send your inquiry. Please try again or email toni@fronta.hr.',
 
@@ -737,8 +736,6 @@ export const ui = {
     'contact.label.message': 'Detalji projekta',
     'contact.placeholder.message': 'Primjer: Trebamo novu web stranicu koja jasno objašnjava naše usluge i pomaže nam dobiti više upita.',
     'contact.btn': 'Pošalji upit',
-    'project.privacy.prefix': 'Slanjem upita potvrđujete da ste pročitali',
-    'project.privacy.link': 'politiku privatnosti',
     // About page
     'aboutPage.hero.eyebrow': 'O studiju FRONTA',
     'aboutPage.hero.title': 'Nezavisni studio za web stranice i web aplikacije.',
@@ -844,6 +841,7 @@ export const ui = {
     'project.progressLabel': 'Napredak projektnog upita',
     'project.close': 'Zatvori',
     'project.build.title': 'Što trebate?',
+    'project.build.hint': 'Odaberite opciju koja najbolje opisuje što trebate.',
     'project.build.website.title': 'Web stranica ili trgovina',
     'project.build.website.description': 'Poslovna web stranica, landing stranica, portfolio, kampanja ili web trgovina.',
     'project.build.app.title': 'Web aplikacija ili digitalni proizvod',
@@ -890,7 +888,7 @@ export const ui = {
     'project.email.label.summary': 'Upit o projektu',
     'project.submit.sending': 'Šaljemo vaš upit…',
     'project.submit.successTitle': 'Upit je poslan',
-    'project.submit.success': 'Hvala. Pregledat ću informacije i odgovoriti vam e-mailom sa sljedećim korakom.',
+    'project.submit.success': 'Hvala na upitu. Pregledat ću informacije i javiti vam se e-mailom unutar dva radna dana.',
     'project.submit.successCta': 'Povratak na naslovnicu',
     'project.submit.error': 'Upit trenutno nije moguće poslati. Pokušajte ponovno ili pišite na toni@fronta.hr.',
 

@@ -66,22 +66,8 @@
   transform: translateX(-12px);
 }
 
-.project-form-intro {
-  @apply mb-9 md:mb-12;
-}
-
 .project-form-kicker {
   @apply mb-4 font-mono text-[0.6875rem] font-medium uppercase tracking-[0.18em] text-fronta-red;
-}
-
-.project-form-intro h1 {
-  @apply mb-4 max-w-2xl text-[2.35rem] font-bold tracking-[-0.045em] text-fronta-text md:text-5xl;
-  font-family: var(--font-display);
-  line-height: 1.02;
-}
-
-.project-form-intro > p:last-child {
-  @apply max-w-2xl text-base leading-relaxed text-fronta-muted md:text-lg;
 }
 
 .form-question-group {
@@ -225,16 +211,6 @@
   @apply ml-2 h-4 w-4 animate-spin rounded-full border-2 border-white/35 border-t-white;
 }
 
-.form-privacy-note {
-  @apply mt-5 text-xs leading-relaxed text-fronta-muted;
-}
-
-.form-privacy-note a,
-.project-flow-footer a,
-.form-success-email {
-  @apply underline decoration-fronta-border underline-offset-4 transition-colors hover:text-fronta-text hover:decoration-fronta-red;
-}
-
 .form-submit-status {
   @apply mt-4 rounded-lg px-4 py-3 text-sm leading-relaxed text-fronta-text;
   background: color-mix(in srgb, var(--fronta-red) 10%, transparent);
@@ -245,7 +221,7 @@
 }
 
 .form-success {
-  @apply col-start-1 row-start-1 py-8 opacity-0 outline-none md:py-16;
+  @apply col-start-1 row-start-1 flex flex-col items-center py-8 text-center opacity-0 outline-none md:py-16;
   transform: translateY(10px);
   transition:
     opacity 240ms ease,
@@ -272,15 +248,7 @@
 }
 
 .form-success-actions {
-  @apply mt-8 flex flex-col items-start gap-5 sm:flex-row sm:items-center;
-}
-
-.form-success-email {
-  @apply text-sm text-fronta-muted;
-}
-
-.project-flow-footer {
-  @apply col-start-1 row-start-2 mt-14 flex items-center justify-between gap-5 text-xs text-fronta-muted md:mt-20;
+  @apply mt-8 flex flex-col items-center gap-5 sm:flex-row;
 }
 
 @media (max-width: 639px) {

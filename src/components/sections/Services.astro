@@ -53,17 +53,14 @@ const pagePath = (path: string) => getLocalizedPath(lang, path);
             {t("services.p1.desc")}
           </p>
 
-          <ul class="service-feature-list">
+          <ul class="list-red-dash mb-8 space-y-3 md:mb-12 md:space-y-4">
             {
               [
                 t("services.p1.feat1"),
                 t("services.p1.feat2"),
                 t("services.p1.feat3"),
               ].map((feat) => (
-                <li class="service-feature-item">
-                  <span class="red-dot" />
-                  {feat}
-                </li>
+                <li>{feat}</li>
               ))
             }
           </ul>
@@ -99,17 +96,14 @@ const pagePath = (path: string) => getLocalizedPath(lang, path);
             {t("services.p2.desc")}
           </p>
 
-          <ul class="service-feature-list">
+          <ul class="list-red-dash mb-8 space-y-3 md:mb-12 md:space-y-4">
             {
               [
                 t("services.p2.feat1"),
                 t("services.p2.feat2"),
                 t("services.p2.feat3"),
               ].map((feat) => (
-                <li class="service-feature-item">
-                  <span class="red-dot" />
-                  {feat}
-                </li>
+                <li>{feat}</li>
               ))
             }
           </ul>

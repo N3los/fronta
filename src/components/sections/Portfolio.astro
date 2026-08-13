@@ -67,16 +67,18 @@ const pagePath = (path: string) => getLocalizedPath(lang, path);
                 </h3>
 
                 <a
-                  href={project.href}
+                  href={getCaseStudyByProjectId(project.id)
+                    ? pagePath(`/work/${getCaseStudyByProjectId(project.id)?.slug}`)
+                    : project.href}
                   class="portfolio-cta"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label={`${project.type === "app" ? t("port.view_product") : t("port.view_website")}: ${projectText(project.id, "title")}`}
+                  target={getCaseStudyByProjectId(project.id) ? undefined : "_blank"}
+                  rel={getCaseStudyByProjectId(project.id) ? undefined : "noopener noreferrer"}
+                  aria-label={`${getCaseStudyByProjectId(project.id) ? t("workPage.details") : t("port.view_product")}: ${projectText(project.id, "title")}`}
                 >
-                  {project.type === "app"
-                    ? t("port.view_product")
-                    : t("port.view_website")}{" "}
-                  <span aria-hidden="true">↗</span>
+                  {getCaseStudyByProjectId(project.id)
+                    ? t("workPage.details")
+                    : t("port.view_product")} {" "}
+                  <span aria-hidden="true">{getCaseStudyByProjectId(project.id) ? "→" : "↗"}</span>
                 </a>
               </header>
 
@@ -96,12 +98,6 @@ const pagePath = (path: string) => getLocalizedPath(lang, path);
                   class="portfolio-image"
                   style={`object-position: ${project.imagePosition}`}
                 />
-                <div class="portfolio-image-overlay" />
-                {getCaseStudyByProjectId(project.id) && (
-                  <span class="portfolio-image-details" aria-hidden="true">
-                    {t("workPage.details")} <span>→</span>
-                  </span>
-                )}
               </a>
 
               <footer class="portfolio-sheet-footer">

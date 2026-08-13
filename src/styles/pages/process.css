@@ -1,29 +1,5 @@
 @reference "../global.css";
 
-.process-page-hero {
-  @apply pb-24 md:pb-32;
-  padding-top: calc(5rem + clamp(4.5rem, 9vw, 8rem));
-}
-
-.process-page-kicker {
-  @apply mb-7 text-xs font-mono font-medium uppercase tracking-[0.18em] text-fronta-red;
-}
-
-.process-page-title {
-  @apply max-w-6xl text-5xl font-bold tracking-[-0.045em] text-fronta-text md:text-7xl lg:text-[5.75rem];
-  font-family: var(--font-display);
-  line-height: 0.98;
-}
-
-.process-page-hero-bottom {
-  @apply mt-12 grid items-end gap-10 md:mt-16 lg:grid-cols-[minmax(0,1fr)_auto] lg:gap-16;
-}
-
-.process-page-lead {
-  @apply max-w-3xl text-lg text-fronta-muted md:text-xl;
-  line-height: 1.7;
-}
-
 .process-page-actions {
   @apply flex flex-col items-stretch gap-3 sm:flex-row;
 }
@@ -41,7 +17,7 @@
   top: calc(5rem + 2.5rem);
 }
 
-.process-page-flow-heading .process-page-kicker {
+.process-page-flow-heading .page-kicker {
   @apply mb-5;
 }
 
@@ -100,7 +76,7 @@
   @apply grid items-start gap-8 md:grid-cols-12 md:gap-10;
 }
 
-.process-page-continuity-layout > .process-page-kicker {
+.process-page-continuity-layout > .page-kicker {
   @apply md:col-span-3 md:mb-0;
 }
 

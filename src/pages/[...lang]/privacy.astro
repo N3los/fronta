@@ -2,6 +2,7 @@
 import Layout from "../../layouts/Layout.astro";
 import Navbar from "../../components/Navbar.astro";
 import Footer from "../../components/Footer.astro";
+import PageHeading from "../../components/PageHeading.astro";
 import { getLangFromUrl, useTranslations } from "../../i18n/utils";
 
 import "../../styles/pages/privacy.css";
@@ -20,12 +21,13 @@ const t = useTranslations(lang);
 
     <section class="privacy-page">
       <div class="section-container privacy-layout">
-        <header class="privacy-header">
-          <p class="privacy-kicker">FRONTA</p>
-          <h1 class="privacy-title">{t("privacy.title")}</h1>
-          <p class="privacy-intro">{t("privacy.intro")}</p>
-          <p class="privacy-updated">{t("privacy.updated")}</p>
-        </header>
+        <PageHeading
+          className="privacy-header"
+          eyebrow="FRONTA"
+          title={t("privacy.title")}
+          intro={t("privacy.intro")}
+          updated={t("privacy.updated")}
+        />
 
         <article class="privacy-content">
           <section>

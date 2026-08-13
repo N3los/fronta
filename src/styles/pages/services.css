@@ -1,29 +1,5 @@
 @reference "../global.css";
 
-.services-page-hero {
-  @apply pb-24 md:pb-32;
-  padding-top: calc(5rem + clamp(4.5rem, 9vw, 8rem));
-}
-
-.services-page-kicker {
-  @apply mb-7 font-mono text-xs font-medium uppercase tracking-[0.18em] text-fronta-red;
-}
-
-.services-page-title {
-  @apply max-w-6xl text-5xl font-bold tracking-[-0.045em] text-fronta-text md:text-7xl lg:text-[5.75rem];
-  font-family: var(--font-display);
-  line-height: 0.98;
-}
-
-.services-page-hero-bottom {
-  @apply mt-12 grid items-end gap-10 md:mt-16 lg:grid-cols-[minmax(0,1fr)_auto] lg:gap-16;
-}
-
-.services-page-lead {
-  @apply max-w-3xl text-lg text-fronta-muted md:text-xl;
-  line-height: 1.7;
-}
-
 .services-page-offer {
   @apply py-24 md:py-32 lg:py-40;
   scroll-margin-top: 6rem;
@@ -56,7 +32,6 @@
 }
 
 .services-page-offer-intro h2,
-.services-page-b2b-heading h2,
 .services-page-existing h2 {
   @apply text-3xl font-bold tracking-[-0.035em] text-fronta-text md:text-5xl;
   font-family: var(--font-display);
@@ -76,64 +51,6 @@
   @apply mb-6 font-mono text-[0.68rem] font-medium uppercase tracking-[0.15em] text-fronta-red;
 }
 
-.services-page-offer-details ul {
-  @apply space-y-3;
-}
-
-.services-page-offer-details li {
-  @apply relative pl-5 text-sm text-fronta-text md:text-base;
-  line-height: 1.65;
-}
-
-.services-page-offer-details li::before {
-  content: "";
-  @apply absolute left-0 top-[0.7em] size-1 rounded-full bg-fronta-red;
-}
-
-.services-page-b2b {
-  @apply py-24 md:py-32 lg:py-40;
-  scroll-margin-top: 6rem;
-}
-
-.services-page-b2b-layout {
-  @apply grid items-start gap-12 md:grid-cols-12 md:gap-10 lg:gap-16;
-}
-
-.services-page-b2b-heading {
-  @apply md:col-span-5;
-}
-
-.services-page-b2b-heading .services-page-kicker {
-  @apply mb-6;
-}
-
-.services-page-b2b-content {
-  @apply md:col-span-6 md:col-start-7 md:pt-10;
-}
-
-.services-page-b2b-content > p {
-  @apply max-w-2xl text-base text-fronta-muted md:text-lg;
-  line-height: 1.8;
-}
-
-.services-page-b2b-content ul {
-  @apply my-10 grid gap-x-10 gap-y-4 sm:grid-cols-2;
-}
-
-.services-page-b2b-content li {
-  @apply flex items-center gap-3 text-sm font-medium text-fronta-text md:text-base;
-}
-
-.services-page-b2b-content li::before {
-  content: "/";
-  @apply font-mono text-fronta-red;
-}
-
-.services-page-b2b-content .services-page-b2b-note {
-  @apply text-sm text-fronta-muted;
-  line-height: 1.75;
-}
-
 .services-page-existing {
   @apply py-24 md:py-32 lg:py-40;
 }
@@ -142,7 +59,7 @@
   @apply grid items-start gap-8 md:grid-cols-12 md:gap-10;
 }
 
-.services-page-existing-layout > .services-page-kicker {
+.services-page-existing-layout > .page-kicker {
   @apply md:col-span-3 md:mb-0;
 }
 

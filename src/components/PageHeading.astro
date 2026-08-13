@@ -1,0 +1,30 @@
+---
+interface Props {
+  eyebrow: string;
+  title: string;
+  intro?: string;
+  updated?: string;
+  className?: string;
+}
+
+const { eyebrow, title, intro, updated, className } = Astro.props;
+const hasActions = Astro.slots.has("actions");
+---
+
+<header class:list={["page-heading", className]}>
+  <p class="page-kicker" data-animate="fade-up">{eyebrow}</p>
+  <h1 class="page-title" data-animate="fade-up" data-delay="100">
+    <span class="text-gradient-logo">{title}</span>
+  </h1>
+
+  {
+    (intro || hasActions) && (
+      <div class="page-heading-bottom" data-animate="fade-up" data-delay="200">
+        {intro && <p class="page-lead">{intro}</p>}
+        {hasActions && <slot name="actions" />}
+      </div>
+    )
+  }
+
+  {updated && <p class="page-updated">{updated}</p>}
+</header>

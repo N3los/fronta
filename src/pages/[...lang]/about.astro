@@ -1,18 +1,10 @@
 ---
-import { Image } from "astro:assets";
 import Layout from "../../layouts/Layout.astro";
 import Navbar from "../../components/Navbar.astro";
 import Footer from "../../components/Footer.astro";
 import MainCTA from "../../components/sections/MainCTA.astro";
+import PageHeading from "../../components/PageHeading.astro";
 import { getLangFromUrl, getLocalizedPath, useTranslations } from "../../i18n/utils";
-
-import consumable from "../../assets/clients/consumable.png";
-import dax from "../../assets/clients/dax.png";
-import global from "../../assets/clients/global.png";
-import kargo from "../../assets/clients/kargo.png";
-import remixd from "../../assets/clients/remixd.png";
-import videobyte from "../../assets/clients/videobyte.png";
-import wcs from "../../assets/clients/wcs.png";
 
 import "../../styles/components/buttons.css";
 import "../../styles/pages/about.css";
@@ -43,34 +35,20 @@ const principles = [
   },
 ];
 
-const clients = [
-  { src: global, alt: "Global", invertInDark: true },
-  { src: kargo, alt: "Kargo", invertInDark: true },
-  { src: dax, alt: "DAX", invertInDark: true },
-  { src: videobyte, alt: "VideoByte", invertInDark: false },
-  { src: consumable, alt: "Consumable", invertInDark: false },
-  { src: remixd, alt: "Remixd", invertInDark: true },
-  { src: wcs, alt: "WCS", invertInDark: false },
-];
 ---
 
 <Layout title={t("meta.about.title")} description={t("meta.about.description")}>
   <main class="main-content-wrapper bg-dotted">
     <Navbar />
 
-    <section class="about-page-hero">
+    <section class="page-hero">
       <div class="section-container">
-        <p class="about-page-kicker" data-animate="fade-up">{t("aboutPage.hero.eyebrow")}</p>
-        <h1 class="about-page-title" data-animate="fade-up" data-delay="100">
-          {t("aboutPage.hero.title")}
-        </h1>
-        <div class="about-page-hero-bottom" data-animate="fade-up" data-delay="200">
-          <p class="about-page-lead">{t("aboutPage.hero.intro")}</p>
-          <div class="about-page-actions">
+        <PageHeading eyebrow={t("aboutPage.hero.eyebrow")} title={t("aboutPage.hero.title")} intro={t("aboutPage.hero.intro")}>
+          <div slot="actions" class="about-page-actions">
             <a href={pagePath("/work")} class="btn-secondary">{t("nav.work")} <span>→</span></a>
             <a href={pagePath("/project")} class="btn-primary">{t("cta.project")} <span>→</span></a>
           </div>
-        </div>
+        </PageHeading>
       </div>
     </section>
 
@@ -131,28 +109,6 @@ const clients = [
           <h2>{t("aboutPage.craft.title")}</h2>
           <p>{t("aboutPage.craft.original")}</p>
           <p>{t("aboutPage.craft.ai")}</p>
-        </div>
-      </div>
-    </section>
-
-    <section class="about-page-proof">
-      <div class="section-container">
-        <div class="about-page-clients">
-          <div class="about-page-clients-heading">
-            <div>
-              <p class="about-page-kicker">{t("aboutPage.clients.label")}</p>
-              <h2>{t("aboutPage.clients.title")}</h2>
-            </div>
-            <a href={pagePath("/work")}>{t("aboutPage.clients.link")} <span>→</span></a>
-          </div>
-
-          <div class="about-page-client-grid" aria-label={t("aboutPage.clients.title")}>
-            {clients.map((client) => (
-              <div class:list={["about-page-client", { "about-page-client-invert": client.invertInDark }]}>
-                <Image src={client.src} alt={client.alt} class="about-page-client-logo" />
-              </div>
-            ))}
-          </div>
         </div>
       </div>
     </section>

@@ -1,29 +1,5 @@
 @reference "../global.css";
 
-.work-page-hero {
-  @apply pb-24 md:pb-32;
-  padding-top: calc(5rem + clamp(4.5rem, 9vw, 8rem));
-}
-
-.work-page-kicker {
-  @apply mb-7 text-xs font-mono font-medium uppercase tracking-[0.18em] text-fronta-red;
-}
-
-.work-page-title {
-  @apply max-w-6xl text-5xl font-bold tracking-[-0.045em] text-fronta-text md:text-7xl lg:text-[5.75rem];
-  font-family: var(--font-display);
-  line-height: 0.98;
-}
-
-.work-page-hero-bottom {
-  @apply mt-12 grid items-end gap-10 md:mt-16 lg:gap-16;
-}
-
-.work-page-lead {
-  @apply max-w-3xl text-lg text-fronta-muted md:text-xl;
-  line-height: 1.7;
-}
-
 .work-page-jump-nav {
   @apply flex flex-wrap gap-x-8 gap-y-3;
 }
@@ -49,7 +25,7 @@
   @apply mb-20 grid items-start gap-7 md:mb-28 md:grid-cols-12 md:gap-10;
 }
 
-.work-page-group-heading>.work-page-kicker {
+.work-page-group-heading>.page-kicker {
   @apply mb-0 md:col-span-3;
 }
 
@@ -179,12 +155,6 @@
 
 .work-project-link--details:hover span {
   transform: translateX(3px);
-}
-
-@media (min-width: 1024px) {
-  .work-page-hero-bottom {
-    grid-template-columns: minmax(0, 1fr) auto;
-  }
 }
 
 @media (max-width: 767px) {

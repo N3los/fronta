@@ -14,25 +14,6 @@
   @apply max-w-xl;
 }
 
-.privacy-kicker {
-  @apply mb-5 font-mono text-xs font-medium uppercase tracking-[0.18em] text-fronta-red;
-}
-
-.privacy-title {
-  @apply mb-7 text-4xl font-bold tracking-[-0.035em] text-fronta-text md:text-5xl lg:text-6xl;
-  font-family: var(--font-display);
-  line-height: 1.02;
-}
-
-.privacy-intro {
-  @apply max-w-lg text-base text-fronta-muted md:text-lg;
-  line-height: 1.7;
-}
-
-.privacy-updated {
-  @apply mt-6 font-mono text-[0.6875rem] uppercase tracking-[0.12em] text-fronta-muted;
-}
-
 .privacy-content {
   @apply max-w-3xl;
 }

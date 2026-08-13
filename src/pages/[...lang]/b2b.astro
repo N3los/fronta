@@ -1,0 +1,138 @@
+---
+import { Image } from "astro:assets";
+import Layout from "../../layouts/Layout.astro";
+import Navbar from "../../components/Navbar.astro";
+import Footer from "../../components/Footer.astro";
+import PageHeading from "../../components/PageHeading.astro";
+import MainCTA from "../../components/sections/MainCTA.astro";
+import { getLangFromUrl, getLocalizedPath, useTranslations } from "../../i18n/utils";
+
+import consumable from "../../assets/clients/consumable.png";
+import dax from "../../assets/clients/dax.png";
+import global from "../../assets/clients/global.png";
+import kargo from "../../assets/clients/kargo.png";
+import remixd from "../../assets/clients/remixd.png";
+import videobyte from "../../assets/clients/videobyte.png";
+import wcs from "../../assets/clients/wcs.png";
+
+import "../../styles/components/buttons.css";
+import "../../styles/pages/b2b.css";
+
+export function getStaticPaths() {
+  return [{ params: { lang: undefined } }, { params: { lang: "hr" } }];
+}
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+const pagePath = (path: string) => getLocalizedPath(lang, path);
+
+const audiences = [
+  t("b2bPage.for.item1"),
+  t("b2bPage.for.item2"),
+  t("b2bPage.for.item3"),
+];
+
+const capabilities = [
+  t("b2bPage.work.item1"),
+  t("b2bPage.work.item2"),
+  t("b2bPage.work.item3"),
+  t("b2bPage.work.item4"),
+];
+
+const clients = [
+  { src: global, alt: "Global", invertInDark: true },
+  { src: kargo, alt: "Kargo", invertInDark: true },
+  { src: dax, alt: "DAX", invertInDark: true },
+  { src: videobyte, alt: "VideoByte", invertInDark: false },
+  { src: consumable, alt: "Consumable", invertInDark: false },
+  { src: remixd, alt: "Remixd", invertInDark: true },
+  { src: wcs, alt: "WCS", invertInDark: false },
+];
+
+const siteOrigin = Astro.site ?? new URL(Astro.url.origin);
+const serviceSchema = {
+  "@type": "Service",
+  "@id": new URL(`${pagePath("/b2b")}#service`, siteOrigin).href,
+  name: t("b2bPage.hero.title"),
+  description: t("b2bPage.hero.intro"),
+  provider: { "@id": new URL("/#organization", siteOrigin).href },
+};
+---
+
+<Layout title={t("meta.b2b.title")} description={t("meta.b2b.description")} schema={serviceSchema}>
+  <main class="main-content-wrapper bg-dotted">
+    <Navbar />
+
+    <section class="page-hero">
+      <div class="section-container">
+        <PageHeading
+          eyebrow={t("b2bPage.hero.eyebrow")}
+          title={t("b2bPage.hero.title")}
+          intro={t("b2bPage.hero.intro")}
+        >
+          <div slot="actions" class="b2b-page-actions">
+            <a href={pagePath("/services")} class="btn-secondary">
+              {t("nav.services")} <span aria-hidden="true">→</span>
+            </a>
+            <a href={pagePath("/project")} class="btn-primary">
+              {t("cta.project")} <span aria-hidden="true">→</span>
+            </a>
+          </div>
+        </PageHeading>
+      </div>
+    </section>
+
+    <section class="b2b-page-experience" id="service">
+      <div class="section-container b2b-page-experience-layout">
+        <p class="page-kicker" data-animate="fade-right">
+          {t("b2bPage.experience.label")}
+        </p>
+
+        <div class="b2b-page-experience-content" data-animate="fade-up">
+          <h2>{t("b2bPage.experience.title")}</h2>
+          <p>{t("b2bPage.experience.description")}</p>
+          <p>{t("b2bPage.experience.note")}</p>
+
+          <div class="b2b-page-lists">
+            <div>
+              <h3>{t("b2bPage.for.label")}</h3>
+              <ul class="list-red-dash space-y-3">
+                {audiences.map((item) => <li>{item}</li>)}
+              </ul>
+            </div>
+            <div>
+              <h3>{t("b2bPage.work.label")}</h3>
+              <ul class="list-red-dash space-y-3">
+                {capabilities.map((item) => <li>{item}</li>)}
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="b2b-page-clients">
+      <div class="section-container">
+        <header class="b2b-page-clients-heading" data-animate="fade-up">
+          <p class="page-kicker">{t("b2bPage.clients.label")}</p>
+          <h2>{t("b2bPage.clients.title")}</h2>
+        </header>
+
+        <div class="b2b-page-client-grid" aria-label={t("b2bPage.clients.title")}>
+          {clients.map((client, index) => (
+            <div
+              class:list={["b2b-page-client", { "b2b-page-client-invert": client.invertInDark }]}
+              data-animate="fade-up"
+              data-delay={index * 50}
+            >
+              <Image src={client.src} alt={client.alt} class="b2b-page-client-logo" />
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <MainCTA />
+  </main>
+  <Footer />
+</Layout>

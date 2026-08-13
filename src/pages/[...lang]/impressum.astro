@@ -2,6 +2,7 @@
 import Layout from "../../layouts/Layout.astro";
 import Navbar from "../../components/Navbar.astro";
 import Footer from "../../components/Footer.astro";
+import PageHeading from "../../components/PageHeading.astro";
 import { getLangFromUrl, useTranslations } from "../../i18n/utils";
 import "../../styles/pages/impressum.css";
 
@@ -36,17 +37,12 @@ const details = [
 
     <section class="impressum-page">
       <div class="section-container impressum-layout">
-        <header class="impressum-header">
-          <p class="impressum-kicker">
-            FRONTA
-          </p>
-          <h1 class="impressum-title">
-            {t("impressum.title")}
-          </h1>
-          <p class="impressum-intro">
-            {t("impressum.intro")}
-          </p>
-        </header>
+        <PageHeading
+          className="impressum-header"
+          eyebrow="FRONTA"
+          title={t("impressum.title")}
+          intro={t("impressum.intro")}
+        />
 
         <dl class="impressum-details">
           {details.map(({ label, value }) => (

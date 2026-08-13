@@ -1,0 +1,79 @@
+@reference "../global.css";
+
+.b2b-page-actions {
+  @apply flex flex-col items-stretch gap-3 sm:flex-row;
+}
+
+.b2b-page-experience {
+  @apply py-24 md:py-32 lg:py-40;
+}
+
+.b2b-page-experience-layout {
+  @apply grid items-start gap-10 md:grid-cols-12 md:gap-10 lg:gap-16;
+}
+
+.b2b-page-experience-layout > .page-kicker {
+  @apply md:col-span-3 md:mb-0;
+}
+
+.b2b-page-experience-content {
+  @apply md:col-span-8 md:col-start-5;
+}
+
+.b2b-page-experience-content h2,
+.b2b-page-clients-heading h2 {
+  @apply text-3xl font-bold tracking-tight text-fronta-text md:text-5xl;
+  font-family: var(--font-display);
+  line-height: 1.08;
+}
+
+.b2b-page-experience-content > p {
+  @apply mt-7 max-w-3xl text-base text-fronta-muted md:text-lg;
+  line-height: 1.8;
+}
+
+.b2b-page-experience-content > p + p {
+  @apply mt-5;
+}
+
+.b2b-page-lists {
+  @apply mt-14 grid gap-12 sm:grid-cols-2 sm:gap-16 md:mt-20;
+}
+
+.b2b-page-lists h3 {
+  @apply mb-6 font-mono text-xs font-medium uppercase tracking-widest text-fronta-red;
+}
+
+.b2b-page-clients {
+  @apply py-24 md:py-32 lg:py-40;
+}
+
+.b2b-page-clients-heading {
+  @apply mb-14 max-w-4xl md:mb-20;
+}
+
+.b2b-page-clients-heading .page-kicker {
+  @apply mb-5;
+}
+
+.b2b-page-client-grid {
+  @apply grid grid-cols-2 gap-x-10 gap-y-14 sm:grid-cols-3 md:gap-x-16 md:gap-y-20 lg:grid-cols-4;
+}
+
+.b2b-page-client {
+  @apply flex min-h-20 items-center justify-center px-4 py-5;
+}
+
+.b2b-page-client-logo {
+  @apply h-auto max-h-9 w-auto max-w-28 opacity-60 grayscale transition-opacity duration-300;
+}
+
+.b2b-page-client:hover .b2b-page-client-logo {
+  @apply opacity-100;
+}
+
+@media (prefers-color-scheme: dark) {
+  .b2b-page-client-invert .b2b-page-client-logo {
+    filter: grayscale(1) invert(1);
+  }
+}

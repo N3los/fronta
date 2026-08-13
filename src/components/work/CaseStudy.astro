@@ -58,15 +58,13 @@ const nextProjectCategory = nextProject
       </a>
 
       <div class="case-study-heading" data-animate="fade-up">
+        <h1 class="text-gradient-logo">{title}</h1>
+
         <div class="case-study-meta">
-          <span>{t("caseStudy.projectLabel")}</span>
           <span>{category}</span>
-          <span class:list={{ "case-study-live": isLive }}>
-            {isLive && <i aria-hidden="true"></i>}{statusLabel}
-          </span>
+          <span>{statusLabel}</span>
         </div>
 
-        <h1 class="text-gradient-logo">{title}</h1>
         <p class="case-study-lead">{t(caseStudy.leadKey)}</p>
 
         <a class="case-study-live-link" href={project.href} target="_blank" rel="noopener noreferrer">
@@ -115,7 +113,7 @@ const nextProjectCategory = nextProject
         {caseStudy.overview.facts.map((fact) => (
           <div>
             <h3>{t(fact.labelKey)}</h3>
-            <ul>
+            <ul class="list-red-dash grid gap-2.5">
               {fact.itemKeys.map((itemKey) => <li>{t(itemKey)}</li>)}
             </ul>
           </div>

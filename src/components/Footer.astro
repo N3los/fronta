@@ -25,6 +25,7 @@ const pagePath = (path: string) => getLocalizedPath(lang, path);
       <ul class="footer-links">
         <li><a href={pagePath("/work")}>{t("nav.work")}</a></li>
         <li><a href={pagePath("/services")}>{t("nav.services")}</a></li>
+        <li><a href={pagePath("/b2b")}>{t("nav.b2b")}</a></li>
         <li><a href={pagePath("/process")}>{t("nav.process")}</a></li>
         <li><a href={pagePath("/about")}>{t("nav.about")}</a></li>
       </ul>
@@ -37,7 +38,6 @@ const pagePath = (path: string) => getLocalizedPath(lang, path);
       <ul class="footer-links">
         <li><a href={`${pagePath("/services")}#websites`}>{t("footer.websites")}</a></li>
         <li><a href={`${pagePath("/services")}#applications`}>{t("footer.apps")}</a></li>
-        <li><a href={`${pagePath("/services")}#b2b`}>{t("footer.b2b")}</a></li>
       </ul>
     </nav>
 

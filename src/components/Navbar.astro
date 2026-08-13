@@ -37,6 +37,7 @@ const pagePath = (path: string) => getLocalizedPath(lang, path);
       <a href={pagePath("/services")} class="nav-link"
         >{t("nav.services")}</a
       >
+      <a href={pagePath("/b2b")} class="nav-link">{t("nav.b2b")}</a>
       <a href={pagePath("/process")} class="nav-link">{t("nav.process")}</a>
       <a href={pagePath("/about")} class="nav-link"
         >{t("nav.about")}</a
@@ -95,15 +96,19 @@ const pagePath = (path: string) => getLocalizedPath(lang, path);
       <span class="mobile-nav-title">{t("nav.services")}</span>
       <span class="mobile-nav-subtitle">{t("nav.mobile.services_desc")}</span>
     </a>
-    <a href={pagePath("/process")} style="--i:3" class="mobile-nav-link">
+    <a href={pagePath("/b2b")} style="--i:3" class="mobile-nav-link">
+      <span class="mobile-nav-title">{t("nav.b2b")}</span>
+      <span class="mobile-nav-subtitle">{t("nav.mobile.b2b_desc")}</span>
+    </a>
+    <a href={pagePath("/process")} style="--i:4" class="mobile-nav-link">
       <span class="mobile-nav-title">{t("nav.process")}</span>
       <span class="mobile-nav-subtitle">{t("nav.mobile.process_desc")}</span>
     </a>
-    <a href={pagePath("/about")} style="--i:4" class="mobile-nav-link">
+    <a href={pagePath("/about")} style="--i:5" class="mobile-nav-link">
       <span class="mobile-nav-title">{t("nav.about")}</span>
       <span class="mobile-nav-subtitle">{t("nav.mobile.about_desc")}</span>
     </a>
-    <a href={pagePath("/project")} style="--i:5" class="mobile-nav-link highlight">
+    <a href={pagePath("/project")} style="--i:6" class="mobile-nav-link highlight">
       <span class="mobile-nav-title">{t("cta.project")}</span>
       <span class="mobile-nav-subtitle">{t("nav.mobile.project_desc")}</span>
     </a>

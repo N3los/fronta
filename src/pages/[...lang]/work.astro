@@ -4,6 +4,7 @@ import Navbar from "../../components/Navbar.astro";
 import Footer from "../../components/Footer.astro";
 import ProjectEntry from "../../components/work/ProjectEntry.astro";
 import MainCTA from "../../components/sections/MainCTA.astro";
+import PageHeading from "../../components/PageHeading.astro";
 import { getProjectsByType } from "../../data/projects";
 import { getLangFromUrl, useTranslations } from "../../i18n/utils";
 
@@ -26,28 +27,21 @@ const appProjects = getProjectsByType("app");
   <main class="main-content-wrapper bg-dotted">
     <Navbar />
 
-    <section class="work-page-hero">
+    <section class="page-hero">
       <div class="section-container">
-        <p class="work-page-kicker" data-animate="fade-up">
-          {t("workPage.hero.eyebrow")}
-        </p>
-        <h1 class="work-page-title" data-animate="fade-up" data-delay="100">
-          {t("workPage.hero.title")}
-        </h1>
-        <div class="work-page-hero-bottom" data-animate="fade-up" data-delay="200">
-          <p class="work-page-lead">{t("workPage.hero.intro")}</p>
-          <nav class="work-page-jump-nav" aria-label={t("workPage.hero.eyebrow")}>
+        <PageHeading eyebrow={t("workPage.hero.eyebrow")} title={t("workPage.hero.title")} intro={t("workPage.hero.intro")}>
+          <nav slot="actions" class="work-page-jump-nav" aria-label={t("workPage.hero.eyebrow")}>
             <a href="#websites">{t("workPage.websites.label")}</a>
             <a href="#applications">{t("workPage.apps.label")}</a>
           </nav>
-        </div>
+        </PageHeading>
       </div>
     </section>
 
     <section class="work-page-group" id="websites">
       <div class="section-container">
         <header class="work-page-group-heading">
-          <p class="work-page-kicker" data-animate="fade-right">
+          <p class="page-kicker" data-animate="fade-right">
             {t("workPage.websites.label")}
           </p>
           <div data-animate="fade-up">
@@ -67,7 +61,7 @@ const appProjects = getProjectsByType("app");
     <section class="work-page-group work-page-group--apps" id="applications">
       <div class="section-container">
         <header class="work-page-group-heading">
-          <p class="work-page-kicker" data-animate="fade-right">
+          <p class="page-kicker" data-animate="fade-right">
             {t("workPage.apps.label")}
           </p>
           <div data-animate="fade-up">

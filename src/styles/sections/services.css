@@ -9,18 +9,3 @@
 .services-grid {
   @apply grid grid-cols-1 lg:grid-cols-2 gap-6;
 }
-
-.service-feature-list {
-  @apply mb-8 space-y-3 md:mb-12 md:space-y-4;
-}
-
-.service-feature-item {
-  @apply flex items-center gap-3 text-xs md:text-sm text-fronta-muted/90 transition-colors;
-}
-
-/* Specific card variation overrides if needed */
-.service-card:hover {
-  .service-feature-item {
-    color: var(--fronta-text);
-  }
-}

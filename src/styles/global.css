@@ -115,6 +115,50 @@
     color: var(--fronta-muted);
   }
 
+  /* Shared subpage heading. The homepage uses its own hero composition. */
+  .page-hero {
+    @apply pb-24 md:pb-32;
+    padding-top: calc(5rem + clamp(4.5rem, 9vw, 8rem));
+  }
+
+  .page-kicker {
+    @apply mb-7 font-mono text-xs font-medium uppercase tracking-[0.18em] text-fronta-red;
+
+    .page-hero & {
+      @apply text-white;
+    }
+  }
+
+  .page-title {
+    @apply max-w-6xl text-5xl font-bold tracking-[-0.045em] text-fronta-text md:text-7xl lg:text-[5.75rem];
+    font-family: var(--font-display);
+    line-height: 0.98;
+  }
+
+  .page-heading-bottom {
+    @apply mt-12 flex flex-col gap-10 md:mt-16 lg:flex-row lg:items-end lg:gap-16;
+  }
+
+  .page-lead {
+    @apply max-w-3xl flex-1 text-lg text-fronta-muted md:text-xl;
+    line-height: 1.7;
+  }
+
+  .page-updated {
+    @apply mt-6 font-mono text-[0.6875rem] uppercase tracking-[0.12em] text-fronta-muted;
+  }
+
+  /* Shared list marker for compact feature and service lists. */
+  .list-red-dash > li {
+    @apply relative pl-5 text-sm text-fronta-text md:text-base;
+    line-height: 1.65;
+  }
+
+  .list-red-dash > li::before {
+    content: "/";
+    @apply absolute left-0 top-0 font-mono text-fronta-red;
+  }
+
   /* Universal Navigation base */
   .nav-link {
     @apply text-sm transition-colors duration-300;

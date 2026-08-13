@@ -15,21 +15,6 @@
   @apply max-w-xl;
 }
 
-.impressum-kicker {
-  @apply mb-5 text-xs font-mono font-medium uppercase tracking-[0.18em] text-fronta-red;
-}
-
-.impressum-title {
-  @apply mb-7 text-4xl font-bold tracking-[-0.035em] text-fronta-text md:text-5xl lg:text-6xl;
-  font-family: var(--font-display);
-  line-height: 1.02;
-}
-
-.impressum-intro {
-  @apply max-w-lg text-base text-fronta-muted md:text-lg;
-  line-height: 1.7;
-}
-
 .impressum-details {
   @apply border-y border-fronta-border;
 }

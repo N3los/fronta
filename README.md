@@ -8,10 +8,10 @@ Built with Astro as a static site. Production is deployed by FTP to `/public_htm
 
 - Astro 6 with static output
 - TypeScript and Astro components
-- CSS files organised by component, section, and page
-- GSAP, Barba and Lenis for motion and transitions
+- Tailwind CSS 4 with semantic CSS organised by component, section, and page
+- Lenis, Astro view transitions and a small declarative reveal system
 - Formspree for the project enquiry form
-- Astro Sitemap and built-in SEO audit
+- Astro Sitemap and the project SEO audit script
 
 Requires Node.js 22.12 or newer.
 
@@ -142,6 +142,8 @@ Keep `.env`, `.deploy-backups/`, `dist/`, `node_modules/`, and temporary visual-
 
 ## Maintenance checklist
 
+- Read `AGENTS.md` before changing the project. For visual or responsive work,
+  also read `design.md`.
 - Keep EN and HR copy in sync.
 - Use clean trailing-slash links internally, for example `/work/`, never `/work` or `/work/index.html`.
 - Verify the enquiry form after changes to its steps or Formspree settings.

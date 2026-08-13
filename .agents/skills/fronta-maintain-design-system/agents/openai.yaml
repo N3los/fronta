@@ -1,0 +1,4 @@
+interface:
+  display_name: "FRONTA Design Guardrails"
+  short_description: "Keep FRONTA UI changes coherent and reusable"
+  default_prompt: "Use $fronta-maintain-design-system to review and implement this FRONTA interface change without design-system drift."

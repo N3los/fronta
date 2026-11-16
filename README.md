@@ -57,6 +57,7 @@ Routes are generated through `src/pages/[...lang]/`. English is the default lang
 | Work | `/work/` | `/hr/work/` |
 | Project enquiry | `/project/` | `/hr/project/` |
 | Impressum | `/impressum/` | `/hr/impressum/` |
+| Price lists | `/pricing/` | `/hr/pricing/` |
 
 ### Editing text
 

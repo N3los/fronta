@@ -1,0 +1,37 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import Navbar from "../../components/Navbar.astro";
+import Footer from "../../components/Footer.astro";
+import PageHeading from "../../components/PageHeading.astro";
+import { getLangFromUrl, useTranslations } from "../../i18n/utils";
+
+export function getStaticPaths() {
+  return [{ params: { lang: undefined } }, { params: { lang: "hr" } }];
+}
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+---
+
+<Layout title={t("meta.pricing.title")} description={t("meta.pricing.description")}>
+  <main class="main-content-wrapper bg-dotted">
+    <Navbar />
+
+    <section class="page-hero min-h-screen">
+      <div class="section-container">
+        <PageHeading eyebrow="FRONTA" title={t("pricing.title")} />
+        <div class="mt-12 md:mt-16">
+          <div
+            id="parra-cjenik"
+            data-obveznik="toni-andric-vl-obrta-za-dizajn-i-programiranje-fronta"
+            data-mjesto="1"
+            data-tema="tamna"
+            data-boja="#F0A15B"
+          ></div>
+        </div>
+        <script is:inline src="https://cjenici.parra.hr/embed.js" async data-astro-rerun></script>
+      </div>
+    </section>
+  </main>
+  <Footer />
+</Layout>
